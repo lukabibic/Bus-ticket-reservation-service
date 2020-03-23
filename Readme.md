@@ -8,5 +8,5 @@ Features we want to implement are:
 The project will be coded in Java using Eclipse IDE. 
 
 People working on the project:
-Dario Bara? (Senior Developer), Luka Bibi? (Team Leader), Filip Grgur (Junior Developer), Mario Mari?evi? (Junior Developer). 
+Dario Barac (Senior Developer), Luka Bibic (Team Leader), Filip Grgur (Junior Developer), Mario Maricevic (Junior Developer). 
 	
