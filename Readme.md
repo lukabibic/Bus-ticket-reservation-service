@@ -1,6 +1,7 @@
 Bus Ticket Reservation Service.  
-This application is meant to help people with finding and reservating eligible bus tours.  
+This application is meant to help people with finding and reserving eligible bus tours.  
 Features we want to implement are:  
+-Choosing bus
 -Choosing starting point and destination  
 -Setting date and time  
 -One way / two way tickets  
