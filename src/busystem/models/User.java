@@ -12,6 +12,7 @@ public class User {
     
     private String username;
     private String firstName;
+    private String lastName;
     private Integer ID;
 
     public User() {
@@ -108,6 +109,7 @@ public class User {
                 this.ID = res.getInt("id");
                 this.username = res.getString("username");
                 this.firstName = res.getString("first_name");
+                this.lastName = res.getString("last_name");
             } else {
                 System.out.println("Login failed");
                 return false;
