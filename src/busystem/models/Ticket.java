@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Date;
 import java.util.TreeMap;
+
+import busystem.DBconnect;
+
 import java.util.ArrayList;
 
 public class Ticket {
@@ -23,10 +26,6 @@ public class Ticket {
 
     public static void setTripCollection(TreeMap<Integer, Trip> allTrips) {
         Ticket.allTrips = allTrips;
-    }
-
-    private static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
     }
     
     public Ticket(Trip trip, User user, Date tripDate) throws Exception, SQLException {
@@ -56,7 +55,7 @@ public class Ticket {
     private Integer create(Trip trip, User user, Date tripDate) throws Exception, SQLException {
         //create ticket in database and return ID of generated ticket
 
-        Connection conn = Ticket.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         //check if any tickets are left for trip on selected date
         PreparedStatement preparedStmt = conn.prepareStatement("SELECT count(*) AS count from ticket WHERE trip_id = ? AND trip_date = ?");
@@ -87,7 +86,7 @@ public class Ticket {
         //return a collection of all tickets owned by given user
         ArrayList<Ticket> usersTickets = new ArrayList<Ticket>();
 
-        Connection conn = Ticket.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         PreparedStatement preparedStmt = conn.prepareStatement("SELECT * FROM ticket WHERE user_id = ?");
         preparedStmt.setInt(1, user.getID());

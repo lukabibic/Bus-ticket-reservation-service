@@ -7,16 +7,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.TreeMap;
+
+import busystem.DBconnect;
+
 import java.beans.PropertyChangeListener;
 
 public class Bus {
     private Integer ID;
     private String model;
     private Integer seats;
-
-    private static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
-    }
 
     public Bus(String model, Integer seats) throws IllegalArgumentException, SQLException {
         this.ID = this.create(model, seats);
@@ -49,7 +48,7 @@ public class Bus {
 
     private int create(String model, Integer seats) throws IllegalArgumentException, SQLException {
         //create new bus in database and return generated ID
-        Connection conn = Bus.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
         
         if (seats < 0) {
             throw new IllegalArgumentException("Error: number of seats must be non-negative");
@@ -72,7 +71,7 @@ public class Bus {
         //return a Map of all existing cities
         //cityID maps to object with given ID
         TreeMap<Integer, Bus> buses = new TreeMap<Integer, Bus>();
-        Connection conn = Bus.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from bus");
         ResultSet result = preparedStmt.executeQuery();

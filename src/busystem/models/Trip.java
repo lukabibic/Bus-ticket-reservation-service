@@ -8,6 +8,9 @@ import java.sql.Time;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.TreeMap;
+
+import busystem.DBconnect;
+
 import java.beans.PropertyChangeListener;
 
 public class Trip {
@@ -34,10 +37,6 @@ public class Trip {
         Trip.allBuses = allBuses;
     }
 
-    private static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
-    }
-    
     public Trip(Bus bus, Line line, Time departureTime, Time tripDuration) throws IllegalArgumentException, SQLException {
         
         this.ID = this.create(bus, line, departureTime, tripDuration);
@@ -70,7 +69,7 @@ public class Trip {
 
     private Integer create(Bus bus, Line line, Time departureTime, Time tripDuration) throws IllegalArgumentException, SQLException {
         //create trip in database and return ID of generated 
-        Connection conn = Trip.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         //TODO: check if bus and line exist, time format
 
@@ -95,7 +94,7 @@ public class Trip {
         //tripID maps to Trip object with given ID
         TreeMap<Integer, Trip> trips = new TreeMap<Integer, Trip>();
 
-        Connection conn = Trip.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from trip");
         ResultSet result = preparedStmt.executeQuery();

@@ -6,11 +6,15 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import busystem.models.*;
 
-
-public class GUI extends JFrame{
+public class GUI_LoginInterface extends JFrame{
 
 	private JPanel mainPanel;
 	private JButton signUpBtn;
@@ -24,19 +28,20 @@ public class GUI extends JFrame{
 	private JLabel logPassLabel;
 	private JTextField logUserTextBox;
 	private JPasswordField logPassField;
-	private JButton loginBtn;
+	public JButton loginBtn;
 	private JLabel regUserLabel;
 	private JLabel regPassLabel;
 	private JLabel regEmailLabel;
 	private JTextField regUserTextBox;
 	private JPasswordField regPassField;
 	private JTextField regEmailTextBox;
-	private JButton registerBtn;
+	public JButton registerBtn;
+	public String username;
 	
 	/**
 	 * Create the frame.
 	 */
-	public GUI() {
+	public GUI_LoginInterface() {
 		setTitle("Bus Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 849, 554);
@@ -96,7 +101,7 @@ public class GUI extends JFrame{
 		
 		busPicLabel = new JLabel("");
 		busPicLabel.setBounds(0, 0, 357, 526);
-			Image image = new ImageIcon(GUI.class.getResource("/images/buspic.png")).getImage();
+			Image image = new ImageIcon(GUI_LoginInterface.class.getResource("/images/buspic.png")).getImage();
 	        Image scaledImage = image.getScaledInstance(busPicLabel.getWidth(), busPicLabel.getHeight(), Image.SCALE_SMOOTH);
 	        busPicPanel.setLayout(null);
 	        busPicLabel.setIcon(new ImageIcon(scaledImage));
@@ -185,6 +190,7 @@ public class GUI extends JFrame{
 		regform.add(regUserTextBox);
 		regUserTextBox.setColumns(10);
 		
+		
 		regPassField = new JPasswordField();
 		regPassField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		regPassField.setCaretColor(Color.WHITE);
@@ -210,21 +216,13 @@ public class GUI extends JFrame{
 		regEmailTextBox.setBounds(90, 271, 276, 34);
 		regform.add(regEmailTextBox);
 		
-		registerBtn = new JButton("REGISTER");
+		registerBtn = new JButton("REGISTER");	
 		registerBtn.setBackground(SystemColor.textHighlight);
 		registerBtn.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 		registerBtn.setForeground(Color.WHITE);
 		registerBtn.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
 		registerBtn.setBounds(140, 334, 167, 34);
 		regform.add(registerBtn);
-			
-	}
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		GUI sucelje = new GUI();
-		sucelje.setVisible(true);
+		
 	}
 }

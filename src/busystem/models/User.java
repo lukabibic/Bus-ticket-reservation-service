@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.regex.Pattern;
+
+import busystem.DBconnect;
+
 import java.util.regex.Matcher;
 
 public class User {
@@ -27,11 +30,6 @@ public class User {
         this.login(username, password);
     }
 
-    private Connection getDbConnection() throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
-        return conn;
-    }
-
     public String getUsername() {
         return this.username;
     }
@@ -50,7 +48,7 @@ public class User {
 
     public boolean create(String username, String firstName, String lastName, String password, String email) throws SQLException {
 
-        Connection conn = this.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
         
         //validate username
         String validUsernamePattern = "^[a-zA-Z0-9_.]{4,64}$";
@@ -101,7 +99,7 @@ public class User {
 
     public boolean login(String username, String password) throws SQLException {
 
-        Connection conn = this.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
         
         //TODO hash password before query
         String query = "SELECT * FROM user WHERE username = ? AND password = ?";

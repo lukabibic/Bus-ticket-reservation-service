@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.TreeMap;
+
+import busystem.DBconnect;
+
 import java.beans.PropertyChangeListener;
 
 public class Line {
@@ -20,10 +23,6 @@ public class Line {
 
     public static void setCityCollection(TreeMap<Integer, City> allCities) {
         Line.allCities = allCities;
-    }
-
-    private static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
     }
 
     public Line(City start, City destination) throws IllegalArgumentException, SQLException {
@@ -50,7 +49,7 @@ public class Line {
 
     //create line in database and return ID of new line
     private Integer create(City start, City destination) throws SQLException {
-        Connection conn = Line.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         //check if cities exist
         PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from city WHERE id = ?");
@@ -84,7 +83,7 @@ public class Line {
         //lineID maps to Line object with given ID
         TreeMap<Integer, Line> lines = new TreeMap<Integer, Line>();
 
-        Connection conn = Line.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from line");
         ResultSet result = preparedStmt.executeQuery();

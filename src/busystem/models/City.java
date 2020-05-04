@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.TreeMap;
+
+import busystem.DBconnect;
+
 import java.beans.PropertyChangeListener;
 
 public class City {
@@ -45,13 +48,10 @@ public class City {
         return this.name;
     }
 
-    private static Connection getDbConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
-    }
 
     public Integer create(String cityName, Integer areaNumber) throws IllegalArgumentException, SQLException {
 
-        Connection conn = City.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
         
         //validate city name
         String validCityNamePattern = "^[a-zA-Z_.]{4,64}$";
@@ -84,7 +84,7 @@ public class City {
         //return a Map of all existing cities
         //cityID maps to object with given ID
         TreeMap<Integer, City> cities = new TreeMap<Integer, City>();
-        Connection conn = City.getDbConnection();
+        Connection conn = DBconnect.getDbConnection();
 
         PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from city");
         ResultSet result = preparedStmt.executeQuery();
