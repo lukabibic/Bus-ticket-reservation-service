@@ -3,34 +3,34 @@ package busystem.models;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.TreeMap;
 import java.beans.PropertyChangeListener;
 
 public class City {
+
+    private Integer ID;
     private String name;
     private Integer areaNumber;
-    private Integer cityID;
 
-    public City(String cityName, Integer areaNumber) throws SQLException {
-        //TODO: throw exception if city doesn't exist?
-        if (this.create(cityName, areaNumber)) {
-            //set attributes if creation was successful
-            this.setByAreaNumber(areaNumber);
-        }
+    public City(String cityName, Integer areaNumber) throws IllegalArgumentException, SQLException {
+
+        this.ID = this.create(cityName, areaNumber);
+        this.name = cityName;
+        this.areaNumber = areaNumber;
     }
 
     private City(Integer ID, String cityName, Integer areaNumber) {
         //this constructor is used only in getAll() static method
-        this.cityID = ID;
+        this.ID = ID;
         this.name = cityName;
         this.areaNumber = areaNumber;
     }
 
     public Integer getID() {
-        return this.cityID;
+        return this.ID;
     }
 
     public String getName() {
@@ -41,32 +41,22 @@ public class City {
         return this.areaNumber;
     }
 
+    public String toString() {
+        return this.name;
+    }
+
     private static Connection getDbConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
     }
 
-    private void setByAreaNumber(int areaNumber) throws SQLException {
+    public Integer create(String cityName, Integer areaNumber) throws IllegalArgumentException, SQLException {
 
         Connection conn = City.getDbConnection();
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from city WHERE area_number = ?");
-        preparedStmt.setInt(1, areaNumber);
-        ResultSet city = preparedStmt.executeQuery();
-        if (city.next()) {
-            this.cityID = city.getInt("id");
-            this.name = city.getString("name");
-            this.areaNumber = city.getInt("area_number");
-        }
-    }
-
-    public boolean create(String cityName, Integer areaNumber) throws SQLException {
-
-        Connection conn = this.getDbConnection();
         
         //validate city name
         String validCityNamePattern = "^[a-zA-Z_.]{4,64}$";
         if (cityName.matches(validCityNamePattern) == false) {
-            System.out.println("Invalid city name");
-            return false;
+            throw new IllegalArgumentException("Error: Invalid city name");
         }
 
         //check if area number is taken
@@ -74,18 +64,20 @@ public class City {
         preparedStmt.setInt(1, areaNumber);
         ResultSet existing_city = preparedStmt.executeQuery();
         if (existing_city.next() != false) {
-            System.out.println("ERROR: City area number is taken");
-            return false;
+            throw new IllegalArgumentException("Error: City area number is taken");
         }
 
         String query = "INSERT into city (name, area_number)" + " VALUES (?, ?)";
-        preparedStmt = conn.prepareStatement(query);
+        preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setString(1, cityName);
         preparedStmt.setInt(2, areaNumber);
-
         preparedStmt.execute();
-        System.out.println("City created sucessfully");
-        return true;
+
+        ResultSet generatedID = preparedStmt.getGeneratedKeys();
+        generatedID.next();
+        int cityID = generatedID.getInt(1);
+        System.out.println("City created successfuly");
+        return cityID;
     }
 
     public static TreeMap<Integer, City> getAll() throws SQLException {

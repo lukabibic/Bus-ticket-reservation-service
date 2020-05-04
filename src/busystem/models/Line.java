@@ -3,13 +3,14 @@ package busystem.models;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.TreeMap;
 import java.beans.PropertyChangeListener;
 
 public class Line {
-    private Integer lineID;
+    private Integer ID;
     private City start;
     private City destination;
 
@@ -26,27 +27,29 @@ public class Line {
     }
 
     public Line(City start, City destination) throws IllegalArgumentException, SQLException {
-        this.create(start, destination);
-        //find ID of new line and set attributes
-        Connection conn = Line.getDbConnection();
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT id from line WHERE start_id = ? and destination_id = ?");
-        preparedStmt.setInt(1, start.getID());
-        preparedStmt.setInt(2, destination.getID());
-        ResultSet lineID = preparedStmt.executeQuery();
-        lineID.next();
-        this.lineID = lineID.getInt("id");
+        
+        this.ID = this.create(start, destination);
         this.start = start;
         this.destination = destination;
     }
 
     private Line(int ID, City start, City destination) {
         //constructor used in getAll()
-        this.lineID = ID;
+        this.ID = ID;
         this.start = start;
         this.destination = destination;
     }
 
-    private void create(City start, City destination) throws SQLException {
+    public Integer getID() {
+        return this.ID;
+    }
+
+    public String toString() {
+        return this.start + "-" + this.destination;
+    }
+
+    //create line in database and return ID of new line
+    private Integer create(City start, City destination) throws SQLException {
         Connection conn = Line.getDbConnection();
 
         //check if cities exist
@@ -64,12 +67,16 @@ public class Line {
         }
 
         String query = "INSERT into line (start_id, destination_id)" + " VALUES (?, ?)";
-        preparedStmt = conn.prepareStatement(query);
+        preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setInt(1, start.getID());
         preparedStmt.setInt(2, destination.getID());
         preparedStmt.execute();
 
+        ResultSet generatedID = preparedStmt.getGeneratedKeys();
+        generatedID.next();
+        int lineID = generatedID.getInt(1);
         System.out.println("Line created successfuly");
+        return lineID;
     }
 
     public static TreeMap<Integer, Line> getAll() throws SQLException {

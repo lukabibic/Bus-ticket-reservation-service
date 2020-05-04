@@ -12,6 +12,7 @@ public class User {
     private String username;
     private String firstName;
     private String lastName;
+    private String email;
     private Integer ID;
 
     public User(String username, String firstName, String lastName, String password, String email) throws SQLException {
@@ -41,6 +42,10 @@ public class User {
 
     public String getName() {
         return this.firstName + this.lastName;
+    }
+
+    public String toString() {
+        return this.getName();
     }
 
     public boolean create(String username, String firstName, String lastName, String password, String email) throws SQLException {
