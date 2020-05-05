@@ -19,10 +19,8 @@ public class User {
     private Integer ID;
 
     public User(String username, String firstName, String lastName, String password, String email) throws SQLException {
-        if (this.create(username, firstName, lastName, password, email)) {
-            //login if user was successfuly created
-            this.login(username, password);
-        }
+        this.create(username, firstName, lastName, password, email); //registracija
+        this.login(username, password); //login
     }
 
     public User(String username, String password) throws SQLException {
@@ -46,44 +44,39 @@ public class User {
         return this.getName();
     }
 
-    public boolean create(String username, String firstName, String lastName, String password, String email) throws SQLException {
+    public void create(String username, String firstName, String lastName, String password, String email) throws IllegalArgumentException, SQLException {
 
-        Connection conn = DBconnect.getDbConnection();
         
         //validate username
         String validUsernamePattern = "^[a-zA-Z0-9_.]{4,64}$";
         if (username.matches(validUsernamePattern) == false) {
-            System.out.println("Invalid username");
-            return false;
+            throw new IllegalArgumentException("Invalid username!");
         }
         //validate email
         Pattern pattern = Pattern.compile("^.+@.+\\..+$");
         Matcher matcher = pattern.matcher(email);
         if (matcher.matches() == false) {
-            System.out.println("Invalid email");
-            return false;
+            throw new IllegalArgumentException("Invalid email!");
         }
        
         //check if username is taken
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from user WHERE username = ?");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from user WHERE username = ?");
         preparedStmt.setString(1, username);
         ResultSet existing_user = preparedStmt.executeQuery();
         if (existing_user.next() != false) {
-            System.out.println("ERROR: username is taken");
-            return false;
+            throw new IllegalArgumentException("Username is already taken!");
         }
         //check if email is taken
-        preparedStmt = conn.prepareStatement("SELECT * from user WHERE email = ?");
+        preparedStmt = DBconnect.conn.prepareStatement("SELECT * from user WHERE email = ?");
         preparedStmt.setString(1, email);
         ResultSet existing_email = preparedStmt.executeQuery();
         if (existing_email.next() != false) {
-            System.out.println("ERROR: email is taken");
-            return false;
+            throw new IllegalArgumentException("Email is already taken!");
         }
 
         String query = "INSERT into user (username, first_name, last_name, password, email)"
         + " VALUES (?, ?, ?, ?, ?)";
-        preparedStmt = conn.prepareStatement(query);
+        preparedStmt = DBconnect.conn.prepareStatement(query);
         preparedStmt.setString(1, username);
         preparedStmt.setString(2, firstName);
         preparedStmt.setString(3, lastName);
@@ -94,16 +87,13 @@ public class User {
         preparedStmt.execute();
 
         System.out.println("User created sucessfully");
-        return true;
     }
 
-    public boolean login(String username, String password) throws SQLException {
+    public void login(String username, String password) throws IllegalArgumentException, SQLException {
 
-        Connection conn = DBconnect.getDbConnection();
-        
         //TODO hash password before query
         String query = "SELECT * FROM user WHERE username = ? AND password = ?";
-        PreparedStatement preparedStmt = conn.prepareStatement(query);
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement(query);
         preparedStmt.setString(1, username);
         preparedStmt.setString(2, password);
         // execute the preparedstatement
@@ -115,11 +105,9 @@ public class User {
             this.firstName = res.getString("first_name");
             this.lastName = res.getString("last_name");
         } else {
-            System.out.println("Login failed");
-            return false;
+            throw new IllegalArgumentException("Wrong username or password!");
         }
  
         System.out.println("Login sucessfull");
-        return true;
     }
 }

@@ -49,16 +49,16 @@ public class Line {
 
     //create line in database and return ID of new line
     private Integer create(City start, City destination) throws SQLException {
-        Connection conn = DBconnect.getDbConnection();
+
 
         //check if cities exist
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from city WHERE id = ?");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from city WHERE id = ?");
         preparedStmt.setInt(1, start.getID());
         ResultSet existing_city = preparedStmt.executeQuery();
         if (!existing_city.next()) {
             throw new IllegalArgumentException("ERROR: Start city does not exist");
         }
-        preparedStmt = conn.prepareStatement("SELECT * from city WHERE id = ?");
+        preparedStmt = DBconnect.conn.prepareStatement("SELECT * from city WHERE id = ?");
         preparedStmt.setInt(1, destination.getID());
         existing_city = preparedStmt.executeQuery();
         if (!existing_city.next()) {
@@ -66,7 +66,7 @@ public class Line {
         }
 
         String query = "INSERT into line (start_id, destination_id)" + " VALUES (?, ?)";
-        preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStmt = DBconnect.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setInt(1, start.getID());
         preparedStmt.setInt(2, destination.getID());
         preparedStmt.execute();
@@ -83,9 +83,7 @@ public class Line {
         //lineID maps to Line object with given ID
         TreeMap<Integer, Line> lines = new TreeMap<Integer, Line>();
 
-        Connection conn = DBconnect.getDbConnection();
-
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from line");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from line");
         ResultSet result = preparedStmt.executeQuery();
         while (result.next()) {
             int startCityID = result.getInt("start_id");

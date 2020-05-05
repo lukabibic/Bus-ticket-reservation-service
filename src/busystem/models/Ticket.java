@@ -55,10 +55,9 @@ public class Ticket {
     private Integer create(Trip trip, User user, Date tripDate) throws Exception, SQLException {
         //create ticket in database and return ID of generated ticket
 
-        Connection conn = DBconnect.getDbConnection();
 
         //check if any tickets are left for trip on selected date
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT count(*) AS count from ticket WHERE trip_id = ? AND trip_date = ?");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT count(*) AS count from ticket WHERE trip_id = ? AND trip_date = ?");
         preparedStmt.setInt(1, trip.getID());
         preparedStmt.setDate(2, tripDate);
         ResultSet result = preparedStmt.executeQuery();
@@ -69,7 +68,7 @@ public class Ticket {
         }
 
         String query = "INSERT into ticket (trip_id, user_id, trip_date) VALUES (?, ?, ?)";
-        preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStmt = DBconnect.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setInt(1, trip.getID());
         preparedStmt.setInt(2, user.getID());
         preparedStmt.setDate(3, tripDate);
@@ -86,9 +85,8 @@ public class Ticket {
         //return a collection of all tickets owned by given user
         ArrayList<Ticket> usersTickets = new ArrayList<Ticket>();
 
-        Connection conn = DBconnect.getDbConnection();
 
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * FROM ticket WHERE user_id = ?");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * FROM ticket WHERE user_id = ?");
         preparedStmt.setInt(1, user.getID());
         ResultSet result = preparedStmt.executeQuery();
         while (result.next()) {

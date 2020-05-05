@@ -50,9 +50,7 @@ public class City {
 
 
     public Integer create(String cityName, Integer areaNumber) throws IllegalArgumentException, SQLException {
-
-        Connection conn = DBconnect.getDbConnection();
-        
+       
         //validate city name
         String validCityNamePattern = "^[a-zA-Z_.]{4,64}$";
         if (cityName.matches(validCityNamePattern) == false) {
@@ -60,7 +58,7 @@ public class City {
         }
 
         //check if area number is taken
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from city WHERE area_number = ?");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from city WHERE area_number = ?");
         preparedStmt.setInt(1, areaNumber);
         ResultSet existing_city = preparedStmt.executeQuery();
         if (existing_city.next() != false) {
@@ -68,7 +66,7 @@ public class City {
         }
 
         String query = "INSERT into city (name, area_number)" + " VALUES (?, ?)";
-        preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        preparedStmt = DBconnect.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setString(1, cityName);
         preparedStmt.setInt(2, areaNumber);
         preparedStmt.execute();
@@ -84,9 +82,8 @@ public class City {
         //return a Map of all existing cities
         //cityID maps to object with given ID
         TreeMap<Integer, City> cities = new TreeMap<Integer, City>();
-        Connection conn = DBconnect.getDbConnection();
 
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from city");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from city");
         ResultSet result = preparedStmt.executeQuery();
         while (result.next()) {
             int cityID = result.getInt("id");

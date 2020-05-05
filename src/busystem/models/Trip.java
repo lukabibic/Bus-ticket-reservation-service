@@ -69,13 +69,12 @@ public class Trip {
 
     private Integer create(Bus bus, Line line, Time departureTime, Time tripDuration) throws IllegalArgumentException, SQLException {
         //create trip in database and return ID of generated 
-        Connection conn = DBconnect.getDbConnection();
 
         //TODO: check if bus and line exist, time format
 
         String query = "INSERT into trip (bus_id, line_id, departure_time, trip_duration)" + " VALUES (?, ?, ?, ?)";
         
-        PreparedStatement preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setInt(1, bus.getID());
         preparedStmt.setInt(2, line.getID());
         preparedStmt.setTime(3, departureTime);
@@ -94,9 +93,7 @@ public class Trip {
         //tripID maps to Trip object with given ID
         TreeMap<Integer, Trip> trips = new TreeMap<Integer, Trip>();
 
-        Connection conn = DBconnect.getDbConnection();
-
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from trip");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from trip");
         ResultSet result = preparedStmt.executeQuery();
         while (result.next()) {
             int busID = result.getInt("bus_id");
