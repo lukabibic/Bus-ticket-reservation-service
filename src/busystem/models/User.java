@@ -97,11 +97,16 @@ public class User {
         return true;
     }
 
-    public boolean login(String username, String password) throws SQLException {
+    public boolean login(String username, String password) throws SQLException, IllegalArgumentException {
 
         Connection conn = DBconnect.getDbConnection();
         
         //TODO hash password before query
+        if(username.isEmpty() || password.isEmpty()){
+            throw new RuntimeException("Cannot take in an empty String or null value for the \"name\" constructor");
+            
+        }
+        
         String query = "SELECT * FROM user WHERE username = ? AND password = ?";
         PreparedStatement preparedStmt = conn.prepareStatement(query);
         preparedStmt.setString(1, username);
@@ -116,7 +121,7 @@ public class User {
             this.lastName = res.getString("last_name");
         } else {
             System.out.println("Login failed");
-            return false;
+            throw new SQLException("Cannot find user");
         }
  
         System.out.println("Login sucessfull");

@@ -9,6 +9,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		GUI_LoginInterface sucelje = new GUI_LoginInterface();
+		HomeWindow mainHomeWindow = new HomeWindow();
+		
 		sucelje.setVisible(true);
 		
 		sucelje.registerBtn.addActionListener(new ActionListener() {
@@ -18,8 +20,35 @@ public class Main {
 		});
 		
 		sucelje.loginBtn.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
-				//ToBeImplemented
+				boolean thrown = false;
+				try {
+					User korisnikUser = new User(sucelje.logUserTextBox.getText(), sucelje.logPassField.getText());
+					sucelje.hide();
+					
+				}
+				//Change printStackTrace to something more specific
+				catch (IllegalArgumentException i1) {
+					i1.printStackTrace();
+					thrown = true;
+				}
+				
+				catch (RuntimeException r1) {
+					// TODO: handle exception
+					r1.printStackTrace();
+					thrown = true;
+				}
+				
+				catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					thrown = true;
+				}
+				System.out.println("thrown = " + thrown);
+				if(!thrown) {
+					mainHomeWindow.show();
+				}
 			}
 		});
 		
