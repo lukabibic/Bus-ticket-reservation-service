@@ -29,6 +29,8 @@ public class Main {
 					
 				}
 				//Change printStackTrace to something more specific
+				
+				
 				catch (IllegalArgumentException i1) {
 					i1.printStackTrace();
 					thrown = true;
@@ -42,7 +44,7 @@ public class Main {
 				
 				catch (SQLException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					//e1.printStackTrace();
 					thrown = true;
 				}
 				System.out.println("thrown = " + thrown);
