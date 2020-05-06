@@ -15,8 +15,6 @@ import javax.swing.event.DocumentListener;
 import busystem.models.*;
 
 public class HomeWindow extends JFrame{
-
-	private JPanel mainPanel;
 	
 	/**
 	 * Create the frame.
@@ -26,15 +24,6 @@ public class HomeWindow extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 849, 554);
 		setResizable(false);
-		
-		//definiranje komponenti
-		
-		//MAIN PANEL
-		mainPanel = new JPanel();
-		mainPanel.setBackground(Color.DARK_GRAY);
-		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(mainPanel);
-		mainPanel.setLayout(null);
 	
 	}
 }
