@@ -17,13 +17,13 @@ import busystem.models.*;
 public class GUI_LoginInterface extends JFrame{
 
 	private JPanel mainPanel;
-	private JButton signUpBtn;
-	private JButton signInBtn;
+	JButton signUpBtn;
+	JButton signInBtn;
 	private JPanel busPicPanel;
 	private JLabel busPicLabel;
 	private JPanel login_regpanel;
-	private JPanel logform;
-	private JPanel regform;
+	 JPanel logform;
+	 JPanel regform;
 	private JLabel logUserLabel;
 	private JLabel logPassLabel;
 	JTextField logUserTextBox;
@@ -260,15 +260,7 @@ public class GUI_LoginInterface extends JFrame{
 		Form_butt_panel.add(signInBtn);
 		signInBtn.setBorder(null);
 		signInBtn.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
-		signInBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				logform.setVisible(true);
-				regform.setVisible(false);
-				signInBtn.setOpaque(true);
-				signUpBtn.setOpaque(false);
-				signUpBtn.setBorder(new LineBorder(SystemColor.textHighlight, 2));			
-			}
-		});
+		
 		signInBtn.setForeground(Color.WHITE);
 		signInBtn.setBackground(SystemColor.textHighlight);
 		
@@ -280,16 +272,7 @@ public class GUI_LoginInterface extends JFrame{
 		signUpBtn.setBackground(SystemColor.textHighlight);
 		signUpBtn.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 		signUpBtn.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
-		signUpBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				regform.setVisible(true);
-				logform.setVisible(false);
-				signUpBtn.setOpaque(true);
-				signInBtn.setOpaque(false);
-				signInBtn.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-				
-			}
-		});
+		
 		
 	}
 }
