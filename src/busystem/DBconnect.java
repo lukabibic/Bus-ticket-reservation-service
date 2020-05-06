@@ -8,6 +8,6 @@ public class DBconnect {
 	public static Connection conn;
 	
 	public static void openDbConnection() throws SQLException {
-		conn = DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem&serverTimezone=CET");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost/busystem?user=busystem&password=busystem");
     }
 }
