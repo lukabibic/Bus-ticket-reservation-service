@@ -19,10 +19,9 @@ public class User {
     private Integer ID;
 
     public User(String username, String firstName, String lastName, String password, String email) throws SQLException {
-        if (this.create(username, firstName, lastName, password, email)) {
+        this.create(username, firstName, lastName, password, email);
             //login if user was successfuly created
-            this.login(username, password);
-        }
+        this.login(username, password);
     }
 
     public User(String username, String password) throws SQLException {
