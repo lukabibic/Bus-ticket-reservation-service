@@ -57,6 +57,7 @@ CREATE TABLE ticket (
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
     trip_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
+	trip_date DATE NOT NULL,
 	FOREIGN KEY (trip_id) REFERENCES trip (id),
 	FOREIGN KEY (user_id) REFERENCES user (id)
 );
