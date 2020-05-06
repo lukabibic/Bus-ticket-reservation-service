@@ -57,6 +57,13 @@ public class Main {
 				
 			}
 		});
+		
+		try {
+			User korisnik = new User("kuku", "Mario", "Maricevic", "mario", "mario@gmail.com");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

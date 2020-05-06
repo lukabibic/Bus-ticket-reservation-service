@@ -19,8 +19,10 @@ public class User {
     private Integer ID;
 
     public User(String username, String firstName, String lastName, String password, String email) throws SQLException {
-        this.create(username, firstName, lastName, password, email); //registracija
-        this.login(username, password); //login
+        if (this.create(username, firstName, lastName, password, email)) {
+            //login if user was successfuly created
+            this.login(username, password);
+        }
     }
 
     public User(String username, String password) throws SQLException {
@@ -87,6 +89,7 @@ public class User {
         preparedStmt.execute();
 
         System.out.println("User created sucessfully");
+
     }
 
     public void login(String username, String password) throws IllegalArgumentException, SQLException {
