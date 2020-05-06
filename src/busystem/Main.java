@@ -46,6 +46,11 @@ public class Main {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					User korisnik = new User(sucelje.logUserTextBox.getText(),sucelje.logPassField.getText());
+					if(korisnik.getUsername().contentEquals("admin")) {
+						AdminGUI adminScreen = new AdminGUI();
+						adminScreen.setVisible(true);
+						sucelje.setVisible(false);
+					}
 				} 
 				catch (SQLException e1) {
 					System.out.println("Error with database!");
