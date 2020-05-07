@@ -17,6 +17,7 @@ public class User {
     private String lastName;
     private String email;
     private Integer ID;
+    private Boolean adminPrivileges;
 
     public User(String username, String firstName, String lastName, String password, String email) throws SQLException {
         this.create(username, firstName, lastName, password, email);
@@ -43,6 +44,14 @@ public class User {
 
     public String toString() {
         return this.getName();
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public Boolean isAdmin() {
+        return this.adminPrivileges;
     }
 
     public void create(String username, String firstName, String lastName, String password, String email) throws IllegalArgumentException, SQLException {
@@ -106,6 +115,8 @@ public class User {
             this.username = res.getString("username");
             this.firstName = res.getString("first_name");
             this.lastName = res.getString("last_name");
+            this.email = res.getString("email");
+            this.adminPrivileges = res.getBoolean("is_admin");
         } else {
             throw new IllegalArgumentException("Wrong username or password!");
         }
