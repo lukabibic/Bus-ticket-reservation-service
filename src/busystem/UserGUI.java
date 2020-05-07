@@ -14,7 +14,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import busystem.models.*;
 
-public class AdminGUI extends JFrame{
+public class UserGUI extends JFrame{
 	
 	private JPanel mainPanel;
 	private JPanel AdminNavbarPanel;
@@ -78,7 +78,7 @@ public class AdminGUI extends JFrame{
 	 * Create the frame.
 	 */
 	
-	public AdminGUI() {
+	public UserGUI() {
 			setTitle("Bus Management System");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 1073, 584);
@@ -322,10 +322,10 @@ public class AdminGUI extends JFrame{
 			AdminCityPanel.add(AddCityPanel);
 			AddCityPanel.setLayout(null);
 			
-			NameCityLabel = new JLabel("NAME: ");
+			NameCityLabel = new JLabel("USER RADI");
 			NameCityLabel.setForeground(Color.WHITE);
 			NameCityLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
-			NameCityLabel.setBounds(63, 29, 80, 32);
+			NameCityLabel.setBounds(22, 29, 121, 32);
 			AddCityPanel.add(NameCityLabel);
 			
 			NameCityAddTextBox = new JTextField();
