@@ -48,14 +48,13 @@ public class Bus {
 
     private int create(String model, Integer seats) throws IllegalArgumentException, SQLException {
         //create new bus in database and return generated ID
-        Connection conn = DBconnect.getDbConnection();
         
         if (seats < 0) {
             throw new IllegalArgumentException("Error: number of seats must be non-negative");
         }
 
         String query = "INSERT into bus (model, seats)" + " VALUES (?, ?)";
-        PreparedStatement preparedStmt = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setString(1, model);
         preparedStmt.setInt(2, seats);
         preparedStmt.execute();
@@ -71,9 +70,8 @@ public class Bus {
         //return a Map of all existing cities
         //cityID maps to object with given ID
         TreeMap<Integer, Bus> buses = new TreeMap<Integer, Bus>();
-        Connection conn = DBconnect.getDbConnection();
 
-        PreparedStatement preparedStmt = conn.prepareStatement("SELECT * from bus");
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from bus");
         ResultSet result = preparedStmt.executeQuery();
         while (result.next()) {
             int busID = result.getInt("id");
