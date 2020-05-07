@@ -53,7 +53,6 @@ public class GUI_LoginInterface extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 849, 554);
 		setResizable(false);
-		setVisible(true);
 		
 		//definiranje komponenti
 		
@@ -274,6 +273,6 @@ public class GUI_LoginInterface extends JFrame{
 		signUpBtn.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 		signUpBtn.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
 		
-		
+		setVisible(true);
 	}
 }
