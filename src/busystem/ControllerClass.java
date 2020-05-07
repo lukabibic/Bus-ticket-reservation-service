@@ -11,6 +11,8 @@ import busystem.models.User;
 
 public class ControllerClass {
 	
+	private User korisnik; // DA BI SE ZARDZAO OBJEKT KORISNIKA KAD PRODE TRY CATCH
+	
 	public ControllerClass() {
 		// TODO Auto-generated constructor stub
 		
@@ -46,8 +48,8 @@ public class ControllerClass {
 		sucelje.loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					User korisnik = new User(sucelje.logUserTextBox.getText(),sucelje.logPassField.getText());
-					if(korisnik.getUsername().contentEquals("admin")) {
+					korisnik = new User(sucelje.logUserTextBox.getText(),sucelje.logPassField.getText());
+					if(korisnik.isAdmin()) {
 						AdminGUI adminScreen = new AdminGUI();
 						adminScreen.setVisible(true);
 						sucelje.setVisible(false);
@@ -70,7 +72,7 @@ public class ControllerClass {
 				sucelje.registerBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-							User korisnik = new User(sucelje.regUserTextBox.getText(), sucelje.regFirstNameTextBox.getText(),sucelje.regLastNameTextBox.getText(),sucelje.regPassField.getText(),sucelje.regEmailTextBox.getText());
+							korisnik = new User(sucelje.regUserTextBox.getText(), sucelje.regFirstNameTextBox.getText(),sucelje.regLastNameTextBox.getText(),sucelje.regPassField.getText(),sucelje.regEmailTextBox.getText());
 						} 
 						catch (SQLException e1) {
 							System.out.println("Error with database!");
