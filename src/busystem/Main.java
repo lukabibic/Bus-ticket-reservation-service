@@ -12,26 +12,13 @@ import busystem.models.*;
 public class Main {
 
 	public static void main(String[] args) {
-		GUI_LoginInterface sucelje = new GUI_LoginInterface();
-		ControllerClass controller = new ControllerClass();
 		
-		sucelje.getRootPane().setDefaultButton(sucelje.loginBtn); //pozvat login na enter
-		
-		//Povezivanje na bazu
 		try {
 			DBconnect.openDbConnection();
 		} catch (SQLException e1) {
 			e1.printStackTrace(); //izbaci gresku ako se nemoze povezat na bazu
-		}
-		
-		//ENTER BUTTON DA POZIVA LOGIN/REGISTER
-		controller.callSignInOnEnter(sucelje);
-		controller.callRegisterOnEnter(sucelje);	
-		
-		//LISTENER ZA LOGIN/REGISTER
-		controller.signinBtn(sucelje);
-		controller.registerBtn(sucelje);
-		
+		}		
+		MainController controller = new MainController();
 	}
 }
 
