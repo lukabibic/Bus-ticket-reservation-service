@@ -15,7 +15,6 @@ public class Main {
 		GUI_LoginInterface sucelje = new GUI_LoginInterface();
 		ControllerClass controller = new ControllerClass();
 		
-		sucelje.setVisible(true);
 		sucelje.getRootPane().setDefaultButton(sucelje.loginBtn); //pozvat login na enter
 		
 		//Povezivanje na bazu
