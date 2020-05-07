@@ -73,6 +73,7 @@ public class AdminGUI extends JFrame{
 	private JLabel SeatsBusLabel;
 	private JTextField SeatsBusAddTextBox;
 	private JButton AddBusButton;
+	private JButton btnLogout;
 	/**
 	 * Create the frame.
 	 */
@@ -115,6 +116,14 @@ public class AdminGUI extends JFrame{
 			AdminBusButt.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
 			AdminBusButt.setBounds(108, 0, 109, 40);
 			AdminNavbarPanel.add(AdminBusButt);
+			
+			btnLogout = new JButton("LOGOUT");
+			btnLogout.setForeground(Color.WHITE);
+			btnLogout.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
+			btnLogout.setBorder(null);
+			btnLogout.setBackground(SystemColor.textHighlight);
+			btnLogout.setBounds(960, 0, 109, 40);
+			AdminNavbarPanel.add(btnLogout);
 			
 			//ADMIN OPERATION PANEL
 			AdminOperationPanel = new JPanel();
