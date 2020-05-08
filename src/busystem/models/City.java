@@ -40,8 +40,47 @@ public class City {
         return this.name;
     }
 
+    public void setName(String newName) throws IllegalArgumentException, SQLException {
+        //validate city name
+        String validCityNamePattern = "^[a-zA-Z_. ]{4,64}$";
+        if (newName.matches(validCityNamePattern) == false || newName.length() == 0) {
+            throw new IllegalArgumentException("Error: Invalid city name");
+        }
+
+        //update in db
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("UPDATE city SET name = ? WHERE id = ?");
+        preparedStmt.setString(1, newName);
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        System.out.println("City name updated successfully");
+    }
+
     public Integer getAreaNumber() {
         return this.areaNumber;
+    }
+
+    public void setAreaNumber(Integer newAreaNumber) throws IllegalArgumentException, SQLException {
+        //check if area number is taken
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from city WHERE area_number = ?");
+        preparedStmt.setInt(1, newAreaNumber);
+        ResultSet existing_city = preparedStmt.executeQuery();
+        if (existing_city.next() != false) {
+            throw new IllegalArgumentException("Error: City area number is taken");
+        }
+
+        //update in db
+        preparedStmt = DBconnect.conn.prepareStatement("UPDATE city SET area_number = ? WHERE id = ?");
+        preparedStmt.setInt(1, newAreaNumber);
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        System.out.println("City area number updated successfully");
+    }
+
+    public void deleteFromDB() throws SQLException {
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("DELETE from city WHERE id = ?");
+        preparedStmt.setInt(1, this.ID);
+        preparedStmt.execute();
+        System.out.println("City deleted from database");
     }
 
     public String toString() {
@@ -52,8 +91,8 @@ public class City {
     public Integer create(String cityName, Integer areaNumber) throws IllegalArgumentException, SQLException {
        
         //validate city name
-        String validCityNamePattern = "^[a-zA-Z_.]{4,64}$";
-        if (cityName.matches(validCityNamePattern) == false) {
+        String validCityNamePattern = "^[a-zA-Z_. ]{4,64}$";
+        if (cityName.matches(validCityNamePattern) == false || cityName.length() == 0) {
             throw new IllegalArgumentException("Error: Invalid city name");
         }
 
