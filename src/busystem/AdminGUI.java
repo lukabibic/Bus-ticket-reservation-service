@@ -49,14 +49,14 @@ public class AdminGUI extends JFrame{
 	JButton LoadNextCityButt;
 	JPanel AdminBusPanel;
 	private JPanel UpdateBusPanel;
-	private JTextField ModelBusTextBox1;
-	private JTextField ModelBusTextBox2;
-	private JTextField ModelBusTextBox3;
-	private JTextField ModelBusTextBox4;
-	private JTextField SeatsBusTextBox1;
-	private JTextField SeatsBusTextBox2;
-	private JTextField SeatsBusTextBox3;
-	private JTextField SeatsBusTextBox4;
+	JTextField ModelBusTextBox1;
+	JTextField ModelBusTextBox2;
+	JTextField ModelBusTextBox3;
+	JTextField ModelBusTextBox4;
+	JTextField SeatsBusTextBox1;
+	JTextField SeatsBusTextBox2;
+	JTextField SeatsBusTextBox3;
+	JTextField SeatsBusTextBox4;
 	JButton EditBusButt1;
 	JButton EditBusButt2;
 	JButton EditBusButt3;
@@ -374,7 +374,7 @@ public class AdminGUI extends JFrame{
 			UpdateBusPanel.setLayout(null);
 			UpdateBusPanel.setBorder(new MatteBorder(4, 1, 1, 1, (Color) Color.WHITE));
 			UpdateBusPanel.setBackground(Color.DARK_GRAY);
-			UpdateBusPanel.setBounds(0, 100, 1069, 416);
+			UpdateBusPanel.setBounds(0, 89, 1069, 416);
 			AdminBusPanel.add(UpdateBusPanel);
 			
 			ModelBusTextBox1 = new JTextField();
@@ -470,7 +470,7 @@ public class AdminGUI extends JFrame{
 			EditBusButt1.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
 			EditBusButt1.setBorder(null);
 			EditBusButt1.setBackground(Color.LIGHT_GRAY);
-			EditBusButt1.setBounds(756, 51, 101, 32);
+			EditBusButt1.setBounds(756, 50, 101, 32);
 			UpdateBusPanel.add(EditBusButt1);
 			
 			EditBusButt2 = new JButton("EDIT");
