@@ -25,7 +25,8 @@ public class AdminController {
 	private TreeMap<Integer, Ticket> allTickets;
 	private AdminGUI adminView;
 	
-	int i = 0;
+	int cityCounter = 0;
+	int busCounter = 0;
 
 	public AdminController(User user, MainController mainController) {
 		this.admin = user;
@@ -40,19 +41,53 @@ public class AdminController {
 		adminView = new AdminGUI();
 		adminView.setVisible(true);
 		
+		//listanje 
 		this.listCity();
 		this.listBus();
 		
+		//logout button listener
 		this.addLogoutListener(mainController);
 		
+		//listener za otvaranje formi
 		this.addCityFormListener();
 		this.addBusFormListener();
 		
+		//listener za dodavanje novih
 		this.addNewBusListener();
 		this.addNewCityListener();
 		
+		//listener za gumbe lijevo desno
 		this.addPreviousBtnListenerCity();
 		this.addNextBtnListenerCity();
+		
+		this.addPreviousBtnListenerBus();
+		this.addNextBtnListenerBus();
+	}
+
+	private void addNextBtnListenerBus() {
+		adminView.LoadNextBusButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(busCounter + 4 < allBuses.size()) { //dont go too far mayne
+					busCounter = busCounter + 4;
+					listBus();
+				}
+			}
+		});
+	}
+
+	private void addPreviousBtnListenerBus() {
+		adminView.LoadPreviousBusButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(busCounter - 4 > -1) { //dont go too far mayne
+					busCounter = busCounter - 4;
+					listBus();
+				}
+			}
+		});
 	}
 
 	private void addNextBtnListenerCity() {
@@ -60,9 +95,8 @@ public class AdminController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(i + 4 < allCities.size()) {
-					i = i + 4;
+				if(cityCounter + 4 < allCities.size()) { //dont go too far mayne
+					cityCounter = cityCounter + 4;
 					listCity();
 				}
 			}
@@ -72,11 +106,10 @@ public class AdminController {
 	private void addPreviousBtnListenerCity() {
 adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(i - 4 > -1) {
-					i = i - 4;
+			@Override 
+			public void actionPerformed(ActionEvent e) { //dont go too far mayne
+				if(cityCounter - 4 > -1) {
+					cityCounter = cityCounter - 4;
 					listCity();
 				}
 			}
@@ -84,7 +117,36 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 	}
 
 	private void listBus() {
-		
+		JTextField[] textboxofBuses = {adminView.ModelBusTextBox1,adminView.ModelBusTextBox2,
+				adminView.ModelBusTextBox3,adminView.ModelBusTextBox4};
+			JTextField[] textboxofSeats = {
+					adminView.SeatsBusTextBox1, adminView.SeatsBusTextBox2,
+					adminView.SeatsBusTextBox3, adminView.SeatsBusTextBox4};
+			
+			for (int i = 0; i < textboxofBuses.length; i++) { // DA SE CLEAREAJU SVAKI PUT KAD SE POZOVE
+				textboxofBuses[i].setText("");
+				textboxofSeats[i].setText("");
+			}
+			ArrayList<Bus> allBusNames = new ArrayList<Bus>();
+			for (Entry<Integer, Bus> entry : allBuses.entrySet()) {
+			    Bus value = entry.getValue();
+			    
+			    allBusNames.add(value);
+			}
+			int j = 0;
+			int counter = busCounter;
+			
+			while(true) {
+				if(j == 4) break; //DA ISPUSUJE SAMO 4 PO 4
+				textboxofBuses[j].setText(allBusNames.get(counter).getModel());
+				textboxofSeats[j].setText(allBusNames.get(counter).getSeats().toString());
+				counter++;
+				if(counter > allBuses.size() - 1) { //KAD PREKORACI DA VRATI COUNTER I BREAKA
+					counter = allBuses.size() - 1;
+					break;
+				}
+				j++;
+			}
 	}
 
 	private void listCity() {
@@ -105,8 +167,8 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			    allCityNames.add(value);
 			}
 			int j = 0;
-			int counter = i;
-			//System.out.println(allCityNames.get(5));
+			int counter = cityCounter;
+			
 			while(true) {
 				if(j == 4) break; //DA ISPUSUJE SAMO 4 PO 4
 				textboxofcities[j].setText(allCityNames.get(counter).getName());
