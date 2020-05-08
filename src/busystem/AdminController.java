@@ -1,8 +1,11 @@
 package busystem;
 
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.TreeMap;
+
+import javax.swing.border.LineBorder;
 
 import busystem.models.*;
 
@@ -22,6 +25,32 @@ public class AdminController {
 		adminView = new AdminGUI();
 		adminView.setVisible(true);
 		this.addLogoutListener(mainController);
+		this.addCityListener();
+		this.addBusListener();
+	}
+
+	private void addBusListener() {
+		this.adminView.AdminBusButt.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				adminView.AdminBusPanel.setVisible(true);
+				adminView.AdminCityPanel.setVisible(false);
+				adminView.AdminBusButt.setOpaque(true);
+				adminView.AdminCityButt.setOpaque(false);
+				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			}
+		});
+	}
+
+	private void addCityListener() {
+		this.adminView.AdminCityButt.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				adminView.AdminBusPanel.setVisible(false);
+				adminView.AdminCityPanel.setVisible(true);
+				adminView.AdminBusButt.setOpaque(false);
+				adminView.AdminCityButt.setOpaque(true);
+				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			}
+		});
 	}
 
 	//ovo povezat sa logout button
