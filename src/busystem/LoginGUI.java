@@ -272,7 +272,5 @@ public class LoginGUI extends JFrame{
 		signUpBtn.setBackground(SystemColor.textHighlight);
 		signUpBtn.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 		signUpBtn.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
-		
-		setVisible(true);
 	}
 }
