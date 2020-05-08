@@ -69,9 +69,9 @@ public class AdminGUI extends JFrame{
 	JButton LoadNextBusButt;
 	private JPanel AddBusPanel;
 	private JLabel ModelBusLabel;
-	private JTextField ModelBusAddTextBox;
+	JTextField ModelBusAddTextBox;
 	private JLabel SeatsBusLabel;
-	private JTextField SeatsBusAddTextBox;
+	JTextField SeatsBusAddTextBox;
 	JButton AddBusButton;
 	JButton btnLogout;
 	/**

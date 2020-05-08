@@ -36,8 +36,29 @@ public class AdminController {
 
 	private void addNewBusListener() {
 		this.adminView.AddBusButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent argo0) {
-				
+			public void actionPerformed(ActionEvent argo0) {			
+				try {
+					//Pretvaranje imena busa u odgovarajuce
+					String nameofbus = adminView.ModelBusAddTextBox.getText();
+					nameofbus = nameofbus.substring(0,1).toUpperCase() + nameofbus.substring(1).toLowerCase();
+					
+					//Dodavanje busa
+					PreparedStatement preparedStmt;
+					preparedStmt = DBconnect.conn.prepareStatement("INSERT INTO bus (model, seats) "
+							+ "VALUES (?,?)");
+					preparedStmt.setString(1,nameofbus);
+					preparedStmt.setString(2,adminView.SeatsBusAddTextBox.getText());
+					preparedStmt.execute();
+					
+					//Ocisti text boxove
+					adminView.ModelBusAddTextBox.setText("");
+					adminView.SeatsBusAddTextBox.setText("");
+					System.out.println("Bus created sucessfully");
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -70,6 +91,7 @@ public class AdminController {
 					adminView.NameCityAddTextBox.setText("");
 					adminView.AddressCityAddTextBox.setText("");
 					System.out.println("City created sucessfully");
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
