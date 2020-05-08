@@ -3,6 +3,9 @@ package busystem;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.TreeMap;
 
 import javax.swing.border.LineBorder;
@@ -25,11 +28,57 @@ public class AdminController {
 		adminView = new AdminGUI();
 		adminView.setVisible(true);
 		this.addLogoutListener(mainController);
-		this.addCityListener();
-		this.addBusListener();
+		this.addCityFormListener();
+		this.addBusFormListener();
+		this.addNewBusListener();
+		this.addNewCityListener();
 	}
 
-	private void addBusListener() {
+	private void addNewBusListener() {
+		this.adminView.AddBusButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				
+			}
+		});
+	}
+
+	private void addNewCityListener() {
+		this.adminView.AddCityButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				try {
+					//Pretvaranje imena grada u odgovarajuce
+					String nameofcity = adminView.NameCityAddTextBox.getText();
+					nameofcity = nameofcity.substring(0,1).toUpperCase() + nameofcity.substring(1).toLowerCase();
+					
+					//Provjera dali postoji grad sa istim imenom ili postanskim brojem
+					PreparedStatement preparedStmt1 = DBconnect.conn.prepareStatement("SELECT * from city WHERE name = ? OR area_number = ?");
+			        preparedStmt1.setString(1, nameofcity);
+			        preparedStmt1.setString(2, adminView.AddressCityAddTextBox.getText());
+			        ResultSet existing_city = preparedStmt1.executeQuery();
+			        if (existing_city.next() != false) {
+			            throw new IllegalArgumentException("City with that name or address already exist!");
+			        }
+			        
+			        //Ako ne postoji ubaci ga u bazu
+					PreparedStatement preparedStmt2 = DBconnect.conn.prepareStatement("INSERT INTO city (name, area_number) "
+							+ "VALUES (?,?)");
+					preparedStmt2.setString(1,nameofcity);
+					preparedStmt2.setString(2,adminView.AddressCityAddTextBox.getText());
+					preparedStmt2.execute();
+					
+					//Ocisti text boxove
+					adminView.NameCityAddTextBox.setText("");
+					adminView.AddressCityAddTextBox.setText("");
+					System.out.println("City created sucessfully");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	private void addBusFormListener() {
 		this.adminView.AdminBusButt.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent argo0) {
 				adminView.AdminBusPanel.setVisible(true);
@@ -41,7 +90,7 @@ public class AdminController {
 		});
 	}
 
-	private void addCityListener() {
+	private void addCityFormListener() {
 		this.adminView.AdminCityButt.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent argo0) {
 				adminView.AdminBusPanel.setVisible(false);
