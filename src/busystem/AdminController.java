@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.TreeMap;
 
+import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import busystem.models.*;
@@ -15,7 +16,7 @@ import busystem.models.*;
 public class AdminController {
 	private User admin; 
 	private TreeMap<Integer, City> allCities;
-	private TreeMap<Integer, City> allBuses;
+	private TreeMap<Integer, Bus> allBuses;
 	private TreeMap<Integer, Line> allLines;
 	private TreeMap<Integer, Trip> allTrips;
 	private TreeMap<Integer, Ticket> allTickets;
@@ -24,9 +25,17 @@ public class AdminController {
 	public AdminController(User user, MainController mainController) {
 		this.admin = user;
 		//dohvati sve iz baze...
-
+		try {
+			this.allCities = City.getAll();
+			this.allBuses = Bus.getAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		adminView = new AdminGUI();
 		adminView.setVisible(true);
+		this.listCity();
+		this.listBus();
 		this.addLogoutListener(mainController);
 		this.addCityFormListener();
 		this.addBusFormListener();
@@ -34,72 +43,73 @@ public class AdminController {
 		this.addNewCityListener();
 	}
 
+	private void listBus() {
+		
+	}
+
+	private void listCity() {
+			int i = 0;
+			JTextField[] textboxofcities = {adminView.NameCityTextBox1,adminView.NameCityTextBox2,
+					adminView.NameCityTextBox3,adminView.NameCityTextBox4};
+			
+	}
+	
 	private void addNewBusListener() {
 		this.adminView.AddBusButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent argo0) {			
+			public void actionPerformed(ActionEvent argo0) {	
+				//Pretvaranje imena busa u odgovarajuce i dohvacanje broja sjedala
+				String nameofbus = adminView.ModelBusAddTextBox.getText();
+				nameofbus = nameofbus.substring(0,1).toUpperCase() + nameofbus.substring(1).toLowerCase();
+				Integer numberofseats = Integer.parseInt(adminView.SeatsBusAddTextBox.getText());
+				
+				//Upis novog busa
 				try {
-					//Pretvaranje imena busa u odgovarajuce
-					String nameofbus = adminView.ModelBusAddTextBox.getText();
-					nameofbus = nameofbus.substring(0,1).toUpperCase() + nameofbus.substring(1).toLowerCase();
+					Bus newbus = new Bus(nameofbus,numberofseats);
+					allBuses.put(newbus.getID(), newbus);
 					
-					//Dodavanje busa
-					PreparedStatement preparedStmt;
-					preparedStmt = DBconnect.conn.prepareStatement("INSERT INTO bus (model, seats) "
-							+ "VALUES (?,?)");
-					preparedStmt.setString(1,nameofbus);
-					preparedStmt.setString(2,adminView.SeatsBusAddTextBox.getText());
-					preparedStmt.execute();
-					
-					//Ocisti text boxove
-					adminView.ModelBusAddTextBox.setText("");
-					adminView.SeatsBusAddTextBox.setText("");
-					System.out.println("Bus created sucessfully");
-					
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				//Ocisti text boxove
+				adminView.ModelBusAddTextBox.setText("");
+				adminView.SeatsBusAddTextBox.setText("");	
 			}
 		});
 	}
-
+	
 	private void addNewCityListener() {
 		this.adminView.AddCityButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent argo0) {
+				//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+				String nameofcity = adminView.NameCityAddTextBox.getText();
+				nameofcity = nameofcity.substring(0,1).toUpperCase() + nameofcity.substring(1).toLowerCase();
+				Integer areanumber = Integer.parseInt(adminView.AddressCityAddTextBox.getText());
+				
+				//Upis novog grada
 				try {
-					//Pretvaranje imena grada u odgovarajuce
-					String nameofcity = adminView.NameCityAddTextBox.getText();
-					nameofcity = nameofcity.substring(0,1).toUpperCase() + nameofcity.substring(1).toLowerCase();
+					City newcity = new City(nameofcity, areanumber);
+					allCities.put(newcity.getID(),newcity);
 					
-					//Provjera dali postoji grad sa istim imenom ili postanskim brojem
-					PreparedStatement preparedStmt1 = DBconnect.conn.prepareStatement("SELECT * from city WHERE name = ? OR area_number = ?");
-			        preparedStmt1.setString(1, nameofcity);
-			        preparedStmt1.setString(2, adminView.AddressCityAddTextBox.getText());
-			        ResultSet existing_city = preparedStmt1.executeQuery();
-			        if (existing_city.next() != false) {
-			            throw new IllegalArgumentException("City with that name or address already exist!");
-			        }
-			        
-			        //Ako ne postoji ubaci ga u bazu
-					PreparedStatement preparedStmt2 = DBconnect.conn.prepareStatement("INSERT INTO city (name, area_number) "
-							+ "VALUES (?,?)");
-					preparedStmt2.setString(1,nameofcity);
-					preparedStmt2.setString(2,adminView.AddressCityAddTextBox.getText());
-					preparedStmt2.execute();
-					
-					//Ocisti text boxove
-					adminView.NameCityAddTextBox.setText("");
-					adminView.AddressCityAddTextBox.setText("");
-					System.out.println("City created sucessfully");
-					
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				//Ocisti text boxove
+				adminView.NameCityAddTextBox.setText("");
+				adminView.AddressCityAddTextBox.setText("");
 			}
 		});
 	}
-
+	
 	private void addBusFormListener() {
 		this.adminView.AdminBusButt.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent argo0) {
