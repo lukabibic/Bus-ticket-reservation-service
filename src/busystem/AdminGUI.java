@@ -19,11 +19,11 @@ public class AdminGUI extends JFrame{
 	private JPanel mainPanel;
 	private JPanel AdminNavbarPanel;
 	private JPanel AdminOperationPanel;
-	private JPanel AdminCityPanel;
+	JPanel AdminCityPanel;
 	private JPanel AddCityPanel;
 	private JPanel UpdateCityPanel;
-	private JButton AdminCityButt;
-	private JButton AdminBusButt;
+	JButton AdminCityButt;
+	JButton AdminBusButt;
 	private JLabel NameCityLabel;
 	private JLabel AddressCityLabel;
 	private JTextField NameCityAddTextBox;
@@ -47,7 +47,7 @@ public class AdminGUI extends JFrame{
 	private JButton EditCityButt4;
 	private JButton LoadPreviousCityButt;
 	private JButton LoadNextCityButt;
-	private JPanel AdminBusPanel;
+	JPanel AdminBusPanel;
 	private JPanel UpdateBusPanel;
 	private JTextField ModelBusTextBox1;
 	private JTextField ModelBusTextBox2;
