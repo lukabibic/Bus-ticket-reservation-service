@@ -14,71 +14,71 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import busystem.models.*;
 
-public class AdminGUI extends JFrame{
+public class UserGUI extends JFrame{
 	
 	private JPanel mainPanel;
 	private JPanel AdminNavbarPanel;
 	private JPanel AdminOperationPanel;
-	JPanel AdminCityPanel;
+	private JPanel AdminCityPanel;
 	private JPanel AddCityPanel;
 	private JPanel UpdateCityPanel;
-	JButton AdminCityButt;
-	JButton AdminBusButt;
+	private JButton AdminCityButt;
+	private JButton AdminBusButt;
 	private JLabel NameCityLabel;
 	private JLabel AddressCityLabel;
-	JTextField NameCityAddTextBox;
-	JTextField AddressCityAddTextBox;
-	JButton AddCityButton;
-	JTextField NameCityTextBox1;
-	JTextField NameCityTextBox2;
-	JTextField NameCityTextBox3;
-	JTextField NameCityTextBox4;
-	JTextField AddressCityTextBox1;
-	JTextField AddressCityTextBox2;
-	JTextField AddressCityTextBox3;
-	JTextField AddressCityTextBox4;
-	JButton DeleteCityButt1;
-	JButton DeleteCityButt2;
-	JButton DeleteCityButt3;
-	JButton DeleteCityButt4;
-	JButton EditCityButt1;
-	JButton EditCityButt2;
-	JButton EditCityButt3;
-	JButton EditCityButt4;
-	JButton LoadPreviousCityButt;
-	JButton LoadNextCityButt;
-	JPanel AdminBusPanel;
+	private JTextField NameCityAddTextBox;
+	private JTextField AddressCityAddTextBox;
+	private JButton AddCityButton;
+	private JTextField NameCityTextBox1;
+	private JTextField NameCityTextBox2;
+	private JTextField NameCityTextBox3;
+	private JTextField NameCityTextBox4;
+	private JTextField AddressCityTextBox1;
+	private JTextField AddressCityTextBox2;
+	private JTextField AddressCityTextBox3;
+	private JTextField AddressCityTextBox4;
+	private JButton DeleteCityButt1;
+	private JButton DeleteCityButt2;
+	private JButton DeleteCityButt3;
+	private JButton DeleteCityButt4;
+	private JButton EditCityButt1;
+	private JButton EditCityButt2;
+	private JButton EditCityButt3;
+	private JButton EditCityButt4;
+	private JButton LoadPreviousCityButt;
+	private JButton LoadNextCityButt;
+	private JPanel AdminBusPanel;
 	private JPanel UpdateBusPanel;
-	JTextField ModelBusTextBox1;
-	JTextField ModelBusTextBox2;
-	JTextField ModelBusTextBox3;
-	JTextField ModelBusTextBox4;
-	JTextField SeatsBusTextBox1;
-	JTextField SeatsBusTextBox2;
-	JTextField SeatsBusTextBox3;
-	JTextField SeatsBusTextBox4;
-	JButton EditBusButt1;
-	JButton EditBusButt2;
-	JButton EditBusButt3;
-	JButton EditBusButt4;
-	JButton DeleteBusButt1;
-	JButton DeleteBusButt2;
-	JButton DeleteBusButt3;
-	JButton DeleteBusButt4;
-	JButton LoadPreviousBusButt;
-	JButton LoadNextBusButt;
+	private JTextField ModelBusTextBox1;
+	private JTextField ModelBusTextBox2;
+	private JTextField ModelBusTextBox3;
+	private JTextField ModelBusTextBox4;
+	private JTextField SeatsBusTextBox1;
+	private JTextField SeatsBusTextBox2;
+	private JTextField SeatsBusTextBox3;
+	private JTextField SeatsBusTextBox4;
+	private JButton EditBusButt1;
+	private JButton EditBusButt2;
+	private JButton EditBusButt3;
+	private JButton EditBusButt4;
+	private JButton DeleteBusButt1;
+	private JButton DeleteBusButt2;
+	private JButton DeleteBusButt3;
+	private JButton DeleteBusButt4;
+	private JButton LoadPreviousBusButt;
+	private JButton LoadNextBusButt;
 	private JPanel AddBusPanel;
 	private JLabel ModelBusLabel;
-	JTextField ModelBusAddTextBox;
+	private JTextField ModelBusAddTextBox;
 	private JLabel SeatsBusLabel;
-	JTextField SeatsBusAddTextBox;
-	JButton AddBusButton;
+	private JTextField SeatsBusAddTextBox;
+	private JButton AddBusButton;
 	JButton btnLogout;
 	/**
 	 * Create the frame.
 	 */
 	
-	public AdminGUI() {
+	public UserGUI() {
 			setTitle("Bus Management System");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 1073, 584);
@@ -322,10 +322,10 @@ public class AdminGUI extends JFrame{
 			AdminCityPanel.add(AddCityPanel);
 			AddCityPanel.setLayout(null);
 			
-			NameCityLabel = new JLabel("NAME: ");
+			NameCityLabel = new JLabel("USER RADI");
 			NameCityLabel.setForeground(Color.WHITE);
 			NameCityLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
-			NameCityLabel.setBounds(63, 29, 80, 32);
+			NameCityLabel.setBounds(22, 29, 121, 32);
 			AddCityPanel.add(NameCityLabel);
 			
 			NameCityAddTextBox = new JTextField();
@@ -374,7 +374,7 @@ public class AdminGUI extends JFrame{
 			UpdateBusPanel.setLayout(null);
 			UpdateBusPanel.setBorder(new MatteBorder(4, 1, 1, 1, (Color) Color.WHITE));
 			UpdateBusPanel.setBackground(Color.DARK_GRAY);
-			UpdateBusPanel.setBounds(0, 89, 1069, 416);
+			UpdateBusPanel.setBounds(0, 100, 1069, 416);
 			AdminBusPanel.add(UpdateBusPanel);
 			
 			ModelBusTextBox1 = new JTextField();
@@ -470,7 +470,7 @@ public class AdminGUI extends JFrame{
 			EditBusButt1.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
 			EditBusButt1.setBorder(null);
 			EditBusButt1.setBackground(Color.LIGHT_GRAY);
-			EditBusButt1.setBounds(756, 50, 101, 32);
+			EditBusButt1.setBounds(756, 51, 101, 32);
 			UpdateBusPanel.add(EditBusButt1);
 			
 			EditBusButt2 = new JButton("EDIT");

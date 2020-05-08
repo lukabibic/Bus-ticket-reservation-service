@@ -14,7 +14,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import busystem.models.*;
 
-public class GUI_LoginInterface extends JFrame{
+public class LoginGUI extends JFrame{
 
 	private JPanel mainPanel;
 	JButton signUpBtn;
@@ -48,7 +48,7 @@ public class GUI_LoginInterface extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public GUI_LoginInterface() {
+	public LoginGUI() {
 		setTitle("Bus Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 849, 554);
@@ -71,7 +71,7 @@ public class GUI_LoginInterface extends JFrame{
 		
 		busPicLabel = new JLabel("");
 		busPicLabel.setBounds(0, 0, 357, 526);
-			Image image = new ImageIcon(GUI_LoginInterface.class.getResource("/images/buspic.png")).getImage();
+			Image image = new ImageIcon(LoginGUI.class.getResource("/images/buspic.png")).getImage();
 	        Image scaledImage = image.getScaledInstance(busPicLabel.getWidth(), busPicLabel.getHeight(), Image.SCALE_SMOOTH);
 	        busPicPanel.setLayout(null);
 	        busPicLabel.setIcon(new ImageIcon(scaledImage));
@@ -272,7 +272,5 @@ public class GUI_LoginInterface extends JFrame{
 		signUpBtn.setBackground(SystemColor.textHighlight);
 		signUpBtn.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 		signUpBtn.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
-		
-		
 	}
 }
