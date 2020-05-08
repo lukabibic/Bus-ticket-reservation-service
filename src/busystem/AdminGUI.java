@@ -374,7 +374,7 @@ public class AdminGUI extends JFrame{
 			UpdateBusPanel.setLayout(null);
 			UpdateBusPanel.setBorder(new MatteBorder(4, 1, 1, 1, (Color) Color.WHITE));
 			UpdateBusPanel.setBackground(Color.DARK_GRAY);
-			UpdateBusPanel.setBounds(0, 100, 1069, 416);
+			UpdateBusPanel.setBounds(0, 89, 1069, 416);
 			AdminBusPanel.add(UpdateBusPanel);
 			
 			ModelBusTextBox1 = new JTextField();
@@ -470,7 +470,7 @@ public class AdminGUI extends JFrame{
 			EditBusButt1.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
 			EditBusButt1.setBorder(null);
 			EditBusButt1.setBackground(Color.LIGHT_GRAY);
-			EditBusButt1.setBounds(756, 51, 101, 32);
+			EditBusButt1.setBounds(756, 50, 101, 32);
 			UpdateBusPanel.add(EditBusButt1);
 			
 			EditBusButt2 = new JButton("EDIT");

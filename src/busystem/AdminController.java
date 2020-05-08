@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import javax.swing.JTextField;
@@ -21,6 +24,8 @@ public class AdminController {
 	private TreeMap<Integer, Trip> allTrips;
 	private TreeMap<Integer, Ticket> allTickets;
 	private AdminGUI adminView;
+	
+	int i = 0;
 
 	public AdminController(User user, MainController mainController) {
 		this.admin = user;
@@ -34,13 +39,48 @@ public class AdminController {
 		
 		adminView = new AdminGUI();
 		adminView.setVisible(true);
+		
 		this.listCity();
 		this.listBus();
+		
 		this.addLogoutListener(mainController);
+		
 		this.addCityFormListener();
 		this.addBusFormListener();
+		
 		this.addNewBusListener();
 		this.addNewCityListener();
+		
+		this.addPreviousBtnListenerCity();
+		this.addNextBtnListenerCity();
+	}
+
+	private void addNextBtnListenerCity() {
+		adminView.LoadNextCityButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(i + 4 < allCities.size()) {
+					i = i + 4;
+					listCity();
+				}
+			}
+		});
+	}
+
+	private void addPreviousBtnListenerCity() {
+adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(i - 4 > -1) {
+					i = i - 4;
+					listCity();
+				}
+			}
+		});
 	}
 
 	private void listBus() {
@@ -48,10 +88,36 @@ public class AdminController {
 	}
 
 	private void listCity() {
-			int i = 0;
 			JTextField[] textboxofcities = {adminView.NameCityTextBox1,adminView.NameCityTextBox2,
-					adminView.NameCityTextBox3,adminView.NameCityTextBox4};
+				adminView.NameCityTextBox3,adminView.NameCityTextBox4};
+			JTextField[] textboxofaddress = {
+					adminView.AddressCityTextBox1, adminView.AddressCityTextBox2,
+					adminView.AddressCityTextBox3, adminView.AddressCityTextBox4};
 			
+			for (int i = 0; i < textboxofcities.length; i++) { // DA SE CLEAREAJU SVAKI PUT KAD SE POZOVE
+				textboxofcities[i].setText("");
+				textboxofaddress[i].setText("");
+			}
+			ArrayList<City> allCityNames = new ArrayList<City>();
+			for (Entry<Integer, City> entry : allCities.entrySet()) {
+			    City value = entry.getValue();
+			    
+			    allCityNames.add(value);
+			}
+			int j = 0;
+			int counter = i;
+			//System.out.println(allCityNames.get(5));
+			while(true) {
+				if(j == 4) break; //DA ISPUSUJE SAMO 4 PO 4
+				textboxofcities[j].setText(allCityNames.get(counter).getName());
+				textboxofaddress[j].setText(allCityNames.get(counter).getAreaNumber().toString());
+				counter++;
+				if(counter > allCities.size() - 1) { //KAD PREKORACI DA VRATI COUNTER I BREAKA
+					counter = allCities.size() - 1;
+					break;
+				}
+				j++;
+			}
 	}
 	
 	private void addNewBusListener() {
