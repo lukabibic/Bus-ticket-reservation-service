@@ -209,7 +209,7 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					Bus newbus = new Bus(nameofbus,numberofseats);
 					allBuses.put(newbus.getID(), newbus);
-					
+					listBus();
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -237,7 +237,7 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					City newcity = new City(nameofcity, areanumber);
 					allCities.put(newcity.getID(),newcity);
-					
+					listCity();
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
