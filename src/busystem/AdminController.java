@@ -65,9 +65,200 @@ public class AdminController {
 		this.addPreviousBtnListenerBus();
 		this.addNextBtnListenerBus();
 
-		
+		this.addAllEditBusListeners();
+		this.addAllEditCityListenerS();
 	}
 	
+	private void addAllEditCityListenerS() {
+		// TODO Auto-generated method stub
+adminView.EditCityButt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_CityTextBox0.getText());
+				City city = allCities.get(id);
+				try {
+					city.setName(adminView.NameCityTextBox1.getText());
+					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox1.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		adminView.EditCityButt2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						int id = Integer.parseInt(adminView.label_CityTextBox1.getText());
+						City city = allCities.get(id);
+						try {
+							city.setName(adminView.NameCityTextBox2.getText());
+							city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox2.getText()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IllegalArgumentException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+		
+		adminView.EditCityButt3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_CityTextBox2.getText());
+				City city = allCities.get(id);
+				try {
+					city.setName(adminView.NameCityTextBox3.getText());
+					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox3.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		adminView.EditCityButt4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_CityTextBox3.getText());
+				City city = allCities.get(id);
+				try {
+					city.setName(adminView.NameCityTextBox4.getText());
+					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox4.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+	}
+
+	private void addAllEditBusListeners() {
+		// TODO Auto-generated method stub
+		adminView.EditBusButt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_busTextBox0.getText());
+				Bus bus = allBuses.get(id);
+				try {
+					bus.setModel(adminView.ModelBusTextBox1.getText());
+					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox1.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		adminView.EditBusButt2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						int id = Integer.parseInt(adminView.label_busTextBox1.getText());
+						Bus bus = allBuses.get(id);
+						try {
+							bus.setModel(adminView.ModelBusTextBox2.getText());
+							bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox2.getText()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IllegalArgumentException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+		
+		adminView.EditBusButt3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_busTextBox2.getText());
+				Bus bus = allBuses.get(id);
+				try {
+					bus.setModel(adminView.ModelBusTextBox3.getText());
+					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox3.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		adminView.EditBusButt4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_busTextBox3.getText());
+				Bus bus = allBuses.get(id);
+				try {
+					bus.setModel(adminView.ModelBusTextBox4.getText());
+					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox4.getText()));
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+	}
+
 	private void addNextBtnListenerBus() {
 		adminView.LoadNextBusButt.addActionListener(new ActionListener() {
 			
