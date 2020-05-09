@@ -315,6 +315,22 @@ public class AdminGUI extends JFrame{
 			LoadNextCityButt.setBounds(412, 326, 50, 32);
 			UpdateCityPanel.add(LoadNextCityButt);
 			
+			JLabel label_CityTextBox0 = new JLabel("New label");
+			label_CityTextBox0.setBounds(13, 61, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox0);
+			
+			JLabel label_CityTextBox1 = new JLabel("New label");
+			label_CityTextBox1.setBounds(13, 126, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox1);
+			
+			JLabel label_CityTextBox2 = new JLabel("New label");
+			label_CityTextBox2.setBounds(13, 194, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox2);
+			
+			JLabel label_CityTextBox3 = new JLabel("New label");
+			label_CityTextBox3.setBounds(13, 259, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox3);
+			
 			//ADD CITY PANEL
 			AddCityPanel = new JPanel();
 			AddCityPanel.setBackground(Color.DARK_GRAY);
@@ -544,6 +560,22 @@ public class AdminGUI extends JFrame{
 			LoadNextBusButt.setBackground(Color.LIGHT_GRAY);
 			LoadNextBusButt.setBounds(412, 326, 50, 32);
 			UpdateBusPanel.add(LoadNextBusButt);
+			
+			JLabel label_busTextBox0 = new JLabel("New label");
+			label_busTextBox0.setBounds(13, 61, 46, 14);
+			UpdateBusPanel.add(label_busTextBox0);
+			
+			JLabel label_busTextBox1 = new JLabel("New label");
+			label_busTextBox1.setBounds(13, 126, 46, 14);
+			UpdateBusPanel.add(label_busTextBox1);
+			
+			JLabel label_busTextBox2 = new JLabel("New label");
+			label_busTextBox2.setBounds(13, 194, 46, 14);
+			UpdateBusPanel.add(label_busTextBox2);
+			
+			JLabel label_busTextBox3 = new JLabel("New label");
+			label_busTextBox3.setBounds(13, 259, 46, 14);
+			UpdateBusPanel.add(label_busTextBox3);
 			
 			//ADD BUS PANEL
 			AddBusPanel = new JPanel();
