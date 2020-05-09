@@ -74,6 +74,17 @@ public class AdminGUI extends JFrame{
 	JTextField SeatsBusAddTextBox;
 	JButton AddBusButton;
 	JButton btnLogout;
+	JLabel label_busTextBox0 = new JLabel("New label");
+	JLabel label_busTextBox1 = new JLabel("New label");
+	JLabel label_busTextBox2 = new JLabel("New label");
+	JLabel label_busTextBox3 = new JLabel("New label");
+	JLabel label_CityTextBox0 = new JLabel("New label");
+	JLabel label_CityTextBox1 = new JLabel("New label");
+	JLabel label_CityTextBox2 = new JLabel("New label");
+	JLabel label_CityTextBox3 = new JLabel("New label");
+	private JLabel label_busTextBox0_2;
+	private JLabel label_busTextBox0_1;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -314,6 +325,31 @@ public class AdminGUI extends JFrame{
 			LoadNextCityButt.setBackground(Color.LIGHT_GRAY);
 			LoadNextCityButt.setBounds(412, 326, 50, 32);
 			UpdateCityPanel.add(LoadNextCityButt);
+			label_CityTextBox0.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_CityTextBox0.setBounds(13, 61, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox0);
+			label_CityTextBox1.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_CityTextBox1.setBounds(13, 126, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox1);
+			label_CityTextBox2.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_CityTextBox2.setBounds(13, 194, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox2);
+			label_CityTextBox3.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_CityTextBox3.setBounds(13, 259, 46, 14);
+			UpdateCityPanel.add(label_CityTextBox3);
+			
+			label_busTextBox0_2 = new JLabel("ID");
+			label_busTextBox0_2.setForeground(Color.LIGHT_GRAY);
+			label_busTextBox0_2.setBounds(10, 36, 46, 14);
+			UpdateCityPanel.add(label_busTextBox0_2);
 			
 			//ADD CITY PANEL
 			AddCityPanel = new JPanel();
@@ -374,14 +410,13 @@ public class AdminGUI extends JFrame{
 			UpdateBusPanel.setLayout(null);
 			UpdateBusPanel.setBorder(new MatteBorder(4, 1, 1, 1, (Color) Color.WHITE));
 			UpdateBusPanel.setBackground(Color.DARK_GRAY);
-			UpdateBusPanel.setBounds(0, 89, 1069, 416);
+			UpdateBusPanel.setBounds(0, 100, 1069, 416);
 			AdminBusPanel.add(UpdateBusPanel);
 			
 			ModelBusTextBox1 = new JTextField();
 			ModelBusTextBox1.setOpaque(false);
 			ModelBusTextBox1.setForeground(Color.WHITE);
 			ModelBusTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			ModelBusTextBox1.setFocusable(false);
 			ModelBusTextBox1.setColumns(10);
 			ModelBusTextBox1.setCaretColor(Color.WHITE);
 			ModelBusTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -392,7 +427,6 @@ public class AdminGUI extends JFrame{
 			ModelBusTextBox2.setOpaque(false);
 			ModelBusTextBox2.setForeground(Color.WHITE);
 			ModelBusTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			ModelBusTextBox2.setFocusable(false);
 			ModelBusTextBox2.setColumns(10);
 			ModelBusTextBox2.setCaretColor(Color.WHITE);
 			ModelBusTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -403,7 +437,6 @@ public class AdminGUI extends JFrame{
 			ModelBusTextBox3.setOpaque(false);
 			ModelBusTextBox3.setForeground(Color.WHITE);
 			ModelBusTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			ModelBusTextBox3.setFocusable(false);
 			ModelBusTextBox3.setColumns(10);
 			ModelBusTextBox3.setCaretColor(Color.WHITE);
 			ModelBusTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -414,7 +447,6 @@ public class AdminGUI extends JFrame{
 			ModelBusTextBox4.setOpaque(false);
 			ModelBusTextBox4.setForeground(Color.WHITE);
 			ModelBusTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			ModelBusTextBox4.setFocusable(false);
 			ModelBusTextBox4.setColumns(10);
 			ModelBusTextBox4.setCaretColor(Color.WHITE);
 			ModelBusTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -544,6 +576,31 @@ public class AdminGUI extends JFrame{
 			LoadNextBusButt.setBackground(Color.LIGHT_GRAY);
 			LoadNextBusButt.setBounds(412, 326, 50, 32);
 			UpdateBusPanel.add(LoadNextBusButt);
+			label_busTextBox0.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_busTextBox0.setBounds(13, 61, 46, 14);
+			UpdateBusPanel.add(label_busTextBox0);
+			label_busTextBox1.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_busTextBox1.setBounds(13, 126, 46, 14);
+			UpdateBusPanel.add(label_busTextBox1);
+			label_busTextBox2.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_busTextBox2.setBounds(13, 194, 46, 14);
+			UpdateBusPanel.add(label_busTextBox2);
+			label_busTextBox3.setForeground(Color.LIGHT_GRAY);
+			
+			
+			label_busTextBox3.setBounds(13, 259, 46, 14);
+			UpdateBusPanel.add(label_busTextBox3);
+			
+			label_busTextBox0_1 = new JLabel("ID");
+			label_busTextBox0_1.setForeground(Color.LIGHT_GRAY);
+			label_busTextBox0_1.setBounds(10, 36, 46, 14);
+			UpdateBusPanel.add(label_busTextBox0_1);
 			
 			//ADD BUS PANEL
 			AddBusPanel = new JPanel();
