@@ -38,8 +38,40 @@ public class Bus {
         return this.model;
     }
 
+    public void setModel(String newModel) throws IllegalArgumentException, SQLException {
+        if (newModel.length() == 0) {
+            throw new IllegalArgumentException("Error: empty string");
+        }
+        //update in db
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("UPDATE bus SET model = ? WHERE id = ?");
+        preparedStmt.setString(1, newModel);
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        System.out.println("Bus model updated successfully");
+    }
+
     public Integer getSeats() {
         return this.seats;
+    }
+
+    public void setSeats(Integer newNumberOfSeats) throws IllegalArgumentException, SQLException {
+        
+        if (seats < 0) {
+            throw new IllegalArgumentException("Error: number of seats must be non-negative");
+        }
+        //update in db
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("UPDATE bus SET seats = ? WHERE id = ?");
+        preparedStmt.setInt(1, newNumberOfSeats);
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        System.out.println("Number of seats for bus updated successfully");
+    }
+
+    public void deleteFromDB() throws SQLException {
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("DELETE from bus WHERE id = ?");
+        preparedStmt.setInt(1, this.ID);
+        preparedStmt.execute();
+        System.out.println("Bus deleted from database");
     }
 
     public String toString() {
