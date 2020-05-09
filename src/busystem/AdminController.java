@@ -66,12 +66,170 @@ public class AdminController {
 		this.addNextBtnListenerBus();
 
 		this.addAllEditBusListeners();
-		this.addAllEditCityListenerS();
+		this.addAllEditCityListeners();
+		
+		this.addAllDeleteBusListeners();
+		this.addAllDeleteCityListeners();
 	}
 	
-	private void addAllEditCityListenerS() {
+	private void addAllDeleteCityListeners() {
 		// TODO Auto-generated method stub
-adminView.EditCityButt1.addActionListener(new ActionListener() {
+		adminView.DeleteCityButt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_CityTextBox0.getText());
+				City city = allCities.get(id);
+				
+				try {
+					city.deleteFromDB();
+					allCities.remove(id);
+					listCity();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		adminView.DeleteCityButt2.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						int id = Integer.parseInt(adminView.label_CityTextBox1.getText());
+						City city = allCities.get(id);
+						
+						try {
+							city.deleteFromDB();
+							allCities.remove(id);
+							listCity();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+		
+		adminView.DeleteCityButt3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_CityTextBox2.getText());
+				City city = allCities.get(id);
+				
+				try {
+					city.deleteFromDB();
+					allCities.remove(id);
+					listCity();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		adminView.DeleteCityButt4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_CityTextBox3.getText());
+				City city = allCities.get(id);
+				
+				try {
+					city.deleteFromDB();
+					allCities.remove(id);
+					listCity();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+	}
+
+	private void addAllDeleteBusListeners() {
+		// TODO Auto-generated method stub
+		adminView.DeleteBusButt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_busTextBox0.getText());
+				Bus bus = allBuses.get(id);
+				
+				try {
+					bus.deleteFromDB();
+					allBuses.remove(id);
+					listBus();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		adminView.DeleteBusButt2.addActionListener(new ActionListener() {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_busTextBox1.getText());
+				Bus bus = allBuses.get(id);
+				
+				try {
+					bus.deleteFromDB();
+					allBuses.remove(id);
+					listBus();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		adminView.DeleteBusButt3.addActionListener(new ActionListener() {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_busTextBox2.getText());
+				Bus bus = allBuses.get(id);
+				
+				try {
+					bus.deleteFromDB();
+					allBuses.remove(id);
+					listBus();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		adminView.DeleteBusButt4.addActionListener(new ActionListener() {
+		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_busTextBox3.getText());
+				Bus bus = allBuses.get(id);
+				
+				try {
+					bus.deleteFromDB();
+					allBuses.remove(id);
+					listBus();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+	}
+
+	private void addAllEditCityListeners() {
+		// TODO Auto-generated method stub
+		adminView.EditCityButt1.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
