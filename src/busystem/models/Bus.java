@@ -48,6 +48,9 @@ public class Bus {
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
         System.out.println("Bus model updated successfully");
+        
+        //update local
+        this.model = newModel;
     }
 
     public Integer getSeats() {
@@ -65,6 +68,9 @@ public class Bus {
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
         System.out.println("Number of seats for bus updated successfully");
+        
+        //update local
+        this.seats = newNumberOfSeats;
     }
 
     public void deleteFromDB() throws SQLException {

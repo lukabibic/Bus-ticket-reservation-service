@@ -239,6 +239,8 @@ public class AdminController {
 				try {
 					city.setName(adminView.NameCityTextBox1.getText());
 					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox1.getText()));
+					
+					listCity();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -262,6 +264,8 @@ public class AdminController {
 						try {
 							city.setName(adminView.NameCityTextBox2.getText());
 							city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox2.getText()));
+							
+							listCity();
 						} catch (NumberFormatException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -285,6 +289,8 @@ public class AdminController {
 				try {
 					city.setName(adminView.NameCityTextBox3.getText());
 					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox3.getText()));
+					
+					listCity();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -308,6 +314,8 @@ public class AdminController {
 				try {
 					city.setName(adminView.NameCityTextBox4.getText());
 					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox4.getText()));
+					
+					listCity();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -334,6 +342,8 @@ public class AdminController {
 				try {
 					bus.setModel(adminView.ModelBusTextBox1.getText());
 					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox1.getText()));
+					
+					listBus();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -379,7 +389,9 @@ public class AdminController {
 				Bus bus = allBuses.get(id);
 				try {
 					bus.setModel(adminView.ModelBusTextBox3.getText());
-					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox3.getText()));
+					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox3.getText()));					
+					
+					listBus();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -403,6 +415,8 @@ public class AdminController {
 				try {
 					bus.setModel(adminView.ModelBusTextBox4.getText());
 					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox4.getText()));
+					
+					listBus();
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

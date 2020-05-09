@@ -53,6 +53,9 @@ public class City {
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
         System.out.println("City name updated successfully");
+        
+        //update local
+        this.name = newName;
     }
 
     public Integer getAreaNumber() {
@@ -74,6 +77,9 @@ public class City {
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
         System.out.println("City area number updated successfully");
+        
+        //update local
+        this.areaNumber = newAreaNumber;
     }
 
     public void deleteFromDB() throws SQLException {
