@@ -84,6 +84,10 @@ public class AdminGUI extends JFrame{
 	JLabel label_CityTextBox3 = new JLabel("New label");
 	private JLabel label_busTextBox0_2;
 	private JLabel label_busTextBox0_1;
+	JLabel AddNewBusLabel;
+	JLabel AddNewCityLabel;
+	JLabel UpdateOrDeleteMessageCityBox;
+	JLabel UpdateOrDeleteMessageBusBox;
 	
 	/**
 	 * Create the frame.
@@ -343,6 +347,11 @@ public class AdminGUI extends JFrame{
 			label_busTextBox0_2.setBounds(10, 36, 46, 14);
 			UpdateCityPanel.add(label_busTextBox0_2);
 			
+			UpdateOrDeleteMessageCityBox = new JLabel("");
+			UpdateOrDeleteMessageCityBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			UpdateOrDeleteMessageCityBox.setBounds(608, 326, 227, 20);
+			UpdateCityPanel.add(UpdateOrDeleteMessageCityBox);
+			
 			//ADD CITY PANEL
 			AddCityPanel = new JPanel();
 			AddCityPanel.setBackground(Color.DARK_GRAY);
@@ -389,6 +398,11 @@ public class AdminGUI extends JFrame{
 			AddCityButton.setBackground(Color.LIGHT_GRAY);
 			AddCityButton.setBounds(890, 31, 101, 32);
 			AddCityPanel.add(AddCityButton);
+			
+			AddNewCityLabel = new JLabel("");
+			AddNewCityLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			AddNewCityLabel.setBounds(834, 70, 205, 20);
+			AddCityPanel.add(AddNewCityLabel);
 			
 			//ADMIN BUS PANEL
 			AdminBusPanel = new JPanel();
@@ -590,6 +604,11 @@ public class AdminGUI extends JFrame{
 			label_busTextBox0_1.setBounds(10, 36, 46, 14);
 			UpdateBusPanel.add(label_busTextBox0_1);
 			
+			UpdateOrDeleteMessageBusBox = new JLabel("");
+			UpdateOrDeleteMessageBusBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			UpdateOrDeleteMessageBusBox.setBounds(608, 326, 227, 20);
+			UpdateBusPanel.add(UpdateOrDeleteMessageBusBox);
+			
 			//ADD BUS PANEL
 			AddBusPanel = new JPanel();
 			AddBusPanel.setLayout(null);
@@ -636,6 +655,11 @@ public class AdminGUI extends JFrame{
 			AddBusButton.setBackground(Color.LIGHT_GRAY);
 			AddBusButton.setBounds(890, 31, 101, 32);
 			AddBusPanel.add(AddBusButton);
+			
+			AddNewBusLabel = new JLabel("");
+			AddNewBusLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			AddNewBusLabel.setBounds(845, 70, 199, 20);
+			AddBusPanel.add(AddNewBusLabel);
 			
 	}
 }
