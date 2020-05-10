@@ -40,15 +40,15 @@ public class Bus {
 
     public void setModel(String newModel) throws IllegalArgumentException, SQLException {
         if (newModel.length() == 0) {
-            throw new IllegalArgumentException("Error: empty string");
+            throw new IllegalArgumentException("Bus Model can't be empty!");
         }
         //update in db
         PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("UPDATE bus SET model = ? WHERE id = ?");
         preparedStmt.setString(1, newModel);
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
-        System.out.println("Bus model updated successfully");
         
+        System.out.println("Bus model updated");
         //update local
         this.model = newModel;
     }
@@ -59,16 +59,17 @@ public class Bus {
 
     public void setSeats(Integer newNumberOfSeats) throws IllegalArgumentException, SQLException {
         
-        if (seats < 0) {
-            throw new IllegalArgumentException("Error: number of seats must be non-negative");
+        if (newNumberOfSeats < 0) {
+            throw new IllegalArgumentException("Number of seats must be non-negative!");
         }
+        
         //update in db
         PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("UPDATE bus SET seats = ? WHERE id = ?");
         preparedStmt.setInt(1, newNumberOfSeats);
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
-        System.out.println("Number of seats for bus updated successfully");
         
+        System.out.println("Bus seats updated");
         //update local
         this.seats = newNumberOfSeats;
     }
@@ -77,7 +78,7 @@ public class Bus {
         PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("DELETE from bus WHERE id = ?");
         preparedStmt.setInt(1, this.ID);
         preparedStmt.execute();
-        System.out.println("Bus deleted from database");
+        System.out.println("Bus deleted");
     }
 
     public String toString() {
@@ -87,10 +88,14 @@ public class Bus {
     private int create(String model, Integer seats) throws IllegalArgumentException, SQLException {
         //create new bus in database and return generated ID
         
-        if (seats < 0) {
-            throw new IllegalArgumentException("Error: number of seats must be non-negative");
+    	if(model.length() == 0) {
+          	throw new IllegalArgumentException("Bus Model can't be empty!");
         }
-
+    	
+        if (seats < 0) {
+            throw new IllegalArgumentException("Number of seats must be non-negative!");
+        }
+      
         String query = "INSERT into bus (model, seats)" + " VALUES (?, ?)";
         PreparedStatement preparedStmt = DBconnect.conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setString(1, model);

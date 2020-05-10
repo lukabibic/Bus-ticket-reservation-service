@@ -1,5 +1,6 @@
 package busystem;
 
+import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,10 +44,13 @@ public class AdminController {
 		adminView = new AdminGUI();
 		adminView.setVisible(true);
 		
-		//listanje 
+		//listanje
+		if(allCities.size() > 0) {
 		this.listCity();
+		}
+		if(allBuses.size() > 0) {
 		this.listBus();
-		
+		}
 		//logout button listener
 		this.addLogoutListener(mainController);
 		
@@ -72,6 +76,16 @@ public class AdminController {
 		this.addAllDeleteCityListeners();
 	}
 	
+	private void printAddUpdateDeleteBusMsg(String msg, JLabel label, boolean success) {
+		if(success) {
+			label.setForeground(Color.GREEN);
+		}
+		else {
+			label.setForeground(Color.RED);
+		}
+		label.setText(msg);
+	}
+	
 	private void addAllDeleteCityListeners() {
 		// TODO Auto-generated method stub
 		adminView.DeleteCityButt1.addActionListener(new ActionListener() {
@@ -85,6 +99,7 @@ public class AdminController {
 				try {
 					city.deleteFromDB();
 					allCities.remove(id);
+					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -104,6 +119,7 @@ public class AdminController {
 						try {
 							city.deleteFromDB();
 							allCities.remove(id);
+							printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 							listCity();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
@@ -123,6 +139,7 @@ public class AdminController {
 				try {
 					city.deleteFromDB();
 					allCities.remove(id);
+					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -142,6 +159,7 @@ public class AdminController {
 				try {
 					city.deleteFromDB();
 					allCities.remove(id);
+					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -164,6 +182,7 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
+					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -182,6 +201,7 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
+					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -200,6 +220,7 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
+					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -218,6 +239,7 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
+					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -237,16 +259,27 @@ public class AdminController {
 				int id = Integer.parseInt(adminView.label_CityTextBox0.getText());
 				City city = allCities.get(id);
 				try {
-					city.setName(adminView.NameCityTextBox1.getText());
-					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox1.getText()));
+					//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+					String newnameofcity = adminView.NameCityTextBox1.getText();
+					if(!newnameofcity.isEmpty()) {  //Ako upisano ime grada nije prazno, pretvori u odgovarajuce
+						newnameofcity = newnameofcity.substring(0,1).toUpperCase() + newnameofcity.substring(1).toLowerCase();
+					}
+					Integer newareanumber = Integer.parseInt(adminView.AddressCityTextBox1.getText());
+					
+					if(!city.getName().equals(newnameofcity)) {
+						city.setName(newnameofcity);
+						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+					}
+					if(!city.getAreaNumber().equals(newareanumber)) {
+						city.setAreaNumber(newareanumber);
+						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+					}
 					
 					listCity();
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -262,16 +295,27 @@ public class AdminController {
 						int id = Integer.parseInt(adminView.label_CityTextBox1.getText());
 						City city = allCities.get(id);
 						try {
-							city.setName(adminView.NameCityTextBox2.getText());
-							city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox2.getText()));
+							//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+							String newnameofcity = adminView.NameCityTextBox2.getText();
+							if(!newnameofcity.isEmpty()) {  //Ako upisano ime grada nije prazno, pretvori u odgovarajuce
+								newnameofcity = newnameofcity.substring(0,1).toUpperCase() + newnameofcity.substring(1).toLowerCase();
+							}
+							Integer newareanumber = Integer.parseInt(adminView.AddressCityTextBox2.getText());
+							
+							if(!city.getName().equals(newnameofcity)) {
+								city.setName(newnameofcity);
+								printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+							}
+							if(!city.getAreaNumber().equals(newareanumber)) {
+								city.setAreaNumber(newareanumber);
+								printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+							}
 							
 							listCity();
 						} catch (NumberFormatException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 						} catch (IllegalArgumentException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -287,16 +331,27 @@ public class AdminController {
 				int id = Integer.parseInt(adminView.label_CityTextBox2.getText());
 				City city = allCities.get(id);
 				try {
-					city.setName(adminView.NameCityTextBox3.getText());
-					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox3.getText()));
+					//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+					String newnameofcity = adminView.NameCityTextBox3.getText();
+					if(!newnameofcity.isEmpty()) {  //Ako upisano ime grada nije prazno, pretvori u odgovarajuce
+						newnameofcity = newnameofcity.substring(0,1).toUpperCase() + newnameofcity.substring(1).toLowerCase();
+					}
+					Integer newareanumber = Integer.parseInt(adminView.AddressCityTextBox3.getText());
+					
+					if(!city.getName().equals(newnameofcity)) {
+						city.setName(newnameofcity);
+						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+					}
+					if(!city.getAreaNumber().equals(newareanumber)) {
+						city.setAreaNumber(newareanumber);
+						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+					}
 					
 					listCity();
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -312,16 +367,26 @@ public class AdminController {
 				int id = Integer.parseInt(adminView.label_CityTextBox3.getText());
 				City city = allCities.get(id);
 				try {
-					city.setName(adminView.NameCityTextBox4.getText());
-					city.setAreaNumber(Integer.parseInt(adminView.AddressCityTextBox4.getText()));
+					//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+					String newnameofcity = adminView.NameCityTextBox4.getText();
+					if(!newnameofcity.isEmpty()) {  //Ako upisano ime grada nije prazno, pretvori u odgovarajuce
+						newnameofcity = newnameofcity.substring(0,1).toUpperCase() + newnameofcity.substring(1).toLowerCase();
+					}
+					Integer newareanumber = Integer.parseInt(adminView.AddressCityTextBox4.getText());
 					
+					if(!city.getName().equals(newnameofcity)) {
+						city.setName(newnameofcity);
+						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+					}
+					if(!city.getAreaNumber().equals(newareanumber)) {
+						city.setAreaNumber(newareanumber);
+						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+					}
 					listCity();
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -340,16 +405,27 @@ public class AdminController {
 				int id = Integer.parseInt(adminView.label_busTextBox0.getText());
 				Bus bus = allBuses.get(id);
 				try {
-					bus.setModel(adminView.ModelBusTextBox1.getText());
-					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox1.getText()));
+					//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+					String newmodelofbus = adminView.ModelBusTextBox1.getText();
+					if(!newmodelofbus.isEmpty()) {  //Ako upisano ime modela nije prazno, pretvori u odgovarajuce
+						newmodelofbus = newmodelofbus.substring(0,1).toUpperCase() + newmodelofbus.substring(1).toLowerCase();
+					}
+					Integer newnumberofseats = Integer.parseInt(adminView.SeatsBusTextBox1.getText());
+					
+					if(!bus.getModel().equals(newmodelofbus)){
+						bus.setModel(newmodelofbus);
+						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+					}
+					if(!bus.getSeats().equals(newnumberofseats)) {
+						bus.setSeats(newnumberofseats);
+						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+					}
 					
 					listBus();
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -365,14 +441,27 @@ public class AdminController {
 						int id = Integer.parseInt(adminView.label_busTextBox1.getText());
 						Bus bus = allBuses.get(id);
 						try {
-							bus.setModel(adminView.ModelBusTextBox2.getText());
-							bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox2.getText()));
+							//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+							String newmodelofbus = adminView.ModelBusTextBox1.getText();
+							if(!newmodelofbus.isEmpty()) {  //Ako upisano ime modela nije prazno, pretvori u odgovarajuce
+								newmodelofbus = newmodelofbus.substring(0,1).toUpperCase() + newmodelofbus.substring(1).toLowerCase();
+							}
+							Integer newnumberofseats = Integer.parseInt(adminView.SeatsBusTextBox1.getText());
+							
+							if(!bus.getModel().equals(newmodelofbus)){
+								bus.setModel(newmodelofbus);
+								printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+							}
+							if(!bus.getSeats().equals(newnumberofseats)) {
+								bus.setSeats(newnumberofseats);
+								printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+							}
+							
+							listBus();
 						} catch (NumberFormatException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 						} catch (IllegalArgumentException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -388,16 +477,27 @@ public class AdminController {
 				int id = Integer.parseInt(adminView.label_busTextBox2.getText());
 				Bus bus = allBuses.get(id);
 				try {
-					bus.setModel(adminView.ModelBusTextBox3.getText());
-					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox3.getText()));					
+					//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+					String newmodelofbus = adminView.ModelBusTextBox1.getText();
+					if(!newmodelofbus.isEmpty()) {  //Ako upisano ime modela nije prazno, pretvori u odgovarajuce
+						newmodelofbus = newmodelofbus.substring(0,1).toUpperCase() + newmodelofbus.substring(1).toLowerCase();
+					}
+					Integer newnumberofseats = Integer.parseInt(adminView.SeatsBusTextBox1.getText());
+					
+					if(!bus.getModel().equals(newmodelofbus)){
+						bus.setModel(newmodelofbus);
+						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+					}
+					if(!bus.getSeats().equals(newnumberofseats)) {
+						bus.setSeats(newnumberofseats);
+						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+					}
 					
 					listBus();
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -413,16 +513,27 @@ public class AdminController {
 				int id = Integer.parseInt(adminView.label_busTextBox3.getText());
 				Bus bus = allBuses.get(id);
 				try {
-					bus.setModel(adminView.ModelBusTextBox4.getText());
-					bus.setSeats(Integer.parseInt(adminView.SeatsBusTextBox4.getText()));
+					//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
+					String newmodelofbus = adminView.ModelBusTextBox1.getText();
+					if(!newmodelofbus.isEmpty()) {  //Ako upisano ime modela nije prazno, pretvori u odgovarajuce
+						newmodelofbus = newmodelofbus.substring(0,1).toUpperCase() + newmodelofbus.substring(1).toLowerCase();
+					}
+					Integer newnumberofseats = Integer.parseInt(adminView.SeatsBusTextBox1.getText());
+					
+					if(!bus.getModel().equals(newmodelofbus)){
+						bus.setModel(newmodelofbus);
+						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+					}
+					if(!bus.getSeats().equals(newnumberofseats)) {
+						bus.setSeats(newnumberofseats);
+						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+					}
 					
 					listBus();
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (IllegalArgumentException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -565,17 +676,22 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent argo0) {	
 				//Pretvaranje imena busa u odgovarajuce i dohvacanje broja sjedala
 				String nameofbus = adminView.ModelBusAddTextBox.getText();
-				nameofbus = nameofbus.substring(0,1).toUpperCase() + nameofbus.substring(1).toLowerCase();
-				Integer numberofseats = Integer.parseInt(adminView.SeatsBusAddTextBox.getText());
+				if(!nameofbus.isEmpty()) {
+					nameofbus = nameofbus.substring(0,1).toUpperCase() + nameofbus.substring(1).toLowerCase();
+				}
 				
 				//Upis novog busa
 				try {
+					Integer numberofseats = Integer.parseInt(adminView.SeatsBusAddTextBox.getText());
 					Bus newbus = new Bus(nameofbus,numberofseats);
 					allBuses.put(newbus.getID(), newbus);
+					
+					printAddUpdateDeleteBusMsg("New bus added!", adminView.AddNewBusLabel, true);
 					listBus();
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (NumberFormatException e) {
+					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.AddNewBusLabel, false);
+				}catch (IllegalArgumentException e) {
+					printAddUpdateDeleteBusMsg(e.getMessage(), adminView.AddNewBusLabel, false);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -593,17 +709,21 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent argo0) {
 				//Pretvaranje imena grada u odgovarajuce i dohvacanje postanskog broja
 				String nameofcity = adminView.NameCityAddTextBox.getText();
-				nameofcity = nameofcity.substring(0,1).toUpperCase() + nameofcity.substring(1).toLowerCase();
-				Integer areanumber = Integer.parseInt(adminView.AddressCityAddTextBox.getText());
-				
+				if(!nameofcity.isEmpty()) {
+					nameofcity = nameofcity.substring(0,1).toUpperCase() + nameofcity.substring(1).toLowerCase();
+				}
+			
 				//Upis novog grada
 				try {
+					Integer areanumber = Integer.parseInt(adminView.AddressCityAddTextBox.getText());
 					City newcity = new City(nameofcity, areanumber);
 					allCities.put(newcity.getID(),newcity);
+					printAddUpdateDeleteBusMsg("New city added!", adminView.AddNewCityLabel, true);
 					listCity();
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (NumberFormatException e) {
+					printAddUpdateDeleteBusMsg("Address must be number!", adminView.AddNewCityLabel, false);
+				}catch (IllegalArgumentException e) {
+					printAddUpdateDeleteBusMsg(e.getMessage(), adminView.AddNewCityLabel, false);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -624,6 +744,9 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				adminView.AdminBusButt.setOpaque(true);
 				adminView.AdminCityButt.setOpaque(false);
 				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AddNewCityLabel.setText("");
+				adminView.UpdateOrDeleteMessageCityBox.setText("");
+				listBus();
 			}
 		});
 	}
@@ -636,6 +759,9 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				adminView.AdminBusButt.setOpaque(false);
 				adminView.AdminCityButt.setOpaque(true);
 				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AddNewBusLabel.setText("");
+				adminView.UpdateOrDeleteMessageBusBox.setText("");
+				listCity();
 			}
 		});
 	}

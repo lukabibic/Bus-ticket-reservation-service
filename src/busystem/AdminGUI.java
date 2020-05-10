@@ -349,7 +349,7 @@ public class AdminGUI extends JFrame{
 			
 			UpdateOrDeleteMessageCityBox = new JLabel("");
 			UpdateOrDeleteMessageCityBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
-			UpdateOrDeleteMessageCityBox.setBounds(608, 326, 227, 20);
+			UpdateOrDeleteMessageCityBox.setBounds(608, 326, 303, 20);
 			UpdateCityPanel.add(UpdateOrDeleteMessageCityBox);
 			
 			//ADD CITY PANEL
@@ -401,7 +401,7 @@ public class AdminGUI extends JFrame{
 			
 			AddNewCityLabel = new JLabel("");
 			AddNewCityLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
-			AddNewCityLabel.setBounds(834, 70, 205, 20);
+			AddNewCityLabel.setBounds(825, 70, 214, 20);
 			AddCityPanel.add(AddNewCityLabel);
 			
 			//ADMIN BUS PANEL
@@ -606,7 +606,7 @@ public class AdminGUI extends JFrame{
 			
 			UpdateOrDeleteMessageBusBox = new JLabel("");
 			UpdateOrDeleteMessageBusBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
-			UpdateOrDeleteMessageBusBox.setBounds(608, 326, 227, 20);
+			UpdateOrDeleteMessageBusBox.setBounds(608, 326, 307, 20);
 			UpdateBusPanel.add(UpdateOrDeleteMessageBusBox);
 			
 			//ADD BUS PANEL
@@ -658,7 +658,7 @@ public class AdminGUI extends JFrame{
 			
 			AddNewBusLabel = new JLabel("");
 			AddNewBusLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
-			AddNewBusLabel.setBounds(845, 70, 199, 20);
+			AddNewBusLabel.setBounds(750, 70, 294, 20);
 			AddBusPanel.add(AddNewBusLabel);
 			
 	}

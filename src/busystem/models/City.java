@@ -44,7 +44,7 @@ public class City {
         //validate city name
         String validCityNamePattern = "^[a-zA-Z_. ]{4,64}$";
         if (newName.matches(validCityNamePattern) == false || newName.length() == 0) {
-            throw new IllegalArgumentException("Error: Invalid city name");
+            throw new IllegalArgumentException("Invalid city name!");
         }
 
         //update in db
@@ -52,8 +52,8 @@ public class City {
         preparedStmt.setString(1, newName);
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
-        System.out.println("City name updated successfully");
         
+        System.out.println("City name updated");
         //update local
         this.name = newName;
     }
@@ -68,7 +68,7 @@ public class City {
         preparedStmt.setInt(1, newAreaNumber);
         ResultSet existing_city = preparedStmt.executeQuery();
         if (existing_city.next() != false) {
-            throw new IllegalArgumentException("Error: City area number is taken");
+            throw new IllegalArgumentException("City area number is taken!");
         }
 
         //update in db
@@ -76,8 +76,8 @@ public class City {
         preparedStmt.setInt(1, newAreaNumber);
         preparedStmt.setInt(2, this.ID);
         preparedStmt.execute();
-        System.out.println("City area number updated successfully");
         
+        System.out.println("City area number updated");
         //update local
         this.areaNumber = newAreaNumber;
     }
@@ -86,7 +86,7 @@ public class City {
         PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("DELETE from city WHERE id = ?");
         preparedStmt.setInt(1, this.ID);
         preparedStmt.execute();
-        System.out.println("City deleted from database");
+        System.out.println("City deleted");
     }
 
     public String toString() {
@@ -97,9 +97,9 @@ public class City {
     public Integer create(String cityName, Integer areaNumber) throws IllegalArgumentException, SQLException {
        
         //validate city name
-        String validCityNamePattern = "^[a-zA-Z_. ]{4,64}$";
+        String validCityNamePattern = "^[a-zA-Z_. ]{3,64}$";
         if (cityName.matches(validCityNamePattern) == false || cityName.length() == 0) {
-            throw new IllegalArgumentException("Error: Invalid city name");
+            throw new IllegalArgumentException("Invalid city name!");
         }
 
         //check if area number is taken
@@ -107,7 +107,7 @@ public class City {
         preparedStmt.setInt(1, areaNumber);
         ResultSet existing_city = preparedStmt.executeQuery();
         if (existing_city.next() != false) {
-            throw new IllegalArgumentException("Error: City area number is taken");
+            throw new IllegalArgumentException("City area number is taken!");
         }
 
         String query = "INSERT into city (name, area_number)" + " VALUES (?, ?)";
