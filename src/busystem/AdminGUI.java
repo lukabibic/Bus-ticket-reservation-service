@@ -159,7 +159,6 @@ public class AdminGUI extends JFrame{
 			UpdateCityPanel.setLayout(null);
 			
 			NameCityTextBox1 = new JTextField();
-			NameCityTextBox1.setFocusable(false);
 			NameCityTextBox1.setOpaque(false);
 			NameCityTextBox1.setForeground(Color.WHITE);
 			NameCityTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
@@ -170,7 +169,6 @@ public class AdminGUI extends JFrame{
 			UpdateCityPanel.add(NameCityTextBox1);
 			
 			NameCityTextBox2 = new JTextField();
-			NameCityTextBox2.setFocusable(false);
 			NameCityTextBox2.setOpaque(false);
 			NameCityTextBox2.setForeground(Color.WHITE);
 			NameCityTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
@@ -181,7 +179,6 @@ public class AdminGUI extends JFrame{
 			UpdateCityPanel.add(NameCityTextBox2);
 			
 			NameCityTextBox3 = new JTextField();
-			NameCityTextBox3.setFocusable(false);
 			NameCityTextBox3.setOpaque(false);
 			NameCityTextBox3.setForeground(Color.WHITE);
 			NameCityTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
@@ -192,7 +189,6 @@ public class AdminGUI extends JFrame{
 			UpdateCityPanel.add(NameCityTextBox3);
 			
 			NameCityTextBox4 = new JTextField();
-			NameCityTextBox4.setFocusable(false);
 			NameCityTextBox4.setOpaque(false);
 			NameCityTextBox4.setForeground(Color.WHITE);
 			NameCityTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
@@ -206,7 +202,6 @@ public class AdminGUI extends JFrame{
 			AddressCityTextBox1.setOpaque(false);
 			AddressCityTextBox1.setForeground(Color.WHITE);
 			AddressCityTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			AddressCityTextBox1.setFocusable(false);
 			AddressCityTextBox1.setColumns(10);
 			AddressCityTextBox1.setCaretColor(Color.WHITE);
 			AddressCityTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -217,7 +212,6 @@ public class AdminGUI extends JFrame{
 			AddressCityTextBox2.setOpaque(false);
 			AddressCityTextBox2.setForeground(Color.WHITE);
 			AddressCityTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			AddressCityTextBox2.setFocusable(false);
 			AddressCityTextBox2.setColumns(10);
 			AddressCityTextBox2.setCaretColor(Color.WHITE);
 			AddressCityTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -228,7 +222,6 @@ public class AdminGUI extends JFrame{
 			AddressCityTextBox3.setOpaque(false);
 			AddressCityTextBox3.setForeground(Color.WHITE);
 			AddressCityTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			AddressCityTextBox3.setFocusable(false);
 			AddressCityTextBox3.setColumns(10);
 			AddressCityTextBox3.setCaretColor(Color.WHITE);
 			AddressCityTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -239,7 +232,6 @@ public class AdminGUI extends JFrame{
 			AddressCityTextBox4.setOpaque(false);
 			AddressCityTextBox4.setForeground(Color.WHITE);
 			AddressCityTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			AddressCityTextBox4.setFocusable(false);
 			AddressCityTextBox4.setColumns(10);
 			AddressCityTextBox4.setCaretColor(Color.WHITE);
 			AddressCityTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -457,7 +449,6 @@ public class AdminGUI extends JFrame{
 			SeatsBusTextBox1.setOpaque(false);
 			SeatsBusTextBox1.setForeground(Color.WHITE);
 			SeatsBusTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			SeatsBusTextBox1.setFocusable(false);
 			SeatsBusTextBox1.setColumns(10);
 			SeatsBusTextBox1.setCaretColor(Color.WHITE);
 			SeatsBusTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -468,7 +459,6 @@ public class AdminGUI extends JFrame{
 			SeatsBusTextBox2.setOpaque(false);
 			SeatsBusTextBox2.setForeground(Color.WHITE);
 			SeatsBusTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			SeatsBusTextBox2.setFocusable(false);
 			SeatsBusTextBox2.setColumns(10);
 			SeatsBusTextBox2.setCaretColor(Color.WHITE);
 			SeatsBusTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -479,7 +469,6 @@ public class AdminGUI extends JFrame{
 			SeatsBusTextBox3.setOpaque(false);
 			SeatsBusTextBox3.setForeground(Color.WHITE);
 			SeatsBusTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			SeatsBusTextBox3.setFocusable(false);
 			SeatsBusTextBox3.setColumns(10);
 			SeatsBusTextBox3.setCaretColor(Color.WHITE);
 			SeatsBusTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
@@ -490,7 +479,6 @@ public class AdminGUI extends JFrame{
 			SeatsBusTextBox4.setOpaque(false);
 			SeatsBusTextBox4.setForeground(Color.WHITE);
 			SeatsBusTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			SeatsBusTextBox4.setFocusable(false);
 			SeatsBusTextBox4.setColumns(10);
 			SeatsBusTextBox4.setCaretColor(Color.WHITE);
 			SeatsBusTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
