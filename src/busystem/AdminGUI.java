@@ -95,10 +95,6 @@ public class AdminGUI extends JFrame{
 	private JLabel StartLineLabel;
 	private JLabel DestinationLineLabel;
 	JButton AddLineButton;
-	JButton EditLineButt1;
-	JButton EditLineButt2;
-	JButton EditLineButt3;
-	JButton EditLineButt4;
 	JButton DeleteLineButt1;
 	JButton DeleteLineButt2;
 	JButton DeleteLineButt3;
@@ -111,15 +107,15 @@ public class AdminGUI extends JFrame{
 	JLabel label_lineTextBox3;
 	JComboBox<String> AddStartComboBox;
 	JComboBox<String> AddDestinationComboBox;
-	JComboBox StartLineComboBox1;
-	JComboBox StartLineComboBox2;
-	JComboBox StartLineComboBox3;
-	JComboBox StartLineComboBox4;
-	JComboBox DestinationLineComboBox1;
-	JComboBox DestinationLineComboBox2;
-	JComboBox DestinationLineComboBox3;
-	JComboBox DestinationLineComboBox4;
 	private JLabel label_lineTextBoxID;
+	JTextField StartLineTextBox1;
+	JTextField StartLineTextBox2;
+	JTextField StartLineTextBox3;
+	JTextField StartLineTextBox4;
+	JTextField DestinationLineTextBox1;
+	JTextField DestinationLineTextBox2;
+	JTextField DestinationLineTextBox3;
+	JTextField DestinationLineTextBox4;
 	
 	/**
 	 * Create the frame.
@@ -758,44 +754,12 @@ public class AdminGUI extends JFrame{
 			UpdateLinePanel.setBounds(0, 100, 1069, 416);
 			AdminLinePanel.add(UpdateLinePanel);
 			
-			EditLineButt1 = new JButton("EDIT");
-			EditLineButt1.setForeground(Color.BLACK);
-			EditLineButt1.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
-			EditLineButt1.setBorder(null);
-			EditLineButt1.setBackground(Color.LIGHT_GRAY);
-			EditLineButt1.setBounds(756, 50, 101, 32);
-			UpdateLinePanel.add(EditLineButt1);
-			
-			EditLineButt2 = new JButton("EDIT");
-			EditLineButt2.setForeground(Color.BLACK);
-			EditLineButt2.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
-			EditLineButt2.setBorder(null);
-			EditLineButt2.setBackground(Color.LIGHT_GRAY);
-			EditLineButt2.setBounds(756, 116, 101, 32);
-			UpdateLinePanel.add(EditLineButt2);
-			
-			EditLineButt3 = new JButton("EDIT");
-			EditLineButt3.setForeground(Color.BLACK);
-			EditLineButt3.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
-			EditLineButt3.setBorder(null);
-			EditLineButt3.setBackground(Color.LIGHT_GRAY);
-			EditLineButt3.setBounds(756, 184, 101, 32);
-			UpdateLinePanel.add(EditLineButt3);
-			
-			EditLineButt4 = new JButton("EDIT");
-			EditLineButt4.setForeground(Color.BLACK);
-			EditLineButt4.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
-			EditLineButt4.setBorder(null);
-			EditLineButt4.setBackground(Color.LIGHT_GRAY);
-			EditLineButt4.setBounds(756, 249, 101, 32);
-			UpdateLinePanel.add(EditLineButt4);
-			
 			DeleteLineButt1 = new JButton("DELETE");
 			DeleteLineButt1.setForeground(Color.WHITE);
 			DeleteLineButt1.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
 			DeleteLineButt1.setBorder(null);
 			DeleteLineButt1.setBackground(Color.RED);
-			DeleteLineButt1.setBounds(919, 51, 101, 32);
+			DeleteLineButt1.setBounds(800, 51, 101, 32);
 			UpdateLinePanel.add(DeleteLineButt1);
 			
 			DeleteLineButt2 = new JButton("DELETE");
@@ -803,7 +767,7 @@ public class AdminGUI extends JFrame{
 			DeleteLineButt2.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
 			DeleteLineButt2.setBorder(null);
 			DeleteLineButt2.setBackground(Color.RED);
-			DeleteLineButt2.setBounds(919, 116, 101, 32);
+			DeleteLineButt2.setBounds(800, 116, 101, 32);
 			UpdateLinePanel.add(DeleteLineButt2);
 			
 			DeleteLineButt3 = new JButton("DELETE");
@@ -811,7 +775,7 @@ public class AdminGUI extends JFrame{
 			DeleteLineButt3.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
 			DeleteLineButt3.setBorder(null);
 			DeleteLineButt3.setBackground(Color.RED);
-			DeleteLineButt3.setBounds(919, 184, 101, 32);
+			DeleteLineButt3.setBounds(800, 184, 101, 32);
 			UpdateLinePanel.add(DeleteLineButt3);
 			
 			DeleteLineButt4 = new JButton("DELETE");
@@ -819,7 +783,7 @@ public class AdminGUI extends JFrame{
 			DeleteLineButt4.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
 			DeleteLineButt4.setBorder(null);
 			DeleteLineButt4.setBackground(Color.RED);
-			DeleteLineButt4.setBounds(919, 249, 101, 32);
+			DeleteLineButt4.setBounds(800, 249, 101, 32);
 			UpdateLinePanel.add(DeleteLineButt4);
 			
 			LoadPreviousLineButt = new JButton("<");
@@ -863,61 +827,93 @@ public class AdminGUI extends JFrame{
 			label_lineTextBoxID.setBounds(10, 36, 46, 14);
 			UpdateLinePanel.add(label_lineTextBoxID);
 			
-			StartLineComboBox1 = new JComboBox();
-			StartLineComboBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			StartLineComboBox1.setOpaque(false);
-			StartLineComboBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			StartLineComboBox1.setBounds(69, 51, 265, 32);
-			UpdateLinePanel.add(StartLineComboBox1);
+			StartLineTextBox1 = new JTextField();
+			StartLineTextBox1.setEditable(false);
+			StartLineTextBox1.setOpaque(false);
+			StartLineTextBox1.setForeground(Color.WHITE);
+			StartLineTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			StartLineTextBox1.setColumns(10);
+			StartLineTextBox1.setCaretColor(Color.WHITE);
+			StartLineTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			StartLineTextBox1.setBounds(69, 51, 265, 32);
+			UpdateLinePanel.add(StartLineTextBox1);
 			
-			StartLineComboBox2 = new JComboBox();
-			StartLineComboBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			StartLineComboBox2.setOpaque(false);
-			StartLineComboBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			StartLineComboBox2.setBounds(69, 116, 265, 32);
-			UpdateLinePanel.add(StartLineComboBox2);
+			StartLineTextBox2 = new JTextField();
+			StartLineTextBox2.setEditable(false);
+			StartLineTextBox2.setOpaque(false);
+			StartLineTextBox2.setForeground(Color.WHITE);
+			StartLineTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			StartLineTextBox2.setColumns(10);
+			StartLineTextBox2.setCaretColor(Color.WHITE);
+			StartLineTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			StartLineTextBox2.setBounds(69, 116, 265, 32);
+			UpdateLinePanel.add(StartLineTextBox2);
 			
-			StartLineComboBox3 = new JComboBox();
-			StartLineComboBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			StartLineComboBox3.setOpaque(false);
-			StartLineComboBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			StartLineComboBox3.setBounds(69, 184, 265, 32);
-			UpdateLinePanel.add(StartLineComboBox3);
+			StartLineTextBox3 = new JTextField();
+			StartLineTextBox3.setOpaque(false);
+			StartLineTextBox3.setForeground(Color.WHITE);
+			StartLineTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			StartLineTextBox3.setEditable(false);
+			StartLineTextBox3.setColumns(10);
+			StartLineTextBox3.setCaretColor(Color.WHITE);
+			StartLineTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			StartLineTextBox3.setBounds(69, 184, 265, 32);
+			UpdateLinePanel.add(StartLineTextBox3);
 			
-			StartLineComboBox4 = new JComboBox();
-			StartLineComboBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			StartLineComboBox4.setOpaque(false);
-			StartLineComboBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			StartLineComboBox4.setBounds(69, 249, 265, 32);
-			UpdateLinePanel.add(StartLineComboBox4);
+			StartLineTextBox4 = new JTextField();
+			StartLineTextBox4.setOpaque(false);
+			StartLineTextBox4.setForeground(Color.WHITE);
+			StartLineTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			StartLineTextBox4.setEditable(false);
+			StartLineTextBox4.setColumns(10);
+			StartLineTextBox4.setCaretColor(Color.WHITE);
+			StartLineTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			StartLineTextBox4.setBounds(69, 249, 265, 32);
+			UpdateLinePanel.add(StartLineTextBox4);
 			
-			DestinationLineComboBox1 = new JComboBox();
-			DestinationLineComboBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			DestinationLineComboBox1.setOpaque(false);
-			DestinationLineComboBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			DestinationLineComboBox1.setBounds(412, 51, 265, 32);
-			UpdateLinePanel.add(DestinationLineComboBox1);
+			DestinationLineTextBox1 = new JTextField();
+			DestinationLineTextBox1.setOpaque(false);
+			DestinationLineTextBox1.setForeground(Color.WHITE);
+			DestinationLineTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			DestinationLineTextBox1.setEditable(false);
+			DestinationLineTextBox1.setColumns(10);
+			DestinationLineTextBox1.setCaretColor(Color.WHITE);
+			DestinationLineTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			DestinationLineTextBox1.setBounds(412, 51, 265, 32);
+			UpdateLinePanel.add(DestinationLineTextBox1);
 			
-			DestinationLineComboBox2 = new JComboBox();
-			DestinationLineComboBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			DestinationLineComboBox2.setOpaque(false);
-			DestinationLineComboBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			DestinationLineComboBox2.setBounds(412, 116, 265, 32);
-			UpdateLinePanel.add(DestinationLineComboBox2);
+			DestinationLineTextBox2 = new JTextField();
+			DestinationLineTextBox2.setOpaque(false);
+			DestinationLineTextBox2.setForeground(Color.WHITE);
+			DestinationLineTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			DestinationLineTextBox2.setEditable(false);
+			DestinationLineTextBox2.setColumns(10);
+			DestinationLineTextBox2.setCaretColor(Color.WHITE);
+			DestinationLineTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			DestinationLineTextBox2.setBounds(412, 116, 265, 32);
+			UpdateLinePanel.add(DestinationLineTextBox2);
 			
-			DestinationLineComboBox3 = new JComboBox();
-			DestinationLineComboBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			DestinationLineComboBox3.setOpaque(false);
-			DestinationLineComboBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			DestinationLineComboBox3.setBounds(412, 184, 265, 32);
-			UpdateLinePanel.add(DestinationLineComboBox3);
+			DestinationLineTextBox3 = new JTextField();
+			DestinationLineTextBox3.setOpaque(false);
+			DestinationLineTextBox3.setForeground(Color.WHITE);
+			DestinationLineTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			DestinationLineTextBox3.setEditable(false);
+			DestinationLineTextBox3.setColumns(10);
+			DestinationLineTextBox3.setCaretColor(Color.WHITE);
+			DestinationLineTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			DestinationLineTextBox3.setBounds(412, 184, 265, 32);
+			UpdateLinePanel.add(DestinationLineTextBox3);
 			
-			DestinationLineComboBox4 = new JComboBox();
-			DestinationLineComboBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			DestinationLineComboBox4.setOpaque(false);
-			DestinationLineComboBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			DestinationLineComboBox4.setBounds(412, 249, 265, 32);
-			UpdateLinePanel.add(DestinationLineComboBox4);
+			DestinationLineTextBox4 = new JTextField();
+			DestinationLineTextBox4.setOpaque(false);
+			DestinationLineTextBox4.setForeground(Color.WHITE);
+			DestinationLineTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			DestinationLineTextBox4.setEditable(false);
+			DestinationLineTextBox4.setColumns(10);
+			DestinationLineTextBox4.setCaretColor(Color.WHITE);
+			DestinationLineTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			DestinationLineTextBox4.setBounds(412, 249, 265, 32);
+			UpdateLinePanel.add(DestinationLineTextBox4);
 			
 	}
 }
