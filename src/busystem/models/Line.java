@@ -13,6 +13,7 @@ import busystem.DBconnect;
 import java.beans.PropertyChangeListener;
 
 public class Line {
+
     private Integer ID;
     private City start;
     private City destination;
@@ -53,6 +54,53 @@ public class Line {
 
     public String toString() {
         return this.start + "-" + this.destination;
+    }
+
+    public void deleteFromDB() throws SQLException {
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("DELETE from line WHERE id = ?");
+        preparedStmt.setInt(1, this.ID);
+        preparedStmt.execute();
+        System.out.println("Line deleted");
+    }
+
+    public void setStartCity(City newStart) throws IllegalArgumentException, SQLException {
+        //check if city exist
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from city WHERE id = ?");
+        preparedStmt.setInt(1, newStart.getID());
+        ResultSet existing_city = preparedStmt.executeQuery();
+        if (!existing_city.next()) {
+            throw new IllegalArgumentException("ERROR: New start city does not exist");
+        }
+
+        //update in db
+        preparedStmt = DBconnect.conn.prepareStatement("UPDATE line SET start_id = ? WHERE id = ?");
+        preparedStmt.setInt(1, newStart.getID());
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        
+        System.out.println("Start city updated");
+        //update local
+        this.start = newStart;
+    }
+
+    public void setDestinationCity(City newDestination) throws IllegalArgumentException, SQLException {
+        //check if city exist
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from city WHERE id = ?");
+        preparedStmt.setInt(1, newDestination.getID());
+        ResultSet existing_city = preparedStmt.executeQuery();
+        if (!existing_city.next()) {
+            throw new IllegalArgumentException("ERROR: New destination city does not exist");
+        }
+
+        //update in db
+        preparedStmt = DBconnect.conn.prepareStatement("UPDATE line SET destination_id = ? WHERE id = ?");
+        preparedStmt.setInt(1, newDestination.getID());
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        
+        System.out.println("Destination city updated");
+        //update local
+        this.destination = newDestination;
     }
 
     //create line in database and return ID of new line

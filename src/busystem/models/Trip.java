@@ -67,6 +67,77 @@ public class Trip {
         return line + "bus: " + bus + "\n" + "Departure: " + departureTime + " Trip duration: " + tripDuration;
     }
 
+    public void deleteFromDB() throws SQLException {
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("DELETE from trip WHERE id = ?");
+        preparedStmt.setInt(1, this.ID);
+        preparedStmt.execute();
+        System.out.println("Trip deleted");
+    }
+
+    public void setLine(Line newLine) throws IllegalArgumentException, SQLException {
+        //check if line exist
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from line WHERE id = ?");
+        preparedStmt.setInt(1, newLine.getID());
+        ResultSet existingLine = preparedStmt.executeQuery();
+        if (!existingLine.next()) {
+            throw new IllegalArgumentException("ERROR: New line does not exist");
+        }
+
+        //update in db
+        preparedStmt = DBconnect.conn.prepareStatement("UPDATE trip SET line_id = ? WHERE id = ?");
+        preparedStmt.setInt(1, newLine.getID());
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        
+        //update local
+        this.line = newLine;
+        System.out.println("Trip line updated");
+    }
+
+    public void setBus(Bus newBus) throws IllegalArgumentException, SQLException {
+        //check if bus exist
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("SELECT * from bus WHERE id = ?");
+        preparedStmt.setInt(1, newBus.getID());
+        ResultSet existingBus = preparedStmt.executeQuery();
+        if (!existingBus.next()) {
+            throw new IllegalArgumentException("ERROR: New bus does not exist");
+        }
+
+        //update in db
+        preparedStmt = DBconnect.conn.prepareStatement("UPDATE trip SET bus_id = ? WHERE id = ?");
+        preparedStmt.setInt(1, newBus.getID());
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        
+        //update local
+        this.bus = newBus;
+        System.out.println("Trip bus updated");
+    }
+
+    public void setDepartureTime(Time newDepartureTime) throws IllegalArgumentException, SQLException {
+        //update in db
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("UPDATE trip SET departure_time = ? WHERE id = ?");
+        preparedStmt.setTime(1, newDepartureTime);
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        
+        //update local
+        this.departureTime = newDepartureTime;
+        System.out.println("Trip departure time updated");
+    }
+
+    public void setTripDuration(Time newTripDuration) throws IllegalArgumentException, SQLException {
+        //update in db
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("UPDATE trip SET trip_duration = ? WHERE id = ?");
+        preparedStmt.setTime(1, newTripDuration);
+        preparedStmt.setInt(2, this.ID);
+        preparedStmt.execute();
+        
+        //update local
+        this.tripDuration = newTripDuration;
+        System.out.println("Trip duration updated");
+    }
+
     private Integer create(Bus bus, Line line, Time departureTime, Time tripDuration) throws IllegalArgumentException, SQLException {
         //create trip in database and return ID of generated 
 
