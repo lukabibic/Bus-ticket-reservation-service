@@ -109,8 +109,8 @@ public class AdminGUI extends JFrame{
 	JLabel label_lineTextBox1;
 	JLabel label_lineTextBox2;
 	JLabel label_lineTextBox3;
-	JComboBox AddStartComboBox;
-	JComboBox AddDestinationComboBox;
+	JComboBox<String> AddStartComboBox;
+	JComboBox<String> AddDestinationComboBox;
 	JComboBox StartLineComboBox1;
 	JComboBox StartLineComboBox2;
 	JComboBox StartLineComboBox3;
@@ -736,14 +736,14 @@ public class AdminGUI extends JFrame{
 			AddLineButton.setBounds(890, 31, 101, 32);
 			AddLinePanel.add(AddLineButton);
 			
-			AddStartComboBox = new JComboBox();
+			AddStartComboBox = new JComboBox<String>();
 			AddStartComboBox.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 			AddStartComboBox.setOpaque(false);
 			AddStartComboBox.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 			AddStartComboBox.setBounds(152, 30, 199, 32);
 			AddLinePanel.add(AddStartComboBox);
 			
-			AddDestinationComboBox = new JComboBox();
+			AddDestinationComboBox = new JComboBox<String>();
 			AddDestinationComboBox.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
 			AddDestinationComboBox.setOpaque(false);
 			AddDestinationComboBox.setBorder(new LineBorder(SystemColor.textHighlight, 2));

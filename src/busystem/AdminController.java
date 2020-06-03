@@ -26,6 +26,8 @@ public class AdminController {
 	private TreeMap<Integer, Line> allLines;
 	private TreeMap<Integer, Trip> allTrips;
 	private TreeMap<Integer, Ticket> allTickets;
+	ArrayList<Bus> allBusNames = new ArrayList<Bus>();
+	ArrayList<City> allCityNames = new ArrayList<City>();
 	private AdminGUI adminView;
 	
 	int cityCounter = 0;
@@ -37,6 +39,8 @@ public class AdminController {
 		try {
 			this.allCities = City.getAll();
 			this.allBuses = Bus.getAll();
+			Line.setCityCollection(allCities);
+			this.allLines = Line.getAll();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -57,10 +61,12 @@ public class AdminController {
 		//listener za otvaranje formi
 		this.addCityFormListener();
 		this.addBusFormListener();
+		this.addLineFormListener();
 		
 		//listener za dodavanje novih
 		this.addNewBusListener();
 		this.addNewCityListener();
+		this.addNewLineListener();
 		
 		//listener za gumbe lijevo desno
 		this.addPreviousBtnListenerCity();
@@ -74,6 +80,24 @@ public class AdminController {
 		
 		this.addAllDeleteBusListeners();
 		this.addAllDeleteCityListeners();
+	}
+	
+	private void BusCollectionToList() {
+		allBusNames.clear();
+		for (Entry<Integer, Bus> entry : allBuses.entrySet()) {
+		    Bus value = entry.getValue();
+		    
+		    allBusNames.add(value);
+		}
+	}
+	
+	private void CityCollectionToList() {
+		allCityNames.clear();
+		for (Entry<Integer, City> entry : allCities.entrySet()) {
+		    City value = entry.getValue();
+		    
+		    allCityNames.add(value);
+		}
 	}
 	
 	private void printAddUpdateDeleteBusMsg(String msg, JLabel label, boolean success) {
@@ -102,8 +126,7 @@ public class AdminController {
 					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 				}
 			}
 		});
@@ -122,8 +145,7 @@ public class AdminController {
 							printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 							listCity();
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+							printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 						}
 					}
 				});
@@ -142,8 +164,7 @@ public class AdminController {
 					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 				}
 			}
 		});
@@ -162,8 +183,7 @@ public class AdminController {
 					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 				}
 			}
 		});
@@ -185,8 +205,7 @@ public class AdminController {
 					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -204,8 +223,7 @@ public class AdminController {
 					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -223,8 +241,7 @@ public class AdminController {
 					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -242,8 +259,7 @@ public class AdminController {
 					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -608,12 +624,9 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				textboxofSeats[i].setText("");
 				busIdLabels[i].setText("");
 			}
-			ArrayList<Bus> allBusNames = new ArrayList<Bus>();
-			for (Entry<Integer, Bus> entry : allBuses.entrySet()) {
-			    Bus value = entry.getValue();
-			    
-			    allBusNames.add(value);
-			}
+			
+			BusCollectionToList();
+			
 			int j = 0;
 			int counter = busCounter;
 			
@@ -648,12 +661,9 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				textboxofaddress[i].setText("");
 				cityIdLabels[i].setText("");
 			}
-			ArrayList<City> allCityNames = new ArrayList<City>();
-			for (Entry<Integer, City> entry : allCities.entrySet()) {
-			    City value = entry.getValue();
-			    
-			    allCityNames.add(value);
-			}
+			
+			CityCollectionToList();
+			
 			int j = 0;
 			int counter = cityCounter;
 			
@@ -736,14 +746,45 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 		});
 	}
 	
+	private void addNewLineListener() {
+		this.adminView.AddLineButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				
+				//Povuci grad Start
+				City start = allCityNames.get(adminView.AddStartComboBox.getSelectedIndex());
+				
+				//Povuci grad Destination
+				City destination = allCityNames.get(adminView.AddDestinationComboBox.getSelectedIndex());
+				
+				//Kreiranje liniju i dodaj u kolekciju
+				Line newLine;
+				try {
+					newLine = new Line(start,destination);
+					allLines.put(newLine.getID(), newLine);
+					//listLines();
+				} catch (IllegalArgumentException | SQLException e) {
+					//Nebi trebalo biti Argument Exceptiona jer je nemoguce odabrat grad koji ne postoji ako se bira iz dropdowna.
+					e.printStackTrace();
+				}
+				
+			}
+		});
+	}
+	
 	private void addBusFormListener() {
 		this.adminView.AdminBusButt.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent argo0) {
-				adminView.AdminBusPanel.setVisible(true);
 				adminView.AdminCityPanel.setVisible(false);
+				adminView.AdminLinePanel.setVisible(false);
+				adminView.AdminBusPanel.setVisible(true);
+				
 				adminView.AdminBusButt.setOpaque(true);
 				adminView.AdminCityButt.setOpaque(false);
+				adminView.AdminLineButt.setOpaque(false);
+				
 				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminLineButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				
 				adminView.AddNewCityLabel.setText("");
 				adminView.UpdateOrDeleteMessageCityBox.setText("");
 				listBus();
@@ -755,13 +796,49 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 		this.adminView.AdminCityButt.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent argo0) {
 				adminView.AdminBusPanel.setVisible(false);
+				adminView.AdminLinePanel.setVisible(false);
 				adminView.AdminCityPanel.setVisible(true);
-				adminView.AdminBusButt.setOpaque(false);
+				
 				adminView.AdminCityButt.setOpaque(true);
+				adminView.AdminBusButt.setOpaque(false);
+				adminView.AdminLineButt.setOpaque(false);
+				
 				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminLineButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				
 				adminView.AddNewBusLabel.setText("");
 				adminView.UpdateOrDeleteMessageBusBox.setText("");
 				listCity();
+			}
+		});
+	}
+	
+	private void addLineFormListener() {
+		this.adminView.AdminLineButt.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				adminView.AdminBusPanel.setVisible(false);
+				adminView.AdminCityPanel.setVisible(false);
+				adminView.AdminLinePanel.setVisible(true);
+				
+				adminView.AdminLineButt.setOpaque(true);
+				adminView.AdminBusButt.setOpaque(false);
+				adminView.AdminCityButt.setOpaque(false);
+				
+				//popunjavanje dropdown menija postojecim gradovima
+				CityCollectionToList();
+				
+				//Ocisti dropdown -> u slucaju dodavanja grada, brisanja
+				adminView.AddStartComboBox.removeAllItems();
+				adminView.AddDestinationComboBox.removeAllItems();
+				
+				//Popuni dropdowne svim imenima gradova
+				for(int i=0;i<allCityNames.size();i++) {
+					adminView.AddStartComboBox.addItem(allCityNames.get(i).getName());
+				    adminView.AddDestinationComboBox.addItem(allCityNames.get(i).getName());
+				}
+				
+				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 			}
 		});
 	}
