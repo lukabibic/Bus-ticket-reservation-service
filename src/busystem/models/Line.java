@@ -42,6 +42,14 @@ public class Line {
     public Integer getID() {
         return this.ID;
     }
+    
+    public City getStart() {
+    	return this.start;
+    }
+    
+    public City getDestination() {
+    	return this.destination;
+    }
 
     public String toString() {
         return this.start + "-" + this.destination;

@@ -28,11 +28,13 @@ public class AdminController {
 	private TreeMap<Integer, Ticket> allTickets;
 	ArrayList<Bus> allBusNames = new ArrayList<Bus>();
 	ArrayList<City> allCityNames = new ArrayList<City>();
+	ArrayList<Line> allLineList = new ArrayList<Line>();
 	private AdminGUI adminView;
 	
 	int cityCounter = 0;
 	int busCounter = 0;
-
+	int lineCounter = 0;
+	
 	public AdminController(User user, MainController mainController) {
 		this.admin = user;
 		//dohvati sve iz baze...
@@ -55,6 +57,9 @@ public class AdminController {
 		if(allBuses.size() > 0) {
 		this.listBus();
 		}
+		if(allLines.size() > 0) {
+		this.listLines();
+		}
 		//logout button listener
 		this.addLogoutListener(mainController);
 		
@@ -74,12 +79,17 @@ public class AdminController {
 		
 		this.addPreviousBtnListenerBus();
 		this.addNextBtnListenerBus();
-
+		
+		this.addNextBtnListenerLine();
+		this.addPreviousBtnListenerLine();
+		
 		this.addAllEditBusListeners();
 		this.addAllEditCityListeners();
 		
 		this.addAllDeleteBusListeners();
 		this.addAllDeleteCityListeners();
+		this.addAllDeleteLineListeners();
+		
 	}
 	
 	private void BusCollectionToList() {
@@ -97,6 +107,15 @@ public class AdminController {
 		    City value = entry.getValue();
 		    
 		    allCityNames.add(value);
+		}
+	}
+	
+	private void LineCollectionToList() {
+		allLineList.clear();
+		for (Entry<Integer, Line> entry : allLines.entrySet()) {
+		    Line value = entry.getValue();
+		    
+		    allLineList.add(value);
 		}
 	}
 	
@@ -610,6 +629,111 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 		});
 	}
 
+	private void addAllDeleteLineListeners() {
+		// TODO Auto-generated method stub
+		adminView.DeleteLineButt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_lineTextBox0.getText());
+				Line line = allLines.get(id);
+				
+				try {
+					line.deleteFromDB();
+					allLines.remove(id);
+					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					listLines();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+				}
+			}
+		});
+		
+		adminView.DeleteLineButt2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_lineTextBox1.getText());
+				City city = allCities.get(id);
+				
+				try {
+					city.deleteFromDB();
+					allCities.remove(id);
+					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					listCity();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+				}
+			}
+		});
+		
+		adminView.DeleteLineButt3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_lineTextBox2.getText());
+				City city = allCities.get(id);
+				
+				try {
+					city.deleteFromDB();
+					allCities.remove(id);
+					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					listCity();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+				}
+			}
+		});
+		
+		adminView.DeleteLineButt4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_lineTextBox3.getText());
+				City city = allCities.get(id);
+				
+				try {
+					city.deleteFromDB();
+					allCities.remove(id);
+					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					listCity();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+				}
+			}
+		});
+	}
+	
+	private void addNextBtnListenerLine() {
+		adminView.LoadNextLineButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(lineCounter + 4 < allLines.size()) { //dont go too far mayne
+					lineCounter = lineCounter + 4;
+					listLines();
+				}
+			}
+		});
+	}
+	
+	private void addPreviousBtnListenerLine() {
+		adminView.LoadPreviousLineButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(lineCounter - 4 > -1 ) { //dont go too far mayne
+					lineCounter = lineCounter - 4;
+					listLines();
+				}
+			}
+		});
+	}
+	
 	private void listBus() {
 			JTextField[] textboxofBuses = {adminView.ModelBusTextBox1,adminView.ModelBusTextBox2,
 				adminView.ModelBusTextBox3,adminView.ModelBusTextBox4};
@@ -680,6 +804,41 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				j++;
 			}
 	}
+	
+	private void listLines() {
+		JTextField[] starttextboxoflines = {adminView.StartLineTextBox1,adminView.StartLineTextBox2,
+			adminView.StartLineTextBox3,adminView.StartLineTextBox4};
+		JTextField[] destinationtextboxoflines = {
+				adminView.DestinationLineTextBox1, adminView.DestinationLineTextBox2,
+				adminView.DestinationLineTextBox3, adminView.DestinationLineTextBox4};
+		JLabel[] linesIdLabels = {                             
+				adminView.label_lineTextBox0, adminView.label_lineTextBox1,
+				adminView.label_lineTextBox2, adminView.label_lineTextBox3};
+		
+		for (int i = 0; i < starttextboxoflines.length; i++) { // DA SE CLEAREAJU SVAKI PUT KAD SE POZOVE
+			starttextboxoflines[i].setText("");
+			destinationtextboxoflines[i].setText("");
+			linesIdLabels[i].setText("");
+		}
+		
+		LineCollectionToList();
+		
+		int j = 0;
+		int counter = lineCounter;
+		
+		while(true) {
+			if(j == 4) break; //DA ISPUSUJE SAMO 4 PO 4
+			starttextboxoflines[j].setText(allLineList.get(counter).getStart().getName());
+			destinationtextboxoflines[j].setText(allLineList.get(counter).getDestination().getName());
+			linesIdLabels[j].setText(allLineList.get(counter).getID().toString());
+			counter++;
+			if(counter > allLines.size() - 1) { //KAD PREKORACI DA VRATI COUNTER I BREAKA
+				counter = allLines.size() - 1;
+				break;
+			}
+			j++;
+		}
+}
 	
 	private void addNewBusListener() {
 		this.adminView.AddBusButton.addActionListener(new ActionListener(){
@@ -757,11 +916,11 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				City destination = allCityNames.get(adminView.AddDestinationComboBox.getSelectedIndex());
 				
 				//Kreiranje liniju i dodaj u kolekciju
-				Line newLine;
 				try {
+					Line newLine;
 					newLine = new Line(start,destination);
 					allLines.put(newLine.getID(), newLine);
-					//listLines();
+					listLines();
 				} catch (IllegalArgumentException | SQLException e) {
 					//Nebi trebalo biti Argument Exceptiona jer je nemoguce odabrat grad koji ne postoji ako se bira iz dropdowna.
 					e.printStackTrace();
@@ -826,6 +985,7 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				
 				//popunjavanje dropdown menija postojecim gradovima
 				CityCollectionToList();
+				listLines();
 				
 				//Ocisti dropdown -> u slucaju dodavanja grada, brisanja
 				adminView.AddStartComboBox.removeAllItems();
