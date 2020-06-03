@@ -642,10 +642,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					line.deleteFromDB();
 					allLines.remove(id);
-					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
 					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -656,15 +656,15 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int id = Integer.parseInt(adminView.label_lineTextBox1.getText());
-				City city = allCities.get(id);
+				Line line = allLines.get(id);
 				
 				try {
-					city.deleteFromDB();
-					allCities.remove(id);
-					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
-					listCity();
+					line.deleteFromDB();
+					allLines.remove(id);
+					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
+					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -675,15 +675,15 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int id = Integer.parseInt(adminView.label_lineTextBox2.getText());
-				City city = allCities.get(id);
+				Line line = allLines.get(id);
 				
 				try {
-					city.deleteFromDB();
-					allCities.remove(id);
-					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
-					listCity();
+					line.deleteFromDB();
+					allLines.remove(id);
+					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
+					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -694,15 +694,15 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int id = Integer.parseInt(adminView.label_lineTextBox3.getText());
-				City city = allCities.get(id);
+				Line line = allLines.get(id);
 				
 				try {
-					city.deleteFromDB();
-					allCities.remove(id);
-					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
-					listCity();
+					line.deleteFromDB();
+					allLines.remove(id);
+					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
+					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -920,6 +920,7 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 					Line newLine;
 					newLine = new Line(start,destination);
 					allLines.put(newLine.getID(), newLine);
+					printAddUpdateDeleteBusMsg("New line added!", adminView.AddNewLineLabel, true);
 					listLines();
 				} catch (IllegalArgumentException | SQLException e) {
 					//Nebi trebalo biti Argument Exceptiona jer je nemoguce odabrat grad koji ne postoji ako se bira iz dropdowna.
@@ -999,6 +1000,9 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				
 				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				
+				adminView.AddNewLineLabel.setText("");
+				adminView.UpdateOrDeleteMessageLineBox.setText("");
 			}
 		});
 	}
