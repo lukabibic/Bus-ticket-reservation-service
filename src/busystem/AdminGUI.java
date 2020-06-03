@@ -116,6 +116,8 @@ public class AdminGUI extends JFrame{
 	JTextField DestinationLineTextBox2;
 	JTextField DestinationLineTextBox3;
 	JTextField DestinationLineTextBox4;
+	JLabel AddNewLineLabel;
+	JLabel UpdateOrDeleteMessageLineBox;
 	
 	/**
 	 * Create the frame.
@@ -746,6 +748,11 @@ public class AdminGUI extends JFrame{
 			AddDestinationComboBox.setBounds(587, 32, 199, 32);
 			AddLinePanel.add(AddDestinationComboBox);
 			
+			AddNewLineLabel = new JLabel("");
+			AddNewLineLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			AddNewLineLabel.setBounds(750, 70, 294, 20);
+			AddLinePanel.add(AddNewLineLabel);
+			
 			//UPDATE LINE PANEL
 			UpdateLinePanel = new JPanel();
 			UpdateLinePanel.setLayout(null);
@@ -914,6 +921,11 @@ public class AdminGUI extends JFrame{
 			DestinationLineTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 			DestinationLineTextBox4.setBounds(412, 249, 265, 32);
 			UpdateLinePanel.add(DestinationLineTextBox4);
+			
+			UpdateOrDeleteMessageLineBox = new JLabel("");
+			UpdateOrDeleteMessageLineBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			UpdateOrDeleteMessageLineBox.setBounds(608, 326, 307, 20);
+			UpdateLinePanel.add(UpdateOrDeleteMessageLineBox);
 			
 	}
 }
