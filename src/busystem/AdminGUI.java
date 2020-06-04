@@ -89,6 +89,7 @@ public class AdminGUI extends JFrame{
 	JLabel AddNewCityLabel;
 	JLabel UpdateOrDeleteMessageCityBox;
 	JLabel UpdateOrDeleteMessageBusBox;
+	
 	JPanel AdminLinePanel;
 	private JPanel AddLinePanel;
 	private JPanel UpdateLinePanel;
@@ -119,6 +120,48 @@ public class AdminGUI extends JFrame{
 	JLabel AddNewLineLabel;
 	JLabel UpdateOrDeleteMessageLineBox;
 	
+	JButton AdminTripButt;
+	JPanel AdminTripPanel;
+	private JPanel AddTripPanel;
+	private JPanel UpdateTripPanel;
+	private JLabel DepartureLabel;
+	private JLabel DurationLabel;
+	private JLabel BusTripLabel;
+	private JLabel LineTripLabel;
+	JLabel AddNewTripLabel;
+	JComboBox<String> AddLineTripComboBox;
+	JComboBox<String> AddBusTripComboBox;
+	JTextField AddDepartureTimeTrip;
+	JTextField AddDurationTimeTrip;
+	JButton AddTripButton;
+	JTextField TripLineTextBox1;
+	JTextField TripLineTextBox2;
+	JTextField TripLineTextBox3;
+	JTextField TripLineTextBox4;
+	JTextField TripBusTextBox1;
+	JTextField TripBusTextBox2;
+	JTextField TripBusTextBox3;
+	JTextField TripBusTextBox4;
+	JTextField TripDepartureTextBox1;
+	JTextField TripDepartureTextBox2;
+	JTextField TripDepartureTextBox3;
+	JTextField TripDepartureTextBox4;
+	JTextField TripDurationTextBox1;
+	JTextField TripDurationTextBox2;
+	JTextField TripDurationTextBox3;
+	JTextField TripDurationTextBox4;
+	JLabel UpdateOrDeleteMessageTripBox;
+	private JLabel label_tripTextBoxID;
+	JLabel label_tripTextBox0;
+	JLabel label_tripTextBox1;
+	JLabel label_tripTextBox2;
+	JLabel label_tripTextBox3;
+	JButton LoadPreviousTripButt;
+	JButton LoadNextTripButt;
+	JButton DeleteTripButt1;
+	JButton DeleteTripButt2;
+	JButton DeleteTripButt3;
+	JButton DeleteTripButt4;
 	/**
 	 * Create the frame.
 	 */
@@ -178,6 +221,15 @@ public class AdminGUI extends JFrame{
 			AdminLineButt.setForeground(Color.WHITE);
 			AdminLineButt.setBounds(217, 0, 109, 40);
 			AdminNavbarPanel.add(AdminLineButt);
+			
+			AdminTripButt = new JButton("TRIP");
+			AdminTripButt.setOpaque(false);
+			AdminTripButt.setForeground(Color.WHITE);
+			AdminTripButt.setFont(new Font("Bookman Old Style", Font.BOLD, 14));
+			AdminTripButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			AdminTripButt.setBackground(SystemColor.textHighlight);
+			AdminTripButt.setBounds(326, 0, 109, 40);
+			AdminNavbarPanel.add(AdminTripButt);
 			
 			//ADMIN OPERATION PANEL
 			AdminOperationPanel = new JPanel();
@@ -926,6 +978,350 @@ public class AdminGUI extends JFrame{
 			UpdateOrDeleteMessageLineBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
 			UpdateOrDeleteMessageLineBox.setBounds(608, 326, 307, 20);
 			UpdateLinePanel.add(UpdateOrDeleteMessageLineBox);
+			
+			AdminTripPanel = new JPanel();
+			AdminTripPanel.setLayout(null);
+			AdminTripPanel.setBorder(new MatteBorder(4, 1, 1, 1, (Color) Color.WHITE));
+			AdminTripPanel.setBackground(Color.DARK_GRAY);
+			AdminOperationPanel.add(AdminTripPanel, "name_1803128349213600");
+			
+			AddTripPanel = new JPanel();
+			AddTripPanel.setLayout(null);
+			AddTripPanel.setBackground(Color.DARK_GRAY);
+			AddTripPanel.setBounds(0, 5, 1069, 144);
+			AdminTripPanel.add(AddTripPanel);
+			
+			LineTripLabel = new JLabel("LINE:");
+			LineTripLabel.setForeground(Color.WHITE);
+			LineTripLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			LineTripLabel.setBounds(81, 29, 73, 32);
+			AddTripPanel.add(LineTripLabel);
+			
+			BusTripLabel = new JLabel("BUS:");
+			BusTripLabel.setForeground(Color.WHITE);
+			BusTripLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			BusTripLabel.setBounds(514, 29, 63, 32);
+			AddTripPanel.add(BusTripLabel);
+			
+			AddTripButton = new JButton("ADD");
+			AddTripButton.setForeground(Color.BLACK);
+			AddTripButton.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
+			AddTripButton.setBorder(null);
+			AddTripButton.setBackground(Color.LIGHT_GRAY);
+			AddTripButton.setBounds(891, 58, 101, 32);
+			AddTripPanel.add(AddTripButton);
+			
+			AddLineTripComboBox = new JComboBox<String>();
+			AddLineTripComboBox.setOpaque(false);
+			AddLineTripComboBox.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			AddLineTripComboBox.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			AddLineTripComboBox.setBounds(164, 30, 199, 32);
+			AddTripPanel.add(AddLineTripComboBox);
+			
+			AddBusTripComboBox = new JComboBox<String>();
+			AddBusTripComboBox.setOpaque(false);
+			AddBusTripComboBox.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			AddBusTripComboBox.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			AddBusTripComboBox.setBounds(587, 32, 199, 32);
+			AddTripPanel.add(AddBusTripComboBox);
+			
+			AddNewTripLabel = new JLabel("");
+			AddNewTripLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			AddNewTripLabel.setBounds(765, 120, 294, 20);
+			AddTripPanel.add(AddNewTripLabel);
+			
+			AddDepartureTimeTrip = new JTextField();
+			AddDepartureTimeTrip.setOpaque(false);
+			AddDepartureTimeTrip.setForeground(Color.WHITE);
+			AddDepartureTimeTrip.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			AddDepartureTimeTrip.setColumns(10);
+			AddDepartureTimeTrip.setCaretColor(Color.WHITE);
+			AddDepartureTimeTrip.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			AddDepartureTimeTrip.setBounds(164, 82, 199, 32);
+			AddTripPanel.add(AddDepartureTimeTrip);
+			
+			AddDurationTimeTrip = new JTextField();
+			AddDurationTimeTrip.setOpaque(false);
+			AddDurationTimeTrip.setForeground(Color.WHITE);
+			AddDurationTimeTrip.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			AddDurationTimeTrip.setColumns(10);
+			AddDurationTimeTrip.setCaretColor(Color.WHITE);
+			AddDurationTimeTrip.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			AddDurationTimeTrip.setBounds(587, 82, 199, 32);
+			AddTripPanel.add(AddDurationTimeTrip);
+			
+			DepartureLabel = new JLabel("DEPARTURE:");
+			DepartureLabel.setForeground(Color.WHITE);
+			DepartureLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			DepartureLabel.setBounds(21, 81, 133, 32);
+			AddTripPanel.add(DepartureLabel);
+			
+			DurationLabel = new JLabel("DURATION:");
+			DurationLabel.setForeground(Color.WHITE);
+			DurationLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			DurationLabel.setBounds(466, 82, 111, 32);
+			AddTripPanel.add(DurationLabel);
+			
+			UpdateTripPanel = new JPanel();
+			UpdateTripPanel.setLayout(null);
+			UpdateTripPanel.setBorder(new MatteBorder(4, 1, 1, 1, (Color) Color.WHITE));
+			UpdateTripPanel.setBackground(Color.DARK_GRAY);
+			UpdateTripPanel.setBounds(0, 149, 1069, 367);
+			AdminTripPanel.add(UpdateTripPanel);
+			
+			DeleteTripButt1 = new JButton("DELETE");
+			DeleteTripButt1.setForeground(Color.WHITE);
+			DeleteTripButt1.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
+			DeleteTripButt1.setBorder(null);
+			DeleteTripButt1.setBackground(Color.RED);
+			DeleteTripButt1.setBounds(892, 51, 101, 32);
+			UpdateTripPanel.add(DeleteTripButt1);
+			
+			DeleteTripButt2 = new JButton("DELETE");
+			DeleteTripButt2.setForeground(Color.WHITE);
+			DeleteTripButt2.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
+			DeleteTripButt2.setBorder(null);
+			DeleteTripButt2.setBackground(Color.RED);
+			DeleteTripButt2.setBounds(892, 116, 101, 32);
+			UpdateTripPanel.add(DeleteTripButt2);
+			
+			DeleteTripButt3 = new JButton("DELETE");
+			DeleteTripButt3.setForeground(Color.WHITE);
+			DeleteTripButt3.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
+			DeleteTripButt3.setBorder(null);
+			DeleteTripButt3.setBackground(Color.RED);
+			DeleteTripButt3.setBounds(892, 184, 101, 32);
+			UpdateTripPanel.add(DeleteTripButt3);
+			
+			DeleteTripButt4 = new JButton("DELETE");
+			DeleteTripButt4.setForeground(Color.WHITE);
+			DeleteTripButt4.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
+			DeleteTripButt4.setBorder(null);
+			DeleteTripButt4.setBackground(Color.RED);
+			DeleteTripButt4.setBounds(892, 249, 101, 32);
+			UpdateTripPanel.add(DeleteTripButt4);
+			
+			LoadPreviousTripButt = new JButton("<");
+			LoadPreviousTripButt.setForeground(Color.BLACK);
+			LoadPreviousTripButt.setFont(new Font("Bookman Old Style", Font.BOLD, 32));
+			LoadPreviousTripButt.setBorder(null);
+			LoadPreviousTripButt.setBackground(Color.LIGHT_GRAY);
+			LoadPreviousTripButt.setBounds(284, 326, 50, 32);
+			UpdateTripPanel.add(LoadPreviousTripButt);
+			
+			LoadNextTripButt = new JButton(">");
+			LoadNextTripButt.setForeground(Color.BLACK);
+			LoadNextTripButt.setFont(new Font("Bookman Old Style", Font.BOLD, 32));
+			LoadNextTripButt.setBorder(null);
+			LoadNextTripButt.setBackground(Color.LIGHT_GRAY);
+			LoadNextTripButt.setBounds(412, 326, 50, 32);
+			UpdateTripPanel.add(LoadNextTripButt);
+			
+			label_tripTextBox0 = new JLabel("New label");
+			label_tripTextBox0.setForeground(Color.LIGHT_GRAY);
+			label_tripTextBox0.setBounds(13, 61, 46, 14);
+			UpdateTripPanel.add(label_tripTextBox0);
+			
+			label_tripTextBox1 = new JLabel("New label");
+			label_tripTextBox1.setForeground(Color.LIGHT_GRAY);
+			label_tripTextBox1.setBounds(13, 126, 46, 14);
+			UpdateTripPanel.add(label_tripTextBox1);
+			
+			label_tripTextBox2 = new JLabel("New label");
+			label_tripTextBox2.setForeground(Color.LIGHT_GRAY);
+			label_tripTextBox2.setBounds(13, 194, 46, 14);
+			UpdateTripPanel.add(label_tripTextBox2);
+			
+			label_tripTextBox3 = new JLabel("New label");
+			label_tripTextBox3.setForeground(Color.LIGHT_GRAY);
+			label_tripTextBox3.setBounds(13, 259, 46, 14);
+			UpdateTripPanel.add(label_tripTextBox3);
+			
+			label_tripTextBoxID = new JLabel("ID");
+			label_tripTextBoxID.setForeground(Color.LIGHT_GRAY);
+			label_tripTextBoxID.setBounds(10, 36, 46, 14);
+			UpdateTripPanel.add(label_tripTextBoxID);
+			
+			TripLineTextBox1 = new JTextField();
+			TripLineTextBox1.setOpaque(false);
+			TripLineTextBox1.setForeground(Color.WHITE);
+			TripLineTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripLineTextBox1.setEditable(false);
+			TripLineTextBox1.setColumns(10);
+			TripLineTextBox1.setCaretColor(Color.WHITE);
+			TripLineTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripLineTextBox1.setBounds(69, 51, 220, 32);
+			UpdateTripPanel.add(TripLineTextBox1);
+			
+			TripLineTextBox2 = new JTextField();
+			TripLineTextBox2.setOpaque(false);
+			TripLineTextBox2.setForeground(Color.WHITE);
+			TripLineTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripLineTextBox2.setEditable(false);
+			TripLineTextBox2.setColumns(10);
+			TripLineTextBox2.setCaretColor(Color.WHITE);
+			TripLineTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripLineTextBox2.setBounds(69, 116, 220, 32);
+			UpdateTripPanel.add(TripLineTextBox2);
+			
+			TripLineTextBox3 = new JTextField();
+			TripLineTextBox3.setOpaque(false);
+			TripLineTextBox3.setForeground(Color.WHITE);
+			TripLineTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripLineTextBox3.setEditable(false);
+			TripLineTextBox3.setColumns(10);
+			TripLineTextBox3.setCaretColor(Color.WHITE);
+			TripLineTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripLineTextBox3.setBounds(69, 184, 220, 32);
+			UpdateTripPanel.add(TripLineTextBox3);
+			
+			TripLineTextBox4 = new JTextField();
+			TripLineTextBox4.setOpaque(false);
+			TripLineTextBox4.setForeground(Color.WHITE);
+			TripLineTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripLineTextBox4.setEditable(false);
+			TripLineTextBox4.setColumns(10);
+			TripLineTextBox4.setCaretColor(Color.WHITE);
+			TripLineTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripLineTextBox4.setBounds(69, 249, 220, 32);
+			UpdateTripPanel.add(TripLineTextBox4);
+			
+			TripBusTextBox1 = new JTextField();
+			TripBusTextBox1.setOpaque(false);
+			TripBusTextBox1.setForeground(Color.WHITE);
+			TripBusTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripBusTextBox1.setEditable(false);
+			TripBusTextBox1.setColumns(10);
+			TripBusTextBox1.setCaretColor(Color.WHITE);
+			TripBusTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripBusTextBox1.setBounds(344, 51, 177, 32);
+			UpdateTripPanel.add(TripBusTextBox1);
+			
+			TripBusTextBox2 = new JTextField();
+			TripBusTextBox2.setOpaque(false);
+			TripBusTextBox2.setForeground(Color.WHITE);
+			TripBusTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripBusTextBox2.setEditable(false);
+			TripBusTextBox2.setColumns(10);
+			TripBusTextBox2.setCaretColor(Color.WHITE);
+			TripBusTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripBusTextBox2.setBounds(344, 116, 177, 32);
+			UpdateTripPanel.add(TripBusTextBox2);
+			
+			TripBusTextBox3 = new JTextField();
+			TripBusTextBox3.setOpaque(false);
+			TripBusTextBox3.setForeground(Color.WHITE);
+			TripBusTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripBusTextBox3.setEditable(false);
+			TripBusTextBox3.setColumns(10);
+			TripBusTextBox3.setCaretColor(Color.WHITE);
+			TripBusTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripBusTextBox3.setBounds(344, 184, 177, 32);
+			UpdateTripPanel.add(TripBusTextBox3);
+			
+			TripBusTextBox4 = new JTextField();
+			TripBusTextBox4.setOpaque(false);
+			TripBusTextBox4.setForeground(Color.WHITE);
+			TripBusTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripBusTextBox4.setEditable(false);
+			TripBusTextBox4.setColumns(10);
+			TripBusTextBox4.setCaretColor(Color.WHITE);
+			TripBusTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripBusTextBox4.setBounds(344, 249, 177, 32);
+			UpdateTripPanel.add(TripBusTextBox4);
+			
+			UpdateOrDeleteMessageTripBox = new JLabel("");
+			UpdateOrDeleteMessageTripBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			UpdateOrDeleteMessageTripBox.setBounds(608, 326, 307, 20);
+			UpdateTripPanel.add(UpdateOrDeleteMessageTripBox);
+			
+			TripDepartureTextBox1 = new JTextField();
+			TripDepartureTextBox1.setOpaque(false);
+			TripDepartureTextBox1.setForeground(Color.WHITE);
+			TripDepartureTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDepartureTextBox1.setEditable(false);
+			TripDepartureTextBox1.setColumns(10);
+			TripDepartureTextBox1.setCaretColor(Color.WHITE);
+			TripDepartureTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDepartureTextBox1.setBounds(575, 51, 101, 32);
+			UpdateTripPanel.add(TripDepartureTextBox1);
+			
+			TripDepartureTextBox2 = new JTextField();
+			TripDepartureTextBox2.setOpaque(false);
+			TripDepartureTextBox2.setForeground(Color.WHITE);
+			TripDepartureTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDepartureTextBox2.setEditable(false);
+			TripDepartureTextBox2.setColumns(10);
+			TripDepartureTextBox2.setCaretColor(Color.WHITE);
+			TripDepartureTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDepartureTextBox2.setBounds(575, 116, 101, 32);
+			UpdateTripPanel.add(TripDepartureTextBox2);
+			
+			TripDepartureTextBox3 = new JTextField();
+			TripDepartureTextBox3.setOpaque(false);
+			TripDepartureTextBox3.setForeground(Color.WHITE);
+			TripDepartureTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDepartureTextBox3.setEditable(false);
+			TripDepartureTextBox3.setColumns(10);
+			TripDepartureTextBox3.setCaretColor(Color.WHITE);
+			TripDepartureTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDepartureTextBox3.setBounds(575, 184, 101, 32);
+			UpdateTripPanel.add(TripDepartureTextBox3);
+			
+			TripDepartureTextBox4 = new JTextField();
+			TripDepartureTextBox4.setOpaque(false);
+			TripDepartureTextBox4.setForeground(Color.WHITE);
+			TripDepartureTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDepartureTextBox4.setEditable(false);
+			TripDepartureTextBox4.setColumns(10);
+			TripDepartureTextBox4.setCaretColor(Color.WHITE);
+			TripDepartureTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDepartureTextBox4.setBounds(575, 249, 101, 32);
+			UpdateTripPanel.add(TripDepartureTextBox4);
+			
+			TripDurationTextBox1 = new JTextField();
+			TripDurationTextBox1.setOpaque(false);
+			TripDurationTextBox1.setForeground(Color.WHITE);
+			TripDurationTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDurationTextBox1.setEditable(false);
+			TripDurationTextBox1.setColumns(10);
+			TripDurationTextBox1.setCaretColor(Color.WHITE);
+			TripDurationTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDurationTextBox1.setBounds(732, 51, 101, 32);
+			UpdateTripPanel.add(TripDurationTextBox1);
+			
+			TripDurationTextBox2 = new JTextField();
+			TripDurationTextBox2.setOpaque(false);
+			TripDurationTextBox2.setForeground(Color.WHITE);
+			TripDurationTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDurationTextBox2.setEditable(false);
+			TripDurationTextBox2.setColumns(10);
+			TripDurationTextBox2.setCaretColor(Color.WHITE);
+			TripDurationTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDurationTextBox2.setBounds(732, 116, 101, 32);
+			UpdateTripPanel.add(TripDurationTextBox2);
+			
+			TripDurationTextBox3 = new JTextField();
+			TripDurationTextBox3.setOpaque(false);
+			TripDurationTextBox3.setForeground(Color.WHITE);
+			TripDurationTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDurationTextBox3.setEditable(false);
+			TripDurationTextBox3.setColumns(10);
+			TripDurationTextBox3.setCaretColor(Color.WHITE);
+			TripDurationTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDurationTextBox3.setBounds(732, 184, 101, 32);
+			UpdateTripPanel.add(TripDurationTextBox3);
+			
+			TripDurationTextBox4 = new JTextField();
+			TripDurationTextBox4.setOpaque(false);
+			TripDurationTextBox4.setForeground(Color.WHITE);
+			TripDurationTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
+			TripDurationTextBox4.setEditable(false);
+			TripDurationTextBox4.setColumns(10);
+			TripDurationTextBox4.setCaretColor(Color.WHITE);
+			TripDurationTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+			TripDurationTextBox4.setBounds(732, 249, 101, 32);
+			UpdateTripPanel.add(TripDurationTextBox4);
 			
 	}
 }

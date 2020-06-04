@@ -53,7 +53,7 @@ public class Line {
     }
 
     public String toString() {
-        return this.start + "-" + this.destination;
+        return this.start.getName() + "-" + this.destination.getName();
     }
 
     public void deleteFromDB() throws SQLException {
