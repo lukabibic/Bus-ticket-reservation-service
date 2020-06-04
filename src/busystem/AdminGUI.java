@@ -162,6 +162,16 @@ public class AdminGUI extends JFrame{
 	JButton DeleteTripButt2;
 	JButton DeleteTripButt3;
 	JButton DeleteTripButt4;
+	private JLabel UpdateDepartureLabel;
+	private JLabel UpdateDurationLabel;
+	private JLabel UpdateBusLabel;
+	private JLabel UpdateLineLabel;
+	private JLabel UpdateDestinationLabel;
+	private JLabel UpdateStartLabel;
+	private JLabel UpdateSeatsLabel;
+	private JLabel UpdateModelLabel;
+	private JLabel UpdateAddressLabel;
+	private JLabel UpdateNameLabel;
 	/**
 	 * Create the frame.
 	 */
@@ -443,6 +453,18 @@ public class AdminGUI extends JFrame{
 			UpdateOrDeleteMessageCityBox.setBounds(608, 326, 303, 20);
 			UpdateCityPanel.add(UpdateOrDeleteMessageCityBox);
 			
+			UpdateAddressLabel = new JLabel("ADDRESS");
+			UpdateAddressLabel.setForeground(Color.WHITE);
+			UpdateAddressLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateAddressLabel.setBounds(493, 9, 101, 32);
+			UpdateCityPanel.add(UpdateAddressLabel);
+			
+			UpdateNameLabel = new JLabel("NAME");
+			UpdateNameLabel.setForeground(Color.WHITE);
+			UpdateNameLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateNameLabel.setBounds(155, 9, 67, 32);
+			UpdateCityPanel.add(UpdateNameLabel);
+			
 			//ADD CITY PANEL
 			AddCityPanel = new JPanel();
 			AddCityPanel.setBackground(Color.DARK_GRAY);
@@ -699,6 +721,18 @@ public class AdminGUI extends JFrame{
 			UpdateOrDeleteMessageBusBox.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
 			UpdateOrDeleteMessageBusBox.setBounds(608, 326, 307, 20);
 			UpdateBusPanel.add(UpdateOrDeleteMessageBusBox);
+			
+			UpdateSeatsLabel = new JLabel("SEATS");
+			UpdateSeatsLabel.setForeground(Color.WHITE);
+			UpdateSeatsLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateSeatsLabel.setBounds(503, 9, 77, 32);
+			UpdateBusPanel.add(UpdateSeatsLabel);
+			
+			UpdateModelLabel = new JLabel("MODEL");
+			UpdateModelLabel.setForeground(Color.WHITE);
+			UpdateModelLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateModelLabel.setBounds(154, 9, 77, 32);
+			UpdateBusPanel.add(UpdateModelLabel);
 			
 			//ADD BUS PANEL
 			AddBusPanel = new JPanel();
@@ -979,6 +1013,18 @@ public class AdminGUI extends JFrame{
 			UpdateOrDeleteMessageLineBox.setBounds(608, 326, 307, 20);
 			UpdateLinePanel.add(UpdateOrDeleteMessageLineBox);
 			
+			UpdateDestinationLabel = new JLabel("DESTINATION");
+			UpdateDestinationLabel.setForeground(Color.WHITE);
+			UpdateDestinationLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateDestinationLabel.setBounds(469, 10, 150, 32);
+			UpdateLinePanel.add(UpdateDestinationLabel);
+			
+			UpdateStartLabel = new JLabel("START");
+			UpdateStartLabel.setForeground(Color.WHITE);
+			UpdateStartLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateStartLabel.setBounds(155, 10, 79, 32);
+			UpdateLinePanel.add(UpdateStartLabel);
+			
 			AdminTripPanel = new JPanel();
 			AdminTripPanel.setLayout(null);
 			AdminTripPanel.setBorder(new MatteBorder(4, 1, 1, 1, (Color) Color.WHITE));
@@ -1106,7 +1152,7 @@ public class AdminGUI extends JFrame{
 			LoadPreviousTripButt.setFont(new Font("Bookman Old Style", Font.BOLD, 32));
 			LoadPreviousTripButt.setBorder(null);
 			LoadPreviousTripButt.setBackground(Color.LIGHT_GRAY);
-			LoadPreviousTripButt.setBounds(284, 326, 50, 32);
+			LoadPreviousTripButt.setBounds(486, 314, 50, 32);
 			UpdateTripPanel.add(LoadPreviousTripButt);
 			
 			LoadNextTripButt = new JButton(">");
@@ -1114,7 +1160,7 @@ public class AdminGUI extends JFrame{
 			LoadNextTripButt.setFont(new Font("Bookman Old Style", Font.BOLD, 32));
 			LoadNextTripButt.setBorder(null);
 			LoadNextTripButt.setBackground(Color.LIGHT_GRAY);
-			LoadNextTripButt.setBounds(412, 326, 50, 32);
+			LoadNextTripButt.setBounds(567, 314, 50, 32);
 			UpdateTripPanel.add(LoadNextTripButt);
 			
 			label_tripTextBox0 = new JLabel("New label");
@@ -1322,6 +1368,30 @@ public class AdminGUI extends JFrame{
 			TripDurationTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 			TripDurationTextBox4.setBounds(732, 249, 101, 32);
 			UpdateTripPanel.add(TripDurationTextBox4);
+			
+			UpdateDepartureLabel = new JLabel("DEPARTURE");
+			UpdateDepartureLabel.setForeground(Color.WHITE);
+			UpdateDepartureLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateDepartureLabel.setBounds(567, 10, 133, 32);
+			UpdateTripPanel.add(UpdateDepartureLabel);
+			
+			UpdateDurationLabel = new JLabel("DURATION");
+			UpdateDurationLabel.setForeground(Color.WHITE);
+			UpdateDurationLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateDurationLabel.setBounds(734, 10, 111, 32);
+			UpdateTripPanel.add(UpdateDurationLabel);
+			
+			UpdateBusLabel = new JLabel("BUS");
+			UpdateBusLabel.setForeground(Color.WHITE);
+			UpdateBusLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateBusLabel.setBounds(408, 10, 50, 32);
+			UpdateTripPanel.add(UpdateBusLabel);
+			
+			UpdateLineLabel = new JLabel("LINE");
+			UpdateLineLabel.setForeground(Color.WHITE);
+			UpdateLineLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
+			UpdateLineLabel.setBounds(148, 10, 55, 32);
+			UpdateTripPanel.add(UpdateLineLabel);
 			
 	}
 }
