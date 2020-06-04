@@ -82,7 +82,7 @@ public class Bus {
     }
 
     public String toString() {
-        return this.model + this.seats + " seats";
+        return this.model + " - " + this.seats + " seats";
     }
 
     private int create(String model, Integer seats) throws IllegalArgumentException, SQLException {

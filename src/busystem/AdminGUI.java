@@ -1027,7 +1027,7 @@ public class AdminGUI extends JFrame{
 			
 			AddNewTripLabel = new JLabel("");
 			AddNewTripLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
-			AddNewTripLabel.setBounds(765, 120, 294, 20);
+			AddNewTripLabel.setBounds(689, 120, 370, 20);
 			AddTripPanel.add(AddNewTripLabel);
 			
 			AddDepartureTimeTrip = new JTextField();

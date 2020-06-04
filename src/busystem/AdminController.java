@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
@@ -29,11 +30,13 @@ public class AdminController {
 	ArrayList<Bus> allBusNames = new ArrayList<Bus>();
 	ArrayList<City> allCityNames = new ArrayList<City>();
 	ArrayList<Line> allLineList = new ArrayList<Line>();
+	ArrayList<Trip> allTripList = new ArrayList<Trip>();
 	private AdminGUI adminView;
 	
 	int cityCounter = 0;
 	int busCounter = 0;
 	int lineCounter = 0;
+	int tripCounter = 0;
 	
 	public AdminController(User user, MainController mainController) {
 		this.admin = user;
@@ -43,6 +46,10 @@ public class AdminController {
 			this.allBuses = Bus.getAll();
 			Line.setCityCollection(allCities);
 			this.allLines = Line.getAll();
+			Trip.setBusCollection(allBuses);
+			Trip.setLineCollection(allLines);
+			this.allTrips = Trip.getAll();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,6 +67,10 @@ public class AdminController {
 		if(allLines.size() > 0) {
 		this.listLines();
 		}
+		if(allTrips.size() > 0) {
+		this.listTrips();
+		}
+		
 		//logout button listener
 		this.addLogoutListener(mainController);
 		
@@ -67,11 +78,13 @@ public class AdminController {
 		this.addCityFormListener();
 		this.addBusFormListener();
 		this.addLineFormListener();
+		this.addTripFormListener();
 		
 		//listener za dodavanje novih
 		this.addNewBusListener();
 		this.addNewCityListener();
 		this.addNewLineListener();
+		this.addNewTripListener();
 		
 		//listener za gumbe lijevo desno
 		this.addPreviousBtnListenerCity();
@@ -83,13 +96,16 @@ public class AdminController {
 		this.addNextBtnListenerLine();
 		this.addPreviousBtnListenerLine();
 		
+		this.addNextBtnListenerTrip();
+		this.addPreviousBtnListenerTrip();
+		
 		this.addAllEditBusListeners();
 		this.addAllEditCityListeners();
 		
 		this.addAllDeleteBusListeners();
 		this.addAllDeleteCityListeners();
 		this.addAllDeleteLineListeners();
-		
+		this.addAllDeleteTripListeners();
 	}
 	
 	private void BusCollectionToList() {
@@ -116,6 +132,15 @@ public class AdminController {
 		    Line value = entry.getValue();
 		    
 		    allLineList.add(value);
+		}
+	}
+	
+	private void TripCollectionToList() {
+		allTripList.clear();
+		for (Entry<Integer, Trip> entry : allTrips.entrySet()) {
+		    Trip value = entry.getValue();
+		    
+		    allTripList.add(value);
 		}
 	}
 	
@@ -734,6 +759,111 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 		});
 	}
 	
+	private void addAllDeleteTripListeners() {
+		// TODO Auto-generated method stub
+		adminView.DeleteTripButt1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_tripTextBox0.getText());
+				Trip trip = allTrips.get(id);
+				
+				try {
+					trip.deleteFromDB();
+					allTrips.remove(id);
+					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					listTrips();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+				}
+			}
+		});
+		
+		adminView.DeleteTripButt2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_tripTextBox1.getText());
+				Trip trip = allTrips.get(id);
+				
+				try {
+					trip.deleteFromDB();
+					allTrips.remove(id);
+					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					listTrips();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+				}
+			}
+		});
+		
+		adminView.DeleteTripButt3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_tripTextBox2.getText());
+				Trip trip = allTrips.get(id);
+				
+				try {
+					trip.deleteFromDB();
+					allTrips.remove(id);
+					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					listTrips();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+				}
+			}
+		});
+		
+		adminView.DeleteTripButt4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int id = Integer.parseInt(adminView.label_tripTextBox3.getText());
+				Trip trip = allTrips.get(id);
+				
+				try {
+					trip.deleteFromDB();
+					allTrips.remove(id);
+					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					listTrips();
+				} catch (SQLException e1) {
+					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+				}
+			}
+		});
+	}
+	
+	private void addNextBtnListenerTrip() {
+		adminView.LoadNextTripButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(tripCounter + 4 < allTrips.size()) { //dont go too far mayne
+					tripCounter = tripCounter + 4;
+					listTrips();
+				}
+			}
+		});
+	}
+	
+	private void addPreviousBtnListenerTrip() {
+		adminView.LoadPreviousTripButt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(tripCounter - 4 > -1 ) { //dont go too far mayne
+					tripCounter = tripCounter - 4;
+					listTrips();
+				}
+			}
+		});
+	}
+	
 	private void listBus() {
 			JTextField[] textboxofBuses = {adminView.ModelBusTextBox1,adminView.ModelBusTextBox2,
 				adminView.ModelBusTextBox3,adminView.ModelBusTextBox4};
@@ -839,6 +969,53 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			j++;
 		}
 }
+	private void listTrips() {
+		JTextField[] triptextboxoflines = {adminView.TripLineTextBox1,adminView.TripLineTextBox2,
+			adminView.TripLineTextBox3,adminView.TripLineTextBox4};
+		JTextField[] triptextboxofbuses = {
+				adminView.TripBusTextBox1, adminView.TripBusTextBox2,
+				adminView.TripBusTextBox3, adminView.TripBusTextBox4};
+		JTextField[] tripdeparturetextbox = {
+				adminView.TripDepartureTextBox1, adminView.TripDepartureTextBox2,
+				adminView.TripDepartureTextBox3, adminView.TripDepartureTextBox4};
+		JTextField[] tripdurationtextbox = {
+				adminView.TripDurationTextBox1, adminView.TripDurationTextBox2,
+				adminView.TripDurationTextBox3, adminView.TripDurationTextBox4};
+		
+		JLabel[] tripIdLabels = {                             
+				adminView.label_tripTextBox0, adminView.label_tripTextBox1,
+				adminView.label_tripTextBox2, adminView.label_tripTextBox3};
+		
+		
+		for (int i = 0; i < triptextboxoflines.length; i++) { // DA SE CLEAREAJU SVAKI PUT KAD SE POZOVE
+			triptextboxoflines[i].setText("");
+			triptextboxofbuses[i].setText("");
+			tripdeparturetextbox[i].setText("");
+			tripdurationtextbox[i].setText("");
+			tripIdLabels[i].setText("");
+		}
+		
+		TripCollectionToList();
+		
+		int j = 0;
+		int counter = tripCounter;
+		
+		while(true) {
+			if(j == 4) break; //DA ISPUSUJE SAMO 4 PO 4
+			triptextboxoflines[j].setText(allTripList.get(counter).getLine().toString());
+			triptextboxofbuses[j].setText(allTripList.get(counter).getBus().toString());
+			tripdeparturetextbox[j].setText(allTripList.get(counter).getDeparturetime().toString());
+			tripdurationtextbox[j].setText(allTripList.get(counter).getDurationtime().toString());
+			tripIdLabels[j].setText(allTripList.get(counter).getID().toString());
+			
+			counter++;
+			if(counter > allTrips.size() - 1) { //KAD PREKORACI DA VRATI COUNTER I BREAKA
+				counter = allTrips.size() - 1;
+				break;
+			}
+			j++;
+		}
+}
 	
 	private void addNewBusListener() {
 		this.adminView.AddBusButton.addActionListener(new ActionListener(){
@@ -931,19 +1108,83 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 		});
 	}
 	
+	private void addNewTripListener() {
+		this.adminView.AddTripButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				
+				//Povuci odabranu liniju
+				Line line = allLineList.get(adminView.AddLineTripComboBox.getSelectedIndex());
+				
+				//Povuci odabranu bus
+				Bus bus = allBusNames.get(adminView.AddBusTripComboBox.getSelectedIndex());
+				
+				//Kreiranje tripa i dodavanje u kolekciju
+				try {
+					
+					//Pretvori u Time vremena 
+					if(adminView.AddDepartureTimeTrip.getText().matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")
+					   && adminView.AddDurationTimeTrip.getText().matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
+						//Povuci departure time i duration time u polje stringa i pretvori u brojeve
+						String[] departuretime = adminView.AddDepartureTimeTrip.getText().split(":");
+						String[] durationtime = adminView.AddDurationTimeTrip.getText().split(":");
+						
+						int departureHours = Integer.parseInt(departuretime[0]);
+						int departureMins = Integer.parseInt(departuretime[1]);
+						
+						int durationHours = Integer.parseInt(durationtime[0]);
+						int durationMins = Integer.parseInt(durationtime[1]);
+						
+						
+						//Pretvaranje u milisekunde zbog konstruktora Time -> prima vrijeme u milisekundama -> prelose
+						int durationMiliSec = durationHours*60*60*1000 + durationMins*60*1000;
+						int departureMiliSec = departureHours*60*60*1000 + departureMins*60*1000;
+						
+						
+						Time duration = new Time(durationMiliSec-3600000); //treba oduzet 1 sat jer se inace u bazi doda 1 sat viska
+						Time departure = new Time(departureMiliSec-3600000); // zasto je to tako? neznam
+						
+						//Kreiranje novog tripa i dodavanje u kolekciju
+						Trip newTrip;
+						newTrip = new Trip(bus, line, departure, duration);
+						allTrips.put(newTrip.getID(), newTrip);
+						printAddUpdateDeleteBusMsg("New trip added!", adminView.AddNewTripLabel, true);
+						listTrips();
+						
+					}
+					else {
+						throw new IllegalArgumentException("Wrong type of time! Hint: HH:MM!");
+					}
+				} catch (IllegalArgumentException e) {
+					printAddUpdateDeleteBusMsg(e.getMessage(),adminView.AddNewTripLabel, false);
+				}
+				catch(SQLException e1) {
+					e1.printStackTrace();
+				}
+				
+				//Ocisti text boxove
+				adminView.AddDepartureTimeTrip.setText("");
+				adminView.AddDurationTimeTrip.setText("");
+			}
+		});
+	}
+	
+    
 	private void addBusFormListener() {
 		this.adminView.AdminBusButt.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent argo0) {
 				adminView.AdminCityPanel.setVisible(false);
 				adminView.AdminLinePanel.setVisible(false);
+				adminView.AdminTripPanel.setVisible(false);
 				adminView.AdminBusPanel.setVisible(true);
 				
 				adminView.AdminBusButt.setOpaque(true);
+				adminView.AdminTripButt.setOpaque(false);
 				adminView.AdminCityButt.setOpaque(false);
 				adminView.AdminLineButt.setOpaque(false);
 				
 				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				adminView.AdminLineButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminTripButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				
 				adminView.AddNewCityLabel.setText("");
 				adminView.UpdateOrDeleteMessageCityBox.setText("");
@@ -957,14 +1198,17 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent argo0) {
 				adminView.AdminBusPanel.setVisible(false);
 				adminView.AdminLinePanel.setVisible(false);
+				adminView.AdminTripPanel.setVisible(false);
 				adminView.AdminCityPanel.setVisible(true);
 				
 				adminView.AdminCityButt.setOpaque(true);
+				adminView.AdminTripButt.setOpaque(false);
 				adminView.AdminBusButt.setOpaque(false);
 				adminView.AdminLineButt.setOpaque(false);
 				
 				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				adminView.AdminLineButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminTripButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				
 				adminView.AddNewBusLabel.setText("");
 				adminView.UpdateOrDeleteMessageBusBox.setText("");
@@ -978,9 +1222,11 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent argo0) {
 				adminView.AdminBusPanel.setVisible(false);
 				adminView.AdminCityPanel.setVisible(false);
+				adminView.AdminTripPanel.setVisible(false);
 				adminView.AdminLinePanel.setVisible(true);
 				
 				adminView.AdminLineButt.setOpaque(true);
+				adminView.AdminTripButt.setOpaque(false);
 				adminView.AdminBusButt.setOpaque(false);
 				adminView.AdminCityButt.setOpaque(false);
 				
@@ -1000,9 +1246,50 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				
 				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminTripButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				
 				adminView.AddNewLineLabel.setText("");
 				adminView.UpdateOrDeleteMessageLineBox.setText("");
+			}
+		});
+	}
+	
+	private void addTripFormListener() {
+		this.adminView.AdminTripButt.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent argo0) {
+				adminView.AdminBusPanel.setVisible(false);
+				adminView.AdminCityPanel.setVisible(false);
+				adminView.AdminLinePanel.setVisible(false);
+				adminView.AdminTripPanel.setVisible(true);
+				
+				adminView.AdminTripButt.setOpaque(true);
+				adminView.AdminLineButt.setOpaque(false);
+				adminView.AdminBusButt.setOpaque(false);
+				adminView.AdminCityButt.setOpaque(false);
+				
+				//popunjavanje dropdown menija postojecim gradovima
+				TripCollectionToList();
+				listTrips();
+				
+				//Ocisti dropdowne
+				adminView.AddLineTripComboBox.removeAllItems();
+				adminView.AddBusTripComboBox.removeAllItems();
+				
+				//Popuni dropdowne svim imenima linija i buseva
+				for(int i=0;i<allLineList.size();i++) {
+				    adminView.AddLineTripComboBox.addItem(allLineList.get(i).toString());
+				}
+				
+				for(int i=0;i<allBusNames.size();i++) {
+					adminView.AddBusTripComboBox.addItem(allBusNames.get(i).toString());
+				}
+				
+				adminView.AdminBusButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				adminView.AdminLineButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
+				
+				printAddUpdateDeleteBusMsg("HINT: Departure and duration must be: HH:MM type", adminView.AddNewTripLabel, true);
+				adminView.UpdateOrDeleteMessageTripBox.setText("");
 			}
 		});
 	}

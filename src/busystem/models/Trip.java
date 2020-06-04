@@ -62,7 +62,19 @@ public class Trip {
     public Bus getBus() {
         return this.bus;
     }
-
+    
+    public Line getLine() {
+    	return this.line;
+    }
+    
+    public Time getDeparturetime() {
+    	return this.departureTime;
+    }
+    
+    public Time getDurationtime() {
+    	return this.tripDuration;
+    }
+    
     public String toString() {
         return line + "bus: " + bus + "\n" + "Departure: " + departureTime + " Trip duration: " + tripDuration;
     }
