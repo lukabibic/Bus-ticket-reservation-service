@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.TreeMap;
@@ -73,6 +74,9 @@ public class UserController {
 		    userView.ChooseDestinationCityTicketComboBox.addItem(allCityNames.get(i).getName());
 		}
 		
+		//Ispisi poruku na Ticket tab
+		printMsg("HINT: Date must be: DD.MM.YY type", userView.SearchTripLabel, true);
+		
 		//logout listener
 		this.addLogoutListener(mainController);
 		
@@ -128,14 +132,21 @@ public class UserController {
 		label.setText(msg);
 	}
 	
+	private boolean checkDateType() {
+		if(userView.ChooseDateTicketTextBox.getText().matches("[0-3]?[0-9].[0-3]?[0-9].[0-9]{4}.")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	private void listTrips() {
 		
 		JTextField[] triplinenametextbox = {userView.TripLineTextBox1,userView.TripLineTextBox2,
 				userView.TripLineTextBox3,userView.TripLineTextBox4};
 		JTextField[] tripbusmodeltextbox = {userView.TripBusTextBox1,userView.TripBusTextBox2,
 				userView.TripBusTextBox3,userView.TripBusTextBox4};
-		JTextField[] tripemptyseatstextbox = {userView.TripEmptySeatsTextBox1,userView.TripEmptySeatsTextBox2,
-				userView.TripEmptySeatsTextBox3,userView.TripEmptySeatsTextBox4};
 		JTextField[] tripdepartiontextbox = {userView.TripDepartureTimeTextBox1,userView.TripDepartureTimeTextBox2,
 				userView.TripDepartureTimeTextBox3,userView.TripDepartureTimeTextBox4};
 		JTextField[] tripdurationtextbox = {userView.TripDurationTimeTextBox1,userView.TripDurationTimeTextBox2,
@@ -144,12 +155,9 @@ public class UserController {
 		for (int i = 0; i < triplinenametextbox.length; i++) { // DA SE CLEAREAJU SVAKI PUT KAD SE POZOVE
 			triplinenametextbox[i].setText("");
 			tripbusmodeltextbox[i].setText("");
-			tripemptyseatstextbox[i].setText("");
 			tripdepartiontextbox[i].setText("");
 			tripdurationtextbox[i].setText("");
 		}
-		
-		userView.SearchTripLabel.setText("");
 		
 		if(allTripList.size() == 0) { //Ako ne postoji niti jedan trip sa odabranim gradovima izadi
 			printMsg("There is no trip with selected cities!", userView.SearchTripLabel, false);
@@ -269,8 +277,6 @@ public class UserController {
 						userView.TripLineTextBox3,userView.TripLineTextBox4};
 				JTextField[] tripbusmodeltextbox = {userView.TripBusTextBox1,userView.TripBusTextBox2,
 						userView.TripBusTextBox3,userView.TripBusTextBox4};
-				JTextField[] tripemptyseatstextbox = {userView.TripEmptySeatsTextBox1,userView.TripEmptySeatsTextBox2,
-						userView.TripEmptySeatsTextBox3,userView.TripEmptySeatsTextBox4};
 				JTextField[] tripdepartiontextbox = {userView.TripDepartureTimeTextBox1,userView.TripDepartureTimeTextBox2,
 						userView.TripDepartureTimeTextBox3,userView.TripDepartureTimeTextBox4};
 				JTextField[] tripdurationtextbox = {userView.TripDurationTimeTextBox1,userView.TripDurationTimeTextBox2,
@@ -279,7 +285,6 @@ public class UserController {
 				for (int i = 0; i < triplinenametextbox.length; i++) { // DA SE CLEAREAJU SVAKI PUT KAD SE POZOVE
 					triplinenametextbox[i].setText("");
 					tripbusmodeltextbox[i].setText("");
-					tripemptyseatstextbox[i].setText("");
 					tripdepartiontextbox[i].setText("");
 					tripdurationtextbox[i].setText("");
 				}
@@ -289,8 +294,9 @@ public class UserController {
 				userView.NumberOfTicketComboBox3.setSelectedIndex(0);
 				userView.NumberOfTicketComboBox4.setSelectedIndex(0);
 				
-				userView.SearchTripLabel.setText("");
+				printMsg("HINT: Date must be: DD.MM.YY type", userView.SearchTripLabel, true);
 				userView.TripReservationLabel.setText("");
+				userView.ChooseDateTicketTextBox.setText("");
 			}
 		});
 	}
@@ -318,7 +324,32 @@ public class UserController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 
+				try {
+				 if(checkDateType()) {
+					//Dohvati datum,trip i broj karata
+					 String[] dateString = userView.ChooseDateTicketTextBox.getText().split("[.]");
+					 Date tripdate = Date.valueOf(dateString[2] + "-" + dateString[1] + "-" + dateString[0]);
+					 int quantity = Integer.parseInt((String) userView.NumberOfTicketComboBox1.getSelectedItem());
+					 Trip trip = allTripList.get(tripCounter);
+					 
+					 for(int i = 0; i < quantity; i++) {
+						 Ticket newticket = new Ticket(trip, user, tripdate);
+						 allTickets.add(newticket);
+					 }
+					 
+					 printMsg("Ticket reserved!", userView.SearchTripLabel, true);
+				 }
+				 else {
+					 throw new IllegalArgumentException("Wrong type of Date! Hint: DD.MM.YY. !");
+				 }
+				}
+				catch (IllegalArgumentException e1) {
+					printMsg(e1.getMessage(), userView.SearchTripLabel, false);
+				}  catch (SQLException e1) {
+					e1.printStackTrace();
+				}  catch (Exception e1) {
+					printMsg(e1.getMessage(), userView.TripReservationLabel, false);
+				}
 			}
 		});
 		
@@ -326,7 +357,32 @@ public class UserController {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 
+				try {
+					 if(checkDateType()) {
+						 //Dohvati datum,trip i broj karata
+						 String[] dateString = userView.ChooseDateTicketTextBox.getText().split("[.]");
+						 Date tripdate = Date.valueOf(dateString[2] + "-" + dateString[1] + "-" + dateString[0]);
+						 int quantity = Integer.parseInt((String) userView.NumberOfTicketComboBox2.getSelectedItem());
+						 Trip trip = allTripList.get(tripCounter + 1);
+						 
+						 for(int i = 0; i < quantity; i++) {
+							 Ticket newticket = new Ticket(trip, user, tripdate);
+							 allTickets.add(newticket);
+						 }
+						 
+						 printMsg("Ticket reserved!", userView.SearchTripLabel, true);
+					 }
+					 else {
+						 throw new IllegalArgumentException("Wrong type of Date! Hint: DD.MM.YY. !");
+					 }
+				}
+				catch (IllegalArgumentException e1) {
+					printMsg(e1.getMessage(), userView.SearchTripLabel, false);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					printMsg(e1.getMessage(), userView.TripReservationLabel, false);
+				}
 			}
 		});
 
@@ -334,7 +390,32 @@ public class UserController {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		 
+				try {
+					 if(checkDateType()) {
+						//Dohvati datum,trip i broj karata
+						 String[] dateString = userView.ChooseDateTicketTextBox.getText().split("[.]");
+						 Date tripdate = Date.valueOf(dateString[2] + "-" + dateString[1] + "-" + dateString[0]);
+						 int quantity = Integer.parseInt((String) userView.NumberOfTicketComboBox3.getSelectedItem());
+						 Trip trip = allTripList.get(tripCounter + 2);
+						 
+						 for(int i = 0; i < quantity; i++) {
+							 Ticket newticket = new Ticket(trip, user, tripdate);
+							 allTickets.add(newticket);
+						 }
+						 
+						 printMsg("Ticket reserved!", userView.SearchTripLabel, true);
+					 }
+					 else {
+						 throw new IllegalArgumentException("Wrong type of Date! Hint: DD.MM.YY. !");
+					 }
+				}
+				catch (IllegalArgumentException e1) {
+					printMsg(e1.getMessage(), userView.SearchTripLabel, false);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					printMsg(e1.getMessage(), userView.TripReservationLabel, false);
+				}
 			}
 		});
 
@@ -342,7 +423,32 @@ public class UserController {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-		 
+				try {
+					 if(checkDateType()) {
+						//Dohvati datum,trip i broj karata
+						 String[] dateString = userView.ChooseDateTicketTextBox.getText().split("[.]");
+						 Date tripdate = Date.valueOf(dateString[2] + "-" + dateString[1] + "-" + dateString[0]);
+						 int quantity = Integer.parseInt((String) userView.NumberOfTicketComboBox4.getSelectedItem());
+						 Trip trip = allTripList.get(tripCounter + 3);
+						 
+						 for(int i = 0; i < quantity; i++) {
+							 Ticket newticket = new Ticket(trip, user, tripdate);
+							 allTickets.add(newticket);
+						 }
+						 
+						 printMsg("Ticket reserved!", userView.SearchTripLabel, true);
+					 }
+					 else {
+						 throw new IllegalArgumentException("Wrong type of Date! Hint: DD.MM.YY. !");
+					 }
+				}
+				catch (IllegalArgumentException e1) {
+					printMsg(e1.getMessage(), userView.SearchTripLabel, false);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					printMsg(e1.getMessage(), userView.TripReservationLabel, false);
+				}
 			}
 		});
 	}

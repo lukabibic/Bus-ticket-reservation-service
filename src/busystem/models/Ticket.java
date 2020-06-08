@@ -82,7 +82,7 @@ public class Ticket {
         result.next();
         int numberOfTickets = result.getInt("count");
         if (numberOfTickets == trip.getBus().getSeats()) {
-            throw new Exception("Error: cannot create ticket because no seats are left");
+            throw new Exception("Cannot reserve ticket because no seats are left!");
         }
 
         String query = "INSERT into ticket (trip_id, user_id, trip_date) VALUES (?, ?, ?)";
