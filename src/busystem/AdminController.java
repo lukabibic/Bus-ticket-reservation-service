@@ -26,7 +26,6 @@ public class AdminController {
 	private TreeMap<Integer, Bus> allBuses;
 	private TreeMap<Integer, Line> allLines;
 	private TreeMap<Integer, Trip> allTrips;
-	private TreeMap<Integer, Ticket> allTickets;
 	ArrayList<Bus> allBusNames = new ArrayList<Bus>();
 	ArrayList<City> allCityNames = new ArrayList<City>();
 	ArrayList<Line> allLineList = new ArrayList<Line>();
@@ -144,7 +143,7 @@ public class AdminController {
 		}
 	}
 	
-	private void printAddUpdateDeleteBusMsg(String msg, JLabel label, boolean success) {
+	private void printMsg(String msg, JLabel label, boolean success) {
 		if(success) {
 			label.setForeground(Color.GREEN);
 		}
@@ -167,10 +166,10 @@ public class AdminController {
 				try {
 					city.deleteFromDB();
 					allCities.remove(id);
-					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					printMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 				}
 			}
 		});
@@ -186,10 +185,10 @@ public class AdminController {
 						try {
 							city.deleteFromDB();
 							allCities.remove(id);
-							printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+							printMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 							listCity();
 						} catch (SQLException e1) {
-							printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+							printMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 						}
 					}
 				});
@@ -205,10 +204,10 @@ public class AdminController {
 				try {
 					city.deleteFromDB();
 					allCities.remove(id);
-					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					printMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 				}
 			}
 		});
@@ -224,10 +223,10 @@ public class AdminController {
 				try {
 					city.deleteFromDB();
 					allCities.remove(id);
-					printAddUpdateDeleteBusMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
+					printMsg("City deleted from database!", adminView.UpdateOrDeleteMessageCityBox, true);
 					listCity();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg("City can't be deleted!",adminView.UpdateOrDeleteMessageCityBox, false);
 				}
 			}
 		});
@@ -246,10 +245,10 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
-					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
+					printMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -264,10 +263,10 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
-					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
+					printMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -282,10 +281,10 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
-					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
+					printMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -300,10 +299,10 @@ public class AdminController {
 				try {
 					bus.deleteFromDB();
 					allBuses.remove(id);
-					printAddUpdateDeleteBusMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
+					printMsg("Bus deleted from database!", adminView.UpdateOrDeleteMessageBusBox, true);
 					listBus();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg("Bus can't be deleted!",adminView.UpdateOrDeleteMessageBusBox, false);
 				}
 			}
 		});
@@ -328,18 +327,18 @@ public class AdminController {
 					
 					if(!city.getName().equals(newnameofcity)) {
 						city.setName(newnameofcity);
-						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+						printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 					}
 					if(!city.getAreaNumber().equals(newareanumber)) {
 						city.setAreaNumber(newareanumber);
-						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+						printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 					}
 					
 					listCity();
 				} catch (NumberFormatException e1) {
-					printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (IllegalArgumentException e1) {
-					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -364,18 +363,18 @@ public class AdminController {
 							
 							if(!city.getName().equals(newnameofcity)) {
 								city.setName(newnameofcity);
-								printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+								printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 							}
 							if(!city.getAreaNumber().equals(newareanumber)) {
 								city.setAreaNumber(newareanumber);
-								printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+								printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 							}
 							
 							listCity();
 						} catch (NumberFormatException e1) {
-							printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
+							printMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 						} catch (IllegalArgumentException e1) {
-							printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
+							printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -400,18 +399,18 @@ public class AdminController {
 					
 					if(!city.getName().equals(newnameofcity)) {
 						city.setName(newnameofcity);
-						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+						printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 					}
 					if(!city.getAreaNumber().equals(newareanumber)) {
 						city.setAreaNumber(newareanumber);
-						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+						printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 					}
 					
 					listCity();
 				} catch (NumberFormatException e1) {
-					printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (IllegalArgumentException e1) {
-					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -436,17 +435,17 @@ public class AdminController {
 					
 					if(!city.getName().equals(newnameofcity)) {
 						city.setName(newnameofcity);
-						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+						printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 					}
 					if(!city.getAreaNumber().equals(newareanumber)) {
 						city.setAreaNumber(newareanumber);
-						printAddUpdateDeleteBusMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
+						printMsg("City information updated", adminView.UpdateOrDeleteMessageCityBox, true);
 					}
 					listCity();
 				} catch (NumberFormatException e1) {
-					printAddUpdateDeleteBusMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg("Address must be number!", adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (IllegalArgumentException e1) {
-					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
+					printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageCityBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -474,18 +473,18 @@ public class AdminController {
 					
 					if(!bus.getModel().equals(newmodelofbus)){
 						bus.setModel(newmodelofbus);
-						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+						printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 					}
 					if(!bus.getSeats().equals(newnumberofseats)) {
 						bus.setSeats(newnumberofseats);
-						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+						printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 					}
 					
 					listBus();
 				} catch (NumberFormatException e1) {
-					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (IllegalArgumentException e1) {
-					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -510,18 +509,18 @@ public class AdminController {
 							
 							if(!bus.getModel().equals(newmodelofbus)){
 								bus.setModel(newmodelofbus);
-								printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+								printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 							}
 							if(!bus.getSeats().equals(newnumberofseats)) {
 								bus.setSeats(newnumberofseats);
-								printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+								printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 							}
 							
 							listBus();
 						} catch (NumberFormatException e1) {
-							printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
+							printMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 						} catch (IllegalArgumentException e1) {
-							printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
+							printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -546,18 +545,18 @@ public class AdminController {
 					
 					if(!bus.getModel().equals(newmodelofbus)){
 						bus.setModel(newmodelofbus);
-						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+						printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 					}
 					if(!bus.getSeats().equals(newnumberofseats)) {
 						bus.setSeats(newnumberofseats);
-						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+						printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 					}
 					
 					listBus();
 				} catch (NumberFormatException e1) {
-					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (IllegalArgumentException e1) {
-					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -582,18 +581,18 @@ public class AdminController {
 					
 					if(!bus.getModel().equals(newmodelofbus)){
 						bus.setModel(newmodelofbus);
-						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+						printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 					}
 					if(!bus.getSeats().equals(newnumberofseats)) {
 						bus.setSeats(newnumberofseats);
-						printAddUpdateDeleteBusMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
+						printMsg("Bus information updated", adminView.UpdateOrDeleteMessageBusBox, true);
 					}
 					
 					listBus();
 				} catch (NumberFormatException e1) {
-					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg("Seats must be number!", adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (IllegalArgumentException e1) {
-					printAddUpdateDeleteBusMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
+					printMsg(e1.getMessage(), adminView.UpdateOrDeleteMessageBusBox, false);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -667,10 +666,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					line.deleteFromDB();
 					allLines.remove(id);
-					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
+					printMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
 					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
+					printMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -686,10 +685,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					line.deleteFromDB();
 					allLines.remove(id);
-					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
+					printMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
 					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
+					printMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -705,10 +704,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					line.deleteFromDB();
 					allLines.remove(id);
-					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
+					printMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
 					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
+					printMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -724,10 +723,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					line.deleteFromDB();
 					allLines.remove(id);
-					printAddUpdateDeleteBusMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
+					printMsg("Line deleted from database!", adminView.UpdateOrDeleteMessageLineBox, true);
 					listLines();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
+					printMsg("Line can't be deleted!",adminView.UpdateOrDeleteMessageLineBox, false);
 				}
 			}
 		});
@@ -772,10 +771,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					trip.deleteFromDB();
 					allTrips.remove(id);
-					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					printMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
 					listTrips();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+					printMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
 				}
 			}
 		});
@@ -791,10 +790,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					trip.deleteFromDB();
 					allTrips.remove(id);
-					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					printMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
 					listTrips();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+					printMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
 				}
 			}
 		});
@@ -810,10 +809,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					trip.deleteFromDB();
 					allTrips.remove(id);
-					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					printMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
 					listTrips();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+					printMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
 				}
 			}
 		});
@@ -829,10 +828,10 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				try {
 					trip.deleteFromDB();
 					allTrips.remove(id);
-					printAddUpdateDeleteBusMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
+					printMsg("Trip deleted from database!", adminView.UpdateOrDeleteMessageTripBox, true);
 					listTrips();
 				} catch (SQLException e1) {
-					printAddUpdateDeleteBusMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
+					printMsg("Trip can't be deleted!",adminView.UpdateOrDeleteMessageTripBox, false);
 				}
 			}
 		});
@@ -1032,12 +1031,12 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 					Bus newbus = new Bus(nameofbus,numberofseats);
 					allBuses.put(newbus.getID(), newbus);
 					
-					printAddUpdateDeleteBusMsg("New bus added!", adminView.AddNewBusLabel, true);
+					printMsg("New bus added!", adminView.AddNewBusLabel, true);
 					listBus();
 				} catch (NumberFormatException e) {
-					printAddUpdateDeleteBusMsg("Seats must be number!", adminView.AddNewBusLabel, false);
+					printMsg("Seats must be number!", adminView.AddNewBusLabel, false);
 				}catch (IllegalArgumentException e) {
-					printAddUpdateDeleteBusMsg(e.getMessage(), adminView.AddNewBusLabel, false);
+					printMsg(e.getMessage(), adminView.AddNewBusLabel, false);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1064,12 +1063,12 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 					Integer areanumber = Integer.parseInt(adminView.AddressCityAddTextBox.getText());
 					City newcity = new City(nameofcity, areanumber);
 					allCities.put(newcity.getID(),newcity);
-					printAddUpdateDeleteBusMsg("New city added!", adminView.AddNewCityLabel, true);
+					printMsg("New city added!", adminView.AddNewCityLabel, true);
 					listCity();
 				} catch (NumberFormatException e) {
-					printAddUpdateDeleteBusMsg("Address must be number!", adminView.AddNewCityLabel, false);
+					printMsg("Address must be number!", adminView.AddNewCityLabel, false);
 				}catch (IllegalArgumentException e) {
-					printAddUpdateDeleteBusMsg(e.getMessage(), adminView.AddNewCityLabel, false);
+					printMsg(e.getMessage(), adminView.AddNewCityLabel, false);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -1097,7 +1096,7 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 					Line newLine;
 					newLine = new Line(start,destination);
 					allLines.put(newLine.getID(), newLine);
-					printAddUpdateDeleteBusMsg("New line added!", adminView.AddNewLineLabel, true);
+					printMsg("New line added!", adminView.AddNewLineLabel, true);
 					listLines();
 				} catch (IllegalArgumentException | SQLException e) {
 					//Nebi trebalo biti Argument Exceptiona jer je nemoguce odabrat grad koji ne postoji ako se bira iz dropdowna.
@@ -1124,30 +1123,19 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 					//Pretvori u Time vremena 
 					if(adminView.AddDepartureTimeTrip.getText().matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")
 					   && adminView.AddDurationTimeTrip.getText().matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
+						
 						//Povuci departure time i duration time u polje stringa i pretvori u brojeve
 						String[] departuretime = adminView.AddDepartureTimeTrip.getText().split(":");
 						String[] durationtime = adminView.AddDurationTimeTrip.getText().split(":");
-						
-						int departureHours = Integer.parseInt(departuretime[0]);
-						int departureMins = Integer.parseInt(departuretime[1]);
-						
-						int durationHours = Integer.parseInt(durationtime[0]);
-						int durationMins = Integer.parseInt(durationtime[1]);
-						
-						
-						//Pretvaranje u milisekunde zbog konstruktora Time -> prima vrijeme u milisekundama -> prelose
-						int durationMiliSec = durationHours*60*60*1000 + durationMins*60*1000;
-						int departureMiliSec = departureHours*60*60*1000 + departureMins*60*1000;
-						
-						
-						Time duration = new Time(durationMiliSec-3600000); //treba oduzet 1 sat jer se inace u bazi doda 1 sat viska
-						Time departure = new Time(departureMiliSec-3600000); // zasto je to tako? neznam
+												
+						Time duration = Time.valueOf(durationtime[0] + ":" + durationtime[1] + ":" + "00"); 
+						Time departure = Time.valueOf(departuretime[0] + ":" + departuretime[1] + ":" + "00"); 
 						
 						//Kreiranje novog tripa i dodavanje u kolekciju
 						Trip newTrip;
 						newTrip = new Trip(bus, line, departure, duration);
 						allTrips.put(newTrip.getID(), newTrip);
-						printAddUpdateDeleteBusMsg("New trip added!", adminView.AddNewTripLabel, true);
+						printMsg("New trip added!", adminView.AddNewTripLabel, true);
 						listTrips();
 						
 					}
@@ -1155,7 +1143,7 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 						throw new IllegalArgumentException("Wrong type of time! Hint: HH:MM!");
 					}
 				} catch (IllegalArgumentException e) {
-					printAddUpdateDeleteBusMsg(e.getMessage(),adminView.AddNewTripLabel, false);
+					printMsg(e.getMessage(),adminView.AddNewTripLabel, false);
 				}
 				catch(SQLException e1) {
 					e1.printStackTrace();
@@ -1288,7 +1276,7 @@ adminView.LoadPreviousCityButt.addActionListener(new ActionListener() {
 				adminView.AdminCityButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				adminView.AdminLineButt.setBorder(new LineBorder(SystemColor.textHighlight, 2));
 				
-				printAddUpdateDeleteBusMsg("HINT: Departure and duration must be: HH:MM type", adminView.AddNewTripLabel, true);
+				printMsg("HINT: Departure and duration must be: HH:MM type", adminView.AddNewTripLabel, true);
 				adminView.UpdateOrDeleteMessageTripBox.setText("");
 			}
 		});

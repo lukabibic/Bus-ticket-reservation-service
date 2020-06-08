@@ -104,6 +104,7 @@ public class UserGUI extends JFrame{
 	JButton UserProfileButt;
 	JLabel ReservedTripLabel;
 	private JLabel ReservedTicketLabel;
+	JLabel TripReservationLabel;
 	
 	/**
 	 * Create the frame.
@@ -528,6 +529,11 @@ public class UserGUI extends JFrame{
 			TicketQuantityLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
 			TicketQuantityLabel.setBounds(796, 10, 107, 32);
 			ListTicketPanel.add(TicketQuantityLabel);
+			
+			TripReservationLabel = new JLabel("");
+			TripReservationLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 13));
+			TripReservationLabel.setBounds(648, 314, 370, 20);
+			ListTicketPanel.add(TripReservationLabel);
 			
 			//SEARCH TRIP PANEL
 			SearchTicketPanel = new JPanel();

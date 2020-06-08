@@ -47,11 +47,29 @@ public class Ticket {
     public Integer getID() {
         return this.ID;
     }
-
+    
+    public Trip getTrip() {
+    	return this.trip;
+    }
+    
+    public String getDateFormat() {
+    	int day =  this.tripDate.getDate();
+    	int month = this.tripDate.getMonth() + 1;
+    	int year = this.tripDate.getYear() + 1900;
+    	return day + "." + month + "." + year + ".";
+    }
+    
     public String toString() {
         return this.trip + "\n" + this.tripDate + "\n" + this.user;
     }
-
+    
+    public void deleteFromDB() throws SQLException {
+        PreparedStatement preparedStmt = DBconnect.conn.prepareStatement("DELETE from ticket WHERE id = ?");
+        preparedStmt.setInt(1, this.ID);
+        preparedStmt.execute();
+        System.out.println("Ticket deleted");
+    }
+    
     private Integer create(Trip trip, User user, Date tripDate) throws Exception, SQLException {
         //create ticket in database and return ID of generated ticket
 
