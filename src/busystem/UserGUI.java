@@ -42,11 +42,7 @@ public class UserGUI extends JFrame{
 	JButton LoadNextTripButt;
 	JButton btnLogout;
 	JTextField ChooseDateTicketTextBox;
-	JTextField TripEmptySeatsTextBox1;
 	JTextField TripDepartureTimeTextBox1;
-	JTextField TripEmptySeatsTextBox2;
-	JTextField TripEmptySeatsTextBox3;
-	JTextField TripEmptySeatsTextBox4;
 	JTextField TripDurationTimeTextBox1;
 	JTextField TripDepartureTimeTextBox2;
 	JTextField TripDepartureTimeTextBox3;
@@ -60,7 +56,6 @@ public class UserGUI extends JFrame{
 	JComboBox<String> NumberOfTicketComboBox4;
 	private JLabel TripLineLabel;
 	private JLabel TripBusLabel;
-	private JLabel TripFreeSeatsLabel;
 	private JLabel TripDepartureLabel;
 	private JLabel TripDurationLabel;
 	private JLabel TicketQuantityLabel;
@@ -235,7 +230,7 @@ public class UserGUI extends JFrame{
 			TripBusTextBox1.setColumns(10);
 			TripBusTextBox1.setCaretColor(Color.WHITE);
 			TripBusTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripBusTextBox1.setBounds(306, 51, 150, 32);
+			TripBusTextBox1.setBounds(334, 51, 150, 32);
 			ListTicketPanel.add(TripBusTextBox1);
 			
 			TripBusTextBox2 = new JTextField();
@@ -247,7 +242,7 @@ public class UserGUI extends JFrame{
 			TripBusTextBox2.setColumns(10);
 			TripBusTextBox2.setCaretColor(Color.WHITE);
 			TripBusTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripBusTextBox2.setBounds(306, 116, 150, 32);
+			TripBusTextBox2.setBounds(334, 116, 150, 32);
 			ListTicketPanel.add(TripBusTextBox2);
 			
 			TripBusTextBox3 = new JTextField();
@@ -259,7 +254,7 @@ public class UserGUI extends JFrame{
 			TripBusTextBox3.setColumns(10);
 			TripBusTextBox3.setCaretColor(Color.WHITE);
 			TripBusTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripBusTextBox3.setBounds(306, 184, 150, 32);
+			TripBusTextBox3.setBounds(334, 184, 150, 32);
 			ListTicketPanel.add(TripBusTextBox3);
 			
 			TripBusTextBox4 = new JTextField();
@@ -271,7 +266,7 @@ public class UserGUI extends JFrame{
 			TripBusTextBox4.setColumns(10);
 			TripBusTextBox4.setCaretColor(Color.WHITE);
 			TripBusTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripBusTextBox4.setBounds(306, 249, 150, 32);
+			TripBusTextBox4.setBounds(334, 249, 150, 32);
 			ListTicketPanel.add(TripBusTextBox4);
 			
 			ReserveTicketButt1 = new JButton("RESERVE");
@@ -322,18 +317,6 @@ public class UserGUI extends JFrame{
 			LoadNextTripButt.setBounds(549, 326, 50, 32);
 			ListTicketPanel.add(LoadNextTripButt);
 			
-			TripEmptySeatsTextBox1 = new JTextField();
-			TripEmptySeatsTextBox1.setOpaque(false);
-			TripEmptySeatsTextBox1.setForeground(Color.WHITE);
-			TripEmptySeatsTextBox1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			TripEmptySeatsTextBox1.setFocusable(false);
-			TripEmptySeatsTextBox1.setEditable(false);
-			TripEmptySeatsTextBox1.setColumns(10);
-			TripEmptySeatsTextBox1.setCaretColor(Color.WHITE);
-			TripEmptySeatsTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripEmptySeatsTextBox1.setBounds(481, 51, 40, 32);
-			ListTicketPanel.add(TripEmptySeatsTextBox1);
-			
 			TripDepartureTimeTextBox1 = new JTextField();
 			TripDepartureTimeTextBox1.setOpaque(false);
 			TripDepartureTimeTextBox1.setForeground(Color.WHITE);
@@ -343,44 +326,8 @@ public class UserGUI extends JFrame{
 			TripDepartureTimeTextBox1.setColumns(10);
 			TripDepartureTimeTextBox1.setCaretColor(Color.WHITE);
 			TripDepartureTimeTextBox1.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripDepartureTimeTextBox1.setBounds(549, 51, 101, 32);
+			TripDepartureTimeTextBox1.setBounds(526, 51, 101, 32);
 			ListTicketPanel.add(TripDepartureTimeTextBox1);
-			
-			TripEmptySeatsTextBox2 = new JTextField();
-			TripEmptySeatsTextBox2.setOpaque(false);
-			TripEmptySeatsTextBox2.setForeground(Color.WHITE);
-			TripEmptySeatsTextBox2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			TripEmptySeatsTextBox2.setFocusable(false);
-			TripEmptySeatsTextBox2.setEditable(false);
-			TripEmptySeatsTextBox2.setColumns(10);
-			TripEmptySeatsTextBox2.setCaretColor(Color.WHITE);
-			TripEmptySeatsTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripEmptySeatsTextBox2.setBounds(481, 116, 40, 32);
-			ListTicketPanel.add(TripEmptySeatsTextBox2);
-			
-			TripEmptySeatsTextBox3 = new JTextField();
-			TripEmptySeatsTextBox3.setOpaque(false);
-			TripEmptySeatsTextBox3.setForeground(Color.WHITE);
-			TripEmptySeatsTextBox3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			TripEmptySeatsTextBox3.setFocusable(false);
-			TripEmptySeatsTextBox3.setEditable(false);
-			TripEmptySeatsTextBox3.setColumns(10);
-			TripEmptySeatsTextBox3.setCaretColor(Color.WHITE);
-			TripEmptySeatsTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripEmptySeatsTextBox3.setBounds(481, 184, 40, 32);
-			ListTicketPanel.add(TripEmptySeatsTextBox3);
-			
-			TripEmptySeatsTextBox4 = new JTextField();
-			TripEmptySeatsTextBox4.setOpaque(false);
-			TripEmptySeatsTextBox4.setForeground(Color.WHITE);
-			TripEmptySeatsTextBox4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 13));
-			TripEmptySeatsTextBox4.setFocusable(false);
-			TripEmptySeatsTextBox4.setEditable(false);
-			TripEmptySeatsTextBox4.setColumns(10);
-			TripEmptySeatsTextBox4.setCaretColor(Color.WHITE);
-			TripEmptySeatsTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripEmptySeatsTextBox4.setBounds(481, 249, 40, 32);
-			ListTicketPanel.add(TripEmptySeatsTextBox4);
 			
 			TripDurationTimeTextBox1 = new JTextField();
 			TripDurationTimeTextBox1.setOpaque(false);
@@ -403,7 +350,7 @@ public class UserGUI extends JFrame{
 			TripDepartureTimeTextBox2.setColumns(10);
 			TripDepartureTimeTextBox2.setCaretColor(Color.WHITE);
 			TripDepartureTimeTextBox2.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripDepartureTimeTextBox2.setBounds(549, 116, 101, 32);
+			TripDepartureTimeTextBox2.setBounds(526, 116, 101, 32);
 			ListTicketPanel.add(TripDepartureTimeTextBox2);
 			
 			TripDepartureTimeTextBox3 = new JTextField();
@@ -415,7 +362,7 @@ public class UserGUI extends JFrame{
 			TripDepartureTimeTextBox3.setColumns(10);
 			TripDepartureTimeTextBox3.setCaretColor(Color.WHITE);
 			TripDepartureTimeTextBox3.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripDepartureTimeTextBox3.setBounds(549, 184, 101, 32);
+			TripDepartureTimeTextBox3.setBounds(526, 184, 101, 32);
 			ListTicketPanel.add(TripDepartureTimeTextBox3);
 			
 			TripDepartureTimeTextBox4 = new JTextField();
@@ -427,7 +374,7 @@ public class UserGUI extends JFrame{
 			TripDepartureTimeTextBox4.setColumns(10);
 			TripDepartureTimeTextBox4.setCaretColor(Color.WHITE);
 			TripDepartureTimeTextBox4.setBorder(new LineBorder(SystemColor.textHighlight, 2));
-			TripDepartureTimeTextBox4.setBounds(549, 249, 101, 32);
+			TripDepartureTimeTextBox4.setBounds(526, 249, 101, 32);
 			ListTicketPanel.add(TripDepartureTimeTextBox4);
 			
 			TripDurationTimeTextBox2 = new JTextField();
@@ -506,16 +453,10 @@ public class UserGUI extends JFrame{
 			TripBusLabel.setBounds(334, 10, 92, 32);
 			ListTicketPanel.add(TripBusLabel);
 			
-			TripFreeSeatsLabel = new JLabel("FREE");
-			TripFreeSeatsLabel.setForeground(Color.WHITE);
-			TripFreeSeatsLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
-			TripFreeSeatsLabel.setBounds(475, 9, 59, 32);
-			ListTicketPanel.add(TripFreeSeatsLabel);
-			
 			TripDepartureLabel = new JLabel("DEPARTURE");
 			TripDepartureLabel.setForeground(Color.WHITE);
 			TripDepartureLabel.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
-			TripDepartureLabel.setBounds(542, 9, 122, 32);
+			TripDepartureLabel.setBounds(518, 9, 122, 32);
 			ListTicketPanel.add(TripDepartureLabel);
 			
 			TripDurationLabel = new JLabel("DURATION");
